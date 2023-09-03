@@ -1,27 +1,56 @@
 import React, { useState } from "react";
 import "../nav/Header.css";
+import { Link } from "react-router-dom";
 import { Menu } from "antd";
+import userLogo from "../../resources/header_user-circle-light_red.svg";
+import starLogo from "../../resources/header_AR icon.svg";
+import cartLogo from "../../resources/Korpa.svg";
 import {
-  AppstoreOutlined,
   MailOutlined,
   SettingOutlined,
+  SearchOutlined,
 } from "@ant-design/icons";
+import logo from "../../resources/ace_logo.png";
 
 const { SubMenu } = Menu;
 
 const Header = () => {
   const [currnet, setCurrent] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
+  const inputStyle = {
+    width: "500px",
+    height: "30px",
+    border: isFocused ? "1px solid red" : "none",
+    padding: "4px", // Dodajte željeni padding
+  };
+
+  const buttonStyle = {
+    border: "none",
+    height: "30px",
+    backgroundColor: "grey",
+    color: isFocused ? "red" : "black",
+    padding: "4px", // Dodajte željeni padding
+  };
   const handleClick = () => {
     // bla bla
   };
 
   return (
     <>
-      <div className="global-header p-0 m-0 bg-success">
-        <div className="info-div p-0 m-0 w-100 d-flex">
+      <div className="global-header p-0 m-0">
+        <div className="info-div d-flex">
           <div className="info-one">
             <p className="info-text">
-              <b>We Deliver. Get what you need, when you need it.</b>
+              <b>We Deliver.</b> Get what you need, when you need it.
               <u>
                 <a href="#">Learn more</a>
               </u>
@@ -33,15 +62,80 @@ const Header = () => {
             <a href="#">Store Locator</a>
           </div>
         </div>
-        <Menu onClick={handleClick} selectedKeys={[currnet]} mode="horizontal">
-          <Menu.Item key="mail" icon={<MailOutlined />}>
-            Home
-          </Menu.Item>
-          <SubMenu icon={<SettingOutlined />} title="Submenu">
-            <Menu.Item key="setting:1">Option 1</Menu.Item>
-            <Menu.Item key="setting:2">Option 2</Menu.Item>
-          </SubMenu>
-        </Menu>
+
+        <div className="Header-global-center-div w-100">
+          <div className="Logo-search-global">
+            <div className="Logo-search-div d-flex w-100">
+              <img id="ace_logo" src={logo} alt="Ace Hardware logo" />
+
+              <input
+                type="text"
+                id="search_bar"
+                style={inputStyle}
+                placeholder="What can we help you find?"
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+              <button
+                type="button"
+                style={buttonStyle}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              >
+                <SearchOutlined />
+              </button>
+
+              <div className="login-and-register-section">
+                <div className="header-login-register-section gap-2">
+                  <img
+                    className="headerLogo"
+                    src={userLogo}
+                    alt="Login/Register"
+                  />
+                  <p>
+                    <span>Hi there,</span>
+                    <br /> <Link to="/login">Sign in</Link> |{" "}
+                    <Link to="/register">New Account</Link>
+                  </p>
+                </div>
+                <div className="header-login-register-section">
+                  <img src={starLogo} alt="Login/Register" />
+                  <p>
+                    <span>Ace Rewards</span>
+                    <br /> <Link to="/">Learn more</Link>
+                  </p>
+                </div>
+                <div className="header-login-register-section">
+                  <img
+                    className="headerLogo"
+                    src={cartLogo}
+                    alt="Login/Register"
+                  />
+                  <p>
+                    <span>Cart</span>
+                    <br />
+                    <p>0 Items</p>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <Menu
+              onClick={handleClick}
+              selectedKeys={[currnet]}
+              mode="horizontal"
+            >
+              <SubMenu icon={<SettingOutlined />} title="Submenu">
+                <Menu.Item key="setting:1">Option 1</Menu.Item>
+                <Menu.Item key="setting:2">Option 2</Menu.Item>
+              </SubMenu>
+              <Menu.Item icon={<MailOutlined />}>Home</Menu.Item>
+              <Menu.Item>Local Ad</Menu.Item>
+              <Menu.Item>The Paint Studio</Menu.Item>
+              <Menu.Item>Ace Project Place</Menu.Item>
+              <Menu.Item className="proba">Ace Handyman Services</Menu.Item>
+            </Menu>
+          </div>
+        </div>
       </div>
     </>
   );

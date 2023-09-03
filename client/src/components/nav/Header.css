@@ -1,23 +1,106 @@
 .global-header{
-    height: 300px;
-    z-index: 9999;
+    font-size: 12px;
+    height: auto;
 }
 
 .global-header a {
     color: black;
+    font-size: 12px;
     text-decoration: none;
 }
 
+.global-header a:hover {
+    color: black;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
 .info-div{
+    margin: auto;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: #EEEEEE !important;
     justify-content: space-between;
 }
 
+.info-one{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.info-text {
+    padding-top: 1%; /* center text */
+}
 
 .info-two{
-    width: 40%;
+    margin: auto;
+    width: 30%;
+    justify-content: end;
     display: flex;
     flex-direction: row;
 }
 .info-two a{
     padding-left: 2%;
+}
+
+/* Logo, search and login/register section */
+
+.Header-global-center-div {
+    border-bottom: 5px solid #D30029;
+    padding: 0.5%;
+}
+
+
+.Logo-search-global {
+    margin: auto;
+    width: 77%;
+}
+
+
+.Logo-search-div {
+    flex-direction: row;
+    align-items: center;
+}
+
+#ace_logo {
+    margin: 1%;
+    width: 157px;
+    height: 87px;
+}
+
+#search_bar {
+    width: 500px;
+}
+
+
+.login-and-register-section {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: aqua;
+    width: 100%;
+}
+
+.header-login-register-section {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    text-align: start;
+    padding: 0%;
+}
+
+.header-login-register-section p{
+    margin: auto;
+}
+
+
+.headerLogo {
+    width: 40px;
 }
