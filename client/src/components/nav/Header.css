@@ -1,0 +1,23 @@
+.global-header{
+    height: 300px;
+    z-index: 9999;
+}
+
+.global-header a {
+    color: black;
+    text-decoration: none;
+}
+
+.info-div{
+    justify-content: space-between;
+}
+
+
+.info-two{
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+}
+.info-two a{
+    padding-left: 2%;
+}
