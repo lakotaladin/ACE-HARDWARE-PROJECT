@@ -25,7 +25,8 @@ const Header = () => {
   const inputStyle = {
     width: "1400px",
     height: "50px",
-    border: isFocused ? "1px solid red" : "none",
+    fontSize: "16px",
+    border: isFocused ? "2px solid red" : "1px solid lightgrey",
     padding: "4px",
     margin: "0px 0px 0px 35px",
   };

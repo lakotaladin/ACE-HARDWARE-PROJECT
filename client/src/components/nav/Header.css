@@ -32,7 +32,7 @@
 .info-one{
     margin: auto;
     display: flex;
-    font-size: 14px;
+    font-size: 12px;
     justify-content: center;
     align-items: center;
     flex-direction: row;
@@ -52,7 +52,7 @@
 }
 .info-two a{
     padding-left: 2%;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 /* Logo, search and login/register section */
