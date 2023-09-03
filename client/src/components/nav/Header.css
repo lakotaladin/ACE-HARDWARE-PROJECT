@@ -15,6 +15,10 @@
     text-decoration: underline;
 }
 
+.custom-menu-item {
+    font-size: 18px;
+    font-weight: bold;
+}
 .info-div{
     margin: auto;
     width: 100%;
@@ -28,6 +32,7 @@
 .info-one{
     margin: auto;
     display: flex;
+    font-size: 14px;
     justify-content: center;
     align-items: center;
     flex-direction: row;
@@ -35,6 +40,7 @@
 
 .info-text {
     padding-top: 1%; /* center text */
+    font-weight: 400;
 }
 
 .info-two{
@@ -46,6 +52,7 @@
 }
 .info-two a{
     padding-left: 2%;
+    font-size: 14px;
 }
 
 /* Logo, search and login/register section */
@@ -58,7 +65,7 @@
 
 .Logo-search-global {
     margin: auto;
-    width: 77%;
+    width: 80%;
 }
 
 
@@ -73,27 +80,40 @@
     height: 87px;
 }
 
-#search_bar {
-    width: 500px;
+
+#search-icon {
+    color: #D30029;
 }
-
-
 .login-and-register-section {
     align-items: center;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 100%;
 }
 
+.login-and-register-section b {
+    font-size: 18px;
+    
+}
+
+.login-and-register-section p {
+    font-size: 14px;
+    
+}
+
 .header-login-register-section {
+    width: 40%;
     display: flex;
     margin: auto;
     align-items: center;
     text-align: start;
-    padding: 0%;
+    padding: 1%;
+}
+
+.header-login-register-section  a{
+    text-decoration: none !important;
 }
 
 .header-login-register-section p{

@@ -5,11 +5,7 @@ import { Menu } from "antd";
 import userLogo from "../../resources/header_user-circle-light_red.svg";
 import starLogo from "../../resources/header_AR icon.svg";
 import cartLogo from "../../resources/Korpa.svg";
-import {
-  MailOutlined,
-  SettingOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import logo from "../../resources/ace_logo.png";
 
 const { SubMenu } = Menu;
@@ -27,19 +23,23 @@ const Header = () => {
   };
 
   const inputStyle = {
-    width: "500px",
-    height: "30px",
+    width: "1400px",
+    height: "50px",
     border: isFocused ? "1px solid red" : "none",
-    padding: "4px", // Dodajte željeni padding
+    padding: "4px",
+    margin: "0px 0px 0px 35px",
   };
 
   const buttonStyle = {
     border: "none",
-    height: "30px",
-    backgroundColor: "grey",
+    width: "100px",
+    height: "50px",
+    backgroundColor: "lightgrey",
     color: isFocused ? "red" : "black",
-    padding: "4px", // Dodajte željeni padding
+    padding: "4px",
+    margin: "0px 20px 0px 0px",
   };
+
   const handleClick = () => {
     // bla bla
   };
@@ -70,7 +70,6 @@ const Header = () => {
 
               <input
                 type="text"
-                id="search_bar"
                 style={inputStyle}
                 placeholder="What can we help you find?"
                 onFocus={handleFocus}
@@ -82,7 +81,7 @@ const Header = () => {
                 onFocus={handleFocus}
                 onBlur={handleBlur}
               >
-                <SearchOutlined />
+                <SearchOutlined id="search-icon" />
               </button>
 
               <div className="login-and-register-section">
@@ -93,26 +92,26 @@ const Header = () => {
                     alt="Login/Register"
                   />
                   <p>
-                    <span>Hi there,</span>
+                    <b>Hi there,</b>
                     <br /> <Link to="/login">Sign in</Link> |{" "}
                     <Link to="/register">New Account</Link>
                   </p>
                 </div>
-                <div className="header-login-register-section">
+                <div className="header-login-register-section gap-2">
                   <img src={starLogo} alt="Login/Register" />
                   <p>
-                    <span>Ace Rewards</span>
+                    <b>Ace Rewards</b>
                     <br /> <Link to="/">Learn more</Link>
                   </p>
                 </div>
-                <div className="header-login-register-section">
+                <div className="header-login-register-section gap-2">
                   <img
                     className="headerLogo"
                     src={cartLogo}
                     alt="Login/Register"
                   />
                   <p>
-                    <span>Cart</span>
+                    <b>Cart</b>
                     <br />
                     <p>0 Items</p>
                   </p>
@@ -124,15 +123,23 @@ const Header = () => {
               selectedKeys={[currnet]}
               mode="horizontal"
             >
-              <SubMenu icon={<SettingOutlined />} title="Submenu">
+              <SubMenu className="custom-menu-item" title="Departments">
                 <Menu.Item key="setting:1">Option 1</Menu.Item>
                 <Menu.Item key="setting:2">Option 2</Menu.Item>
               </SubMenu>
-              <Menu.Item icon={<MailOutlined />}>Home</Menu.Item>
-              <Menu.Item>Local Ad</Menu.Item>
-              <Menu.Item>The Paint Studio</Menu.Item>
-              <Menu.Item>Ace Project Place</Menu.Item>
-              <Menu.Item className="proba">Ace Handyman Services</Menu.Item>
+              <Menu.Item className="custom-menu-item">
+                Sales & Specials
+              </Menu.Item>
+              <Menu.Item className="custom-menu-item">Local Ad</Menu.Item>
+              <Menu.Item className="custom-menu-item">
+                The Paint Studio
+              </Menu.Item>
+              <Menu.Item className="custom-menu-item">
+                Ace Project Place
+              </Menu.Item>
+              <Menu.Item className="custom-menu-item">
+                Ace Handyman Services
+              </Menu.Item>
             </Menu>
           </div>
         </div>
