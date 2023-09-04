@@ -7,6 +7,7 @@ import starLogo from "../../resources/header_AR icon.svg";
 import cartLogo from "../../resources/Korpa.svg";
 import { SearchOutlined } from "@ant-design/icons";
 import logo from "../../resources/ace_logo.png";
+import location from "../../resources/location_icon.svg";
 
 const { SubMenu } = Menu;
 
@@ -23,7 +24,7 @@ const Header = () => {
   };
 
   const inputStyle = {
-    width: "1400px",
+    width: "100%",
     height: "50px",
     fontSize: "16px",
     border: isFocused ? "2px solid red" : "1px solid lightgrey",
@@ -33,7 +34,7 @@ const Header = () => {
 
   const buttonStyle = {
     border: "none",
-    width: "100px",
+    width: "150px",
     height: "50px",
     backgroundColor: "lightgrey",
     color: isFocused ? "red" : "black",
@@ -78,6 +79,7 @@ const Header = () => {
               />
               <button
                 type="button"
+                id="buttonSearch"
                 style={buttonStyle}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
@@ -85,33 +87,33 @@ const Header = () => {
                 <SearchOutlined id="search-icon" />
               </button>
 
-              <div className="login-and-register-section">
-                <div className="header-login-register-section gap-2">
+              <div className="login-and-register-section gap-2">
+                <div className="header-login-register-section gap-2 w-50">
                   <img
                     className="headerLogo"
                     src={userLogo}
                     alt="Login/Register"
                   />
-                  <p>
+                  <p className="p-0 m-0">
                     <b>Hi there,</b>
                     <br /> <Link to="/login">Sign in</Link> |{" "}
                     <Link to="/register">New Account</Link>
                   </p>
                 </div>
-                <div className="header-login-register-section gap-2">
+                <div className="header-login-register-section">
                   <img src={starLogo} alt="Login/Register" />
-                  <p>
+                  <p className="p-2 m-0">
                     <b>Ace Rewards</b>
                     <br /> <Link to="/">Learn more</Link>
                   </p>
                 </div>
-                <div className="header-login-register-section gap-2">
+                <div className="header-login-register-section">
                   <img
                     className="headerLogo"
                     src={cartLogo}
                     alt="Login/Register"
                   />
-                  <p>
+                  <p className="p-2 m-0">
                     <b>Cart</b>
                     <br />
                     <p>0 Items</p>
@@ -142,6 +144,33 @@ const Header = () => {
                 Ace Handyman Services
               </Menu.Item>
             </Menu>
+          </div>
+        </div>
+        <div className="location-header-section w-100 p-0 m-0">
+          <img
+            src={location}
+            id="location-img"
+            style={{ width: "1.7%", padding: "0px", margin: "0px" }}
+            alt="Location"
+          />
+          <div className="location-container p-0 m-0">
+            <div className="location-content p-0 m-0 d-flex">
+              <div className="location-text p-0 m-1 d-flex">
+                <div className="p-0 m-0">
+                  <p>You're shopping</p>
+                </div>
+                <div className="p-0 m-0">
+                  <p>
+                    <b>Calais Ace Home Center</b> - Calais, ME{" "}
+                    <b>
+                      <span className="text-success">Open</span>
+                    </b>{" "}
+                    until 6 PM | <b>Store Info & Directions</b> |{" "}
+                    <b>Services & Brands</b> | <u>Change store</u>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

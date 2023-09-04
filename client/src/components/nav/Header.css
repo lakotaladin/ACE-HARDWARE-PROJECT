@@ -1,3 +1,7 @@
+.ant-menu-horizontal {
+    border: none !important;
+}
+
 .global-header{
     font-size: 12px;
     height: auto;
@@ -16,8 +20,8 @@
 }
 
 .custom-menu-item {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 500;
 }
 .info-div{
     margin: auto;
@@ -30,7 +34,7 @@
 }
 
 .info-one{
-    margin: auto;
+    margin: auto auto auto 10%;
     display: flex;
     font-size: 12px;
     justify-content: center;
@@ -58,14 +62,17 @@
 /* Logo, search and login/register section */
 
 .Header-global-center-div {
-    border-bottom: 5px solid #D30029;
+    
     padding: 0.5%;
 }
 
-
+#buttonSearch {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
 .Logo-search-global {
     margin: auto;
-    width: 80%;
+    max-width: 82%;
 }
 
 
@@ -76,8 +83,8 @@
 
 #ace_logo {
     margin: 1%;
-    width: 157px;
-    height: 87px;
+    width: 150px;
+    height: 80px;
 }
 
 
@@ -89,12 +96,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* background-color: aqua; */
     width: 100%;
 }
 
 .login-and-register-section b {
-    font-size: 18px;
+    font-size: 15px;
     
 }
 
@@ -122,5 +128,46 @@
 
 
 .headerLogo {
-    width: 40px;
+    width: 30px;
+}
+
+
+/* Location section */
+
+.location-header-section {
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    border-top: 5px solid #D30029;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 1px 10px rgba(0,0,0,0.23);
+    max-width: 100%;
+    height: 60px;
+}
+
+/* Location header container */
+
+.location-container {
+    padding: 0%;
+    min-width: 82%;
+    display: flex;
+    text-align: center;
+    height: 100px;
+
+}
+
+
+.location-content{
+    padding: 1%;
+    width: auto;
+    height: 100px;
+}
+
+.location-text {
+    flex-direction: column;
+    text-align: start;
+}
+
+.location-text p {
+    margin: 0%;
+    padding: 0%;
 }
