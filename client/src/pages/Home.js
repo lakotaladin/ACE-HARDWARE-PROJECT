@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/nav/Header";
 import ScrollToTopButton from "../components/ScrollOnTop/ScrollOnTopButton";
+import Footer from "../components/footer/Footer";
 
 const Home = () => {
   return (
@@ -45,6 +46,7 @@ const Home = () => {
         <p>Home</p>
       </div>
       <ScrollToTopButton />
+      <Footer />
     </>
   );
 };
