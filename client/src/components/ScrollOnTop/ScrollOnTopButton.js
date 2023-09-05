@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowUpOutlined } from "@ant-design/icons";
+import { UpOutlined } from "@ant-design/icons";
 import "../ScrollOnTop/style.css"; // Prilagodite ime CSS fajla prema vašim potrebama
 
 const ScrollToTopButton = () => {
@@ -25,7 +25,7 @@ const ScrollToTopButton = () => {
       className={`scroll-to-top-button ${isVisible ? "visible" : ""}`}
       onClick={scrollToTop}
     >
-      <ArrowUpOutlined className="icon" />
+      <UpOutlined className="icon" />
     </button>
   );
 };

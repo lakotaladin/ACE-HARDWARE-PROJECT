@@ -150,7 +150,7 @@ const Header = () => {
           <img
             src={location}
             id="location-img"
-            style={{ width: "1.7%", padding: "0px", margin: "0px" }}
+            style={{ width: "1.7%", padding: "0px", marginLeft: "50px" }}
             alt="Location"
           />
           <div className="location-container p-0 m-0">
