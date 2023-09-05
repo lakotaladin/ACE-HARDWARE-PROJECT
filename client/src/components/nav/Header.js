@@ -68,7 +68,9 @@ const Header = () => {
         <div className="Header-global-center-div w-100">
           <div className="Logo-search-global">
             <div className="Logo-search-div d-flex w-100">
-              <img id="ace_logo" src={logo} alt="Ace Hardware logo" />
+              <Link to="/">
+                <img id="ace_logo" src={logo} alt="Ace Hardware logo" />
+              </Link>
 
               <input
                 type="text"
