@@ -54,14 +54,16 @@ const Header = () => {
             <p className="info-text">
               <b>We Deliver.</b> Get what you need, when you need it.
               <u>
-                <a href="#">Learn more</a>
+                <a href="https://www.acehardware.com/we-deliver">Learn more</a>
               </u>
             </p>
           </div>
           <div className="info-two">
-            <a href="#">Business Accounts</a>
-            <a href="#">Customer Service</a>
-            <a href="#">Store Locator</a>
+            <a href="https://www.acehardware.com/b2b-home">Business Accounts</a>
+            <a href="https://acehardware.bold360ps.com/?Touchpoint=Support%20Center">
+              Customer Service
+            </a>
+            <Link to="/Location">Store Locator</Link>
           </div>
         </div>
 
