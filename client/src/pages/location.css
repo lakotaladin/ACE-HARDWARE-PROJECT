@@ -1,13 +1,28 @@
 .global {
     height: 100vh;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
+.side-location-div {
+    height: 900px;
+    background-color: #D1D1D1 !important;
+    overflow-y: scroll;
+}
 
 .location-card {
+    height: auto;
+    border-bottom: 1px solid lightgray !important;
     background-color: #D1D1D1 !important;
     margin: 0%;
     padding: 0%;
+}
+
+.location-card b {
+    font-size: 12px;
+}
+
+.location-card p {
+    font-size: 12px;
 }
 
 /* Search component */
@@ -16,6 +31,10 @@
     width: 70%;
     padding: 1%;
     border: 1px solid #D1D1D1;
+}
+
+.search-div {
+    background-color: #F7F7F7;
 }
 
 .search-button {
@@ -27,4 +46,20 @@
     border: none;
     font-weight: 700;
     margin-left: 4px;
+}
+
+.location-card.highlighted {
+  background-color: black !important;
+  color: white; /* Dodajte boju teksta koja vam odgovara */
+}
+
+/* Map marker text */
+
+.marker-text {
+    width: 100%;
+}
+
+.marker-text p {
+    width: 100%;
+    font-size: 10px;
 }

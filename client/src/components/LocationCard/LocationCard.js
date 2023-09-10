@@ -16,9 +16,16 @@ const LocationCard = ({ location, onSelectLocation }) => {
   };
 
   return (
-    <div className="location-card" style={cardStyle} onClick={handleCardClick}>
-      <h3>{location.name}</h3>
+    <div
+      className={`location-card p-3 ${isHighlighted ? "highlighted" : ""}`}
+      style={cardStyle}
+      onClick={handleCardClick}
+    >
+      <b style={{ fontSize: "14px" }}>{location.name}</b>
       <p className="p-0 m-0">{location.description}</p>
+      <p className="p-0 m-0">{location.adress}</p>
+      <p className="p-0 m-0">{location.phone}</p>
+      <u style={{ fontSize: "12px" }}>Store Details</u>
     </div>
   );
 };
