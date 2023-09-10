@@ -17,51 +17,109 @@ const Location = () => {
       latitude: 51.505,
       longitude: -0.09,
     },
-    { id: 2, name: "Lokacija 2", description: "Opis lokacije 2" },
-    { id: 3, name: "Lokacija 3", description: "Opis lokacije 3" },
-    { id: 4, name: "Lokacija 4", description: "Opis lokacije 4" },
-    { id: 5, name: "Lokacija 5", description: "Opis lokacije 5" },
-    { id: 6, name: "Lokacija 6", description: "Opis lokacije 6" },
-    { id: 7, name: "Lokacija 7", description: "Opis lokacije 7" },
+    {
+      id: 2,
+      name: "Lokacija 2",
+      description: "Opis lokacije 2",
+      latitude: 52.505,
+      longitude: -0.09,
+    },
+    {
+      id: 3,
+      name: "Lokacija 3",
+      description: "Opis lokacije 3",
+      latitude: 53.505,
+      longitude: -0.19,
+    },
+    {
+      id: 4,
+      name: "Lokacija 4",
+      description: "Opis lokacije 4",
+      latitude: 54.505,
+      longitude: -0.39,
+    },
+    {
+      id: 5,
+      name: "Lokacija 5",
+      description: "Opis lokacije 5",
+      latitude: 55.505,
+      longitude: -0.19,
+    },
+    {
+      id: 6,
+      name: "Lokacija 6",
+      description: "Opis lokacije 6",
+      latitude: 56.505,
+      longitude: -0.49,
+    },
+    {
+      id: 7,
+      name: "Lokacija 7",
+      description: "Opis lokacije 7",
+      latitude: 57.505,
+      longitude: -0.59,
+    },
   ]);
+
+  const L = require("leaflet");
+
+  delete L.Icon.Default.prototype._getIconUrl;
+
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+    iconUrl: require("leaflet/dist/images/marker-icon.png"),
+    shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+  });
 
   const handleSearchInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [mapCenter, setMapCenter] = useState([51.505, -0.09]); // Default centar mape
+
+  const handleLocationClick = (location) => {
+    setSelectedLocation(location);
+    setMapCenter([location.latitude, location.longitude]); // Postavi centar mape na selektovanu lokaciju
+  };
 
   const filteredLocations = locations.filter((location) =>
     location.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleLocationClick = (location) => {
-    setSelectedLocation(location);
-  };
-
   return (
     <>
       <Header />
       <div className="global w-100 d-flex flex-row p-0 m-0">
-        <div className="p-3" style={{ flex: "20%" }}>
-          <h4>Find Your Local Ace Hardware Store</h4>
-          <SearchInput value={searchTerm} onChange={handleSearchInputChange} />
+        <div className="p-0" style={{ flex: "20%" }}>
+          <div className="search-div p-3 m-0">
+            <h4>Find Your Local Ace Hardware Store</h4>
+
+            <SearchInput
+              value={searchTerm}
+              onChange={handleSearchInputChange}
+            />
+          </div>
           {filteredLocations.map((location) => (
-            <LocationCard key={location.id} location={location} />
+            <LocationCard
+              key={location.id}
+              location={location}
+              onSelectLocation={handleLocationClick}
+            />
           ))}
         </div>
         <div style={{ flex: "70%", backgroundColor: "blue" }}>
           <MapContainer
-            center={[51.505, -0.09]} // Postavite centar mape na željenu latitudu i longitudu
-            zoom={13} // Postavite željeni nivo zumiranja
-            style={{ width: "100%", height: "100vh" }} // Prilagodite stilove za veličinu mape
+            center={mapCenter}
+            zoom={13}
+            style={{ width: "100%", height: "100vh" }}
           >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" // Postavite URL sloja mape
-            />
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
             {selectedLocation && (
               <Marker
+                cancelable={true}
+                draggable={false}
                 position={[
                   selectedLocation.latitude,
                   selectedLocation.longitude,
@@ -71,7 +129,6 @@ const Location = () => {
                   <div>
                     <h3>{selectedLocation.name}</h3>
                     <p>{selectedLocation.description}</p>
-                    {/* Dodajte ostale informacije koje želite prikazati */}
                   </div>
                 </Popup>
               </Marker>

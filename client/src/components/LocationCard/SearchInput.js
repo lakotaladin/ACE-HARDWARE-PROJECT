@@ -2,12 +2,15 @@ const SearchInput = ({ value, onChange, onSearch }) => {
   return (
     <div>
       <input
+        className="input-search"
         type="text"
-        placeholder="Unesite ime lokacije"
+        placeholder="Enter City, State, or Zip"
         value={value}
         onChange={onChange}
       />
-      <button onClick={onSearch}>Pretraži</button>
+      <button className="search-button" onClick={onSearch}>
+        Find Stores
+      </button>
     </div>
   );
 };
