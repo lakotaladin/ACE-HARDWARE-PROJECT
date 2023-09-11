@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SearchInput from "../components/LocationCard/SearchInput";
 import LocationCard from "../components/LocationCard/LocationCard";
 import "../pages/location.css";
@@ -11,10 +11,10 @@ import "leaflet/dist/leaflet.css";
 const locations = [
   {
     id: 1,
-    name: "Lokacija 1",
-    description: "Opis lokacije 1",
-    adress: "Adresa lokacije 1",
-    phone: "123-456-7890",
+    name: "Calais Ace Home Center",
+    description: "295 North St",
+    adress: "Calais, ME 04619-1214",
+    phone: "(207) 454-2309",
     work: "Mon-Fri: 7:00am - 6:00pm",
     worksat: "Sat: 8:00am - 5:00pm",
     worksun: "Sun: 9:00am - 4:00pm",
@@ -23,57 +23,75 @@ const locations = [
   },
   {
     id: 2,
-    name: "Lokacija 2",
-    description: "Opis lokacije 2",
-    adress: "Adresa lokacije 2",
-    phone: "234-567-8901",
+    name: "Princeton Variety",
+    description: "123 Main St",
+    adress: "Princeton, ME 04668-3306",
+    phone: "(207) 796-5128",
+    work: "Mon-Fri: 7:00am - 6:00pm",
+    worksat: "Sat: 8:00am - 5:00pm",
+    worksun: "Sun: 9:00am - 4:00pm",
     latitude: 52.505,
     longitude: -0.09,
   },
   {
     id: 3,
-    name: "Lokacija 3",
-    description: "Opis lokacije 3",
-    adress: "Adresa lokacije 3",
-    phone: "345-678-9012",
+    name: "Paradis Ace Hardware",
+    description: "31 Holland Ave",
+    adress: "Bar Harbor, ME 04609-1433",
+    phone: "(207) 288-4995",
+    work: "Mon-Fri: 7:00am - 6:00pm",
+    worksat: "Sat: 8:00am - 5:00pm",
+    worksun: "Sun: 9:00am - 4:00pm",
     latitude: 53.505,
     longitude: -0.19,
   },
   {
     id: 4,
-    name: "Lokacija 4",
-    description: "Opis lokacije 4",
-    adress: "Adresa lokacije 4",
-    phone: "456-789-0123",
+    name: "F T Brown",
+    description: "106 Main Street",
+    adress: "Northeast Harbr, ME 04662",
+    phone: "(207) 276-3329",
+    work: "Mon-Fri: 7:00am - 6:00pm",
+    worksat: "Sat: 8:00am - 5:00pm",
+    worksun: "Sun: 9:00am - 4:00pm",
     latitude: 54.505,
     longitude: -0.39,
   },
   {
     id: 5,
-    name: "Lokacija 5",
-    description: "Opis lokacije 5",
-    adress: "Adresa lokacije 5",
-    phone: "567-890-1234",
+    name: "Ware Butler Building Supplies",
+    description: "404 Essex St",
+    adress: "Dover Foxcroft, ME 04426-1316",
+    phone: "(207) 873-3371",
+    work: "Mon-Fri: 7:00am - 6:00pm",
+    worksat: "Sat: 8:00am - 5:00pm",
+    worksun: "Sun: 9:00am - 4:00pm",
     latitude: 55.505,
     longitude: -0.19,
   },
   {
     id: 6,
-    name: "Lokacija 6",
-    description: "Opis lokacije 6",
-    adress: "Adresa lokacije 6",
-    phone: "678-901-2345",
+    name: "Hermon Ace Hardware",
+    description: "2402 Route 2",
+    adress: "Hermon, ME 04401-0666",
+    phone: "(207) 848-2500",
+    work: "Mon-Fri: 7:00am - 6:00pm",
+    worksat: "Sat: 8:00am - 5:00pm",
+    worksun: "Sun: 9:00am - 4:00pm",
     latitude: 56.505,
     longitude: -0.49,
   },
   {
     id: 7,
-    name: "Lokacija 7",
-    description: "Opis lokacije 7",
-    adress: "Adresa lokacije 7",
-    phone: "789-012-3456",
-    latitude: 57.505,
-    longitude: -0.59,
+    name: "HermonIce Ace Hardware",
+    description: "2402 Route 22",
+    adress: "HermonIce, ME 04401-0666",
+    phone: "(207) 848-2500",
+    work: "Mon-Fri: 7:00am - 6:00pm",
+    worksat: "Sat: 8:00am - 5:00pm",
+    worksun: "Sun: 9:00am - 4:00pm",
+    latitude: 56.505,
+    longitude: -0.49,
   },
 ];
 
@@ -82,10 +100,12 @@ const Location = () => {
   const [locationsData, setLocationsData] = useState(locations);
 
   // Dodajte stanje za praćenje trenutno selektovane lokacije
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(locations[0]);
   const [mapCenter, setMapCenter] = useState([51.505, -0.09]); // Default centar mape
 
   const L = require("leaflet");
+
+  const markerRef = useRef(null);
 
   delete L.Icon.Default.prototype._getIconUrl;
 
@@ -136,8 +156,8 @@ const Location = () => {
     <>
       <Header />
       <div className="global w-100 d-flex flex-row p-0 m-0">
-        <div className="p-0" style={{ flex: "20%" }}>
-          <div className="w-100 p-3 m-0">
+        <div className="side-div p-0" style={{ flex: "20%" }}>
+          <div className="search-div w-100 p-3 m-0">
             <b style={{ fontSize: "20px" }}>
               Find Your Local Ace Hardware Store
             </b>
@@ -152,7 +172,14 @@ const Location = () => {
               key={location.id}
               location={location}
               onSelectLocation={handleLocationClick}
-              isHighlighted={location.isHighlighted}
+              highlighted={location === selectedLocation}
+              onShowDetails={() => {
+                if (location === selectedLocation) {
+                  markerRef.current._events.click[0].fn.bind(markerRef.current)(
+                    {}
+                  );
+                }
+              }}
             />
           ))}
         </div>
@@ -166,6 +193,7 @@ const Location = () => {
 
             {selectedLocation && (
               <Marker
+                ref={markerRef}
                 cancelable={true}
                 draggable={false}
                 position={[

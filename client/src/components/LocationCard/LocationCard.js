@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 
-const LocationCard = ({ location, onSelectLocation }) => {
-  const [isHighlighted, setIsHighlighted] = useState(false);
-
+const LocationCard = ({
+  location,
+  onSelectLocation,
+  onShowDetails,
+  highlighted,
+}) => {
   const cardStyle = {
-    backgroundColor: isHighlighted ? "#646464" : "#D1D1D1",
+    backgroundColor: highlighted ? "#646464" : "#D1D1D1",
   };
 
   const handleCardClick = () => {
     // Promeni boju kartice
-    setIsHighlighted(!isHighlighted);
 
     // Pozovi funkciju za selektovanu lokaciju i prosledi trenutnu lokaciju
     onSelectLocation(location);
@@ -17,7 +19,7 @@ const LocationCard = ({ location, onSelectLocation }) => {
 
   return (
     <div
-      className={`location-card p-3 ${isHighlighted ? "highlighted" : ""}`}
+      className={`location-card p-3 ${highlighted ? "highlighted" : ""}`}
       style={cardStyle}
       onClick={handleCardClick}
     >
@@ -25,7 +27,9 @@ const LocationCard = ({ location, onSelectLocation }) => {
       <p className="p-0 m-0">{location.description}</p>
       <p className="p-0 m-0">{location.adress}</p>
       <p className="p-0 m-0">{location.phone}</p>
-      <u style={{ fontSize: "12px" }}>Store Details</u>
+      <u style={{ fontSize: "12px" }} onClick={onShowDetails}>
+        Store Details
+      </u>
     </div>
   );
 };
