@@ -8,8 +8,7 @@ import acerewards from "../../resources/register-rewards.png";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase";
 import "firebase/compat/firestore";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -60,8 +59,6 @@ const Register = () => {
         >
           Create an account
         </h6>
-        {/* Message */}
-        <ToastContainer />
         <p
           style={{
             fontSize: "14px",
@@ -111,26 +108,26 @@ const Register = () => {
           autoFocus
         ></input>
         <input
-          className="input-form"
+          className="input-form mb-0"
           placeholder="Phone Number"
           type="phone"
           autoFocus
         ></input>
-        <p className="p-0 m-0">
+        <p style={{ fontSize: "12px", margin: "0% 0% 0% 3%" }} className="p-0">
           Used to look up your account or order information.
         </p>
         <input
-          className="input-form"
+          className="input-form mt-3"
           placeholder="Phone Number"
           type="date"
           autoFocus
         ></input>
       </div>
-      <div className="email-pass-div d-flex flex-column m-0 w-100">
+      <div className="email-div3 d-flex flex-column m-0 w-100">
         <h6
           style={{
             fontSize: "18px",
-            fontWeight: "400",
+            fontWeight: "500",
           }}
         >
           Sign Up for offers & tips
@@ -151,7 +148,7 @@ const Register = () => {
       <img style={{ margin: "5%" }} src={acerewards} alt="Ace Rewards" />
       {/* Create account */}
       <div className="account-container w-100 d-flex flex-column m-0">
-        <div className="m-0 p-0 w-100 d-flex flex-column justify-content-center align-items-center">
+        <div className="button-div m-0 w-100 d-flex flex-column justify-content-center align-items-center">
           <div className="form-check">
             <input
               checked={checkbox2}
@@ -164,7 +161,18 @@ const Register = () => {
               className="form-check-label-privacy"
               htmlFor="exampleCheckbox"
             >
-              I have read and agreed to Ace's Privacy Policy and Terms of Use.
+              I confirm I have read and agree to the{" "}
+              <a href="https://www.acehardware.com/customer-service?page=ace-rewards">
+                Ace Rewards® Program Terms
+              </a>
+              ,
+              <a href="https://www.acehardware.com/customer-service?page=privacy-policy">
+                Privacy Policy
+              </a>{" "}
+              and{" "}
+              <a href="https://www.acehardware.com/customer-service?page=ace-rewards">
+                Terms of Use.
+              </a>
             </label>
           </div>
           <button

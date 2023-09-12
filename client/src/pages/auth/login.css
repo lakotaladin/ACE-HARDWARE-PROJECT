@@ -69,6 +69,7 @@
 
 .fogotten-password-link {
     color: #D40029;
+    cursor: pointer !important;
     text-decoration: underline;
     font-size: 14px;
     margin-bottom: 30px;

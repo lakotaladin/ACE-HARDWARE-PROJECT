@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
+import ForgotPasswordModal from "../../components/ForgotPasswordModal/ForgotPasswordModal";
 import aceLogo from "../../resources/ace_logo.png";
 import arrow from "../../resources/arrow.png";
 import phone from "../../resources/phone.png";
@@ -8,6 +9,14 @@ import { Link } from "react-router-dom";
 import { CheckOutlined } from "@ant-design/icons";
 
 const Login = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
   return (
     <>
       <div className="global-login w-100 p-0 m-0">
@@ -66,12 +75,13 @@ const Login = () => {
                 placeholder="Password"
                 type="password"
               ></input>
-              <Link
-                to="/forgotten-password"
+              <span
+                onClick={openModal}
+                // to="/forgotten-password"
                 className="fogotten-password-link p-0 m-0"
               >
                 Forgot Password
-              </Link>
+              </span>
 
               <div className="button-form m-0 p-0 w-100 d-flex justify-content-center align-items-center">
                 <button type="submit" className="button w-100 mt-4">
@@ -228,6 +238,8 @@ const Login = () => {
             .
           </p>
         </div>
+        {/* Renderiranje ForgotPasswordModal */}
+        <ForgotPasswordModal visible={isModalVisible} onClose={closeModal} />
       </div>
     </>
   );
