@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import RegisterComplete from "./pages/auth/RegisterComplete";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
+import Storeinfo from "./pages/Storeinfo";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const App = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/register/complete" component={RegisterComplete} />
         <Route exact path="/location" component={Location} />
+        <Route exact path="/store-details" component={Storeinfo} />
       </Switch>
     </>
   );

@@ -183,7 +183,7 @@ const Location = () => {
             />
           ))}
         </div>
-        <div style={{ flex: "70%", backgroundColor: "blue" }}>
+        <div style={{ flex: "70%" }}>
           <MapContainer
             center={mapCenter}
             zoom={13}

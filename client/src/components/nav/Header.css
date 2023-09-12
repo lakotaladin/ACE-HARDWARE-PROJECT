@@ -121,6 +121,15 @@
     padding: 1%;
 }
 
+.header-login-register-section-logged {
+    width: 50%;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    text-align: start;
+    padding: 1%;
+}
+
 .header-login-register-section  a{
     text-decoration: none !important;
 }
