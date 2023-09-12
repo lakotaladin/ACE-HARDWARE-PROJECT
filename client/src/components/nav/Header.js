@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "../nav/Header.css";
 import { Link } from "react-router-dom";
+import firebase from "firebase/compat/app";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Menu } from "antd";
 import userLogo from "../../resources/header_user-circle-light_red.svg";
 import starLogo from "../../resources/header_AR icon.svg";
@@ -8,12 +11,16 @@ import cartLogo from "../../resources/Korpa.svg";
 import { SearchOutlined } from "@ant-design/icons";
 import logo from "../../resources/ace_logo.png";
 import location from "../../resources/location_icon.svg";
+import Item from "antd/es/list/Item";
 
 const { SubMenu } = Menu;
 
 const Header = () => {
   const [currnet, setCurrent] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+
+  let dispatch = useDispatch();
+  let history = useHistory();
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -45,7 +52,15 @@ const Header = () => {
   const handleClick = () => {
     // bla bla
   };
+  const logout = () => {
+    firebase.auth().signOut();
+    dispatch({
+      type: "LOGOUT",
+      payload: null,
+    });
 
+    history.push("/login");
+  };
   return (
     <>
       <div className="global-header p-0 m-0">
@@ -146,6 +161,12 @@ const Header = () => {
               </Menu.Item>
               <Menu.Item className="custom-menu-item">
                 Ace Handyman Services
+              </Menu.Item>
+              <Menu.Item className="custom-menu-item">
+                <Item className="custom-menu-item" onClick={logout}>
+                  {" "}
+                  Logout
+                </Item>
               </Menu.Item>
             </Menu>
           </div>

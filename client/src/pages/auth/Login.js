@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./login.css";
+import { auth } from "../../firebase";
+import "firebase/compat/firestore";
+import { toast } from "react-toastify";
 import ForgotPasswordModal from "../../components/ForgotPasswordModal/ForgotPasswordModal";
 import aceLogo from "../../resources/ace_logo.png";
 import arrow from "../../resources/arrow.png";
@@ -7,9 +10,43 @@ import phone from "../../resources/phone.png";
 import mail from "../../resources/mail.png";
 import { Link } from "react-router-dom";
 import { CheckOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
 
-const Login = () => {
+const Login = ({ history }) => {
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  let dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const result = await auth.signInWithEmailAndPassword(email, password);
+      // console.log(result);
+      const { user } = result;
+      const idTokenResult = await user.getIdTokenResult();
+
+      dispatch({
+        type: "LOGGED_IN_USER",
+        payload: {
+          email: user.email,
+          token: idTokenResult.token,
+        },
+      });
+      toast.success("Sucessfully logged!");
+      setEmail("");
+      setPassword("");
+      history.push("/");
+    } catch (error) {
+      // console.log(error);
+      toast.error(error.message);
+      setLoading(false);
+    }
+  };
+
   const openModal = () => {
     setIsModalVisible(true);
   };
@@ -47,113 +84,132 @@ const Login = () => {
         </div>
 
         {/* Section login */}
-        <div className="section-global w-100 m-0 p-0 d-flex">
-          <div className="form-container p-0 d-flex flex-column">
-            <form className="form w-100 m-0 d-flex flex-column">
-              <h6
-                style={{
-                  color: "#D40029",
-                  fontSize: "18px",
-                  fontWeight: "400",
-                }}
+        {loading ? (
+          <div className="section-global w-100 m-0 p-0 d-flex">
+            <div className="form-container p-0 d-flex flex-column">
+              <form
+                onSubmit={handleSubmit}
+                className="form w-100 m-0 d-flex flex-column"
               >
-                Sign In
-              </h6>
-              <p
-                style={{ fontSize: "14px", marginBottom: "15px" }}
-                className="p-0"
-              >
-                Sign in to access your account and Ace Rewards.
-              </p>
-              <input
-                className="input-form"
-                placeholder="Email"
-                type="email"
-              ></input>
-              <input
-                className="input-form"
-                placeholder="Password"
-                type="password"
-              ></input>
-              <span
-                onClick={openModal}
-                // to="/forgotten-password"
-                className="fogotten-password-link p-0 m-0"
-              >
-                Forgot Password
-              </span>
-
-              <div className="button-form m-0 p-0 w-100 d-flex justify-content-center align-items-center">
-                <button type="submit" className="button w-100 mt-4">
-                  Sign In
-                </button>
-              </div>
-            </form>
-            {/* Create account */}
-            <div className="account-container w-100 d-flex flex-column m-0">
-              <h6
-                style={{
-                  marginTop: "15%",
-                  fontSize: "20px",
-                  fontWeight: "400",
-                }}
-              >
-                New to Ace online?
-              </h6>
-              <p
-                style={{ fontSize: "14px", marginBottom: "15px" }}
-                className="p-0"
-              >
-                Create an account and join Ace Rewards for:
-              </p>
-              <div className="check-text d-flex flex-row gap-2 p-0 w-100">
-                <CheckOutlined />{" "}
-                <p style={{ fontSize: "12px" }} className="p-0 ">
-                  Free delivery from store with qualifying online purchases of
-                  $50 or more.
-                </p>
-              </div>
-              <div className="check-text d-flex gap-2  p-0 w-100">
-                <CheckOutlined />
-                <p style={{ fontSize: "12px" }} className="p-0 m-0">
-                  Exclusive offers and instant savings.
-                </p>
-              </div>
-              <div className="check-text d-flex gap-2 p-0 w-100">
-                <CheckOutlined />
-                <p style={{ fontSize: "12px" }} className="p-0 ">
-                  $5 reward earned every 2,500 points.
-                </p>
-              </div>
-              <p
-                style={{ fontSize: "12px", marginBottom: "15px" }}
-                className="p-0"
-              >
-                If you’ve already signed up for Ace Rewards, we’ll link your
-                <br />
-                accounts when you create your online account.
-              </p>
-              <div className="m-0 p-0 w-100 d-flex flex-column justify-content-center align-items-center">
-                <Link to="/register" className="w-100 p-0 m-0">
-                  <button type="submit" className="button-account w-100">
-                    Create Account
-                  </button>
-                </Link>
-                <p
+                <h6
                   style={{
-                    fontSize: "12px",
-                    marginBottom: "15px",
-                    marginTop: "10px",
+                    color: "#D40029",
+                    fontSize: "18px",
+                    fontWeight: "400",
                   }}
+                >
+                  Sign In
+                </h6>
+                <p
+                  style={{ fontSize: "14px", marginBottom: "15px" }}
                   className="p-0"
                 >
-                  Note: joining Ace Rewards or linking accounts is optional (but
-                  why not, it’s free!)
+                  Sign in to access your account and Ace Rewards.
                 </p>
+                <input
+                  className="input-form"
+                  placeholder="Email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoFocus
+                  required
+                ></input>
+                <input
+                  className="input-form"
+                  placeholder="Password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoFocus
+                  required
+                ></input>
+                <span
+                  onClick={openModal}
+                  // to="/forgotten-password"
+                  className="fogotten-password-link p-0 m-0"
+                >
+                  Forgot Password
+                </span>
+
+                <div className="button-form m-0 p-0 w-100 d-flex justify-content-center align-items-center">
+                  <button
+                    type="submit"
+                    className="button w-100 mt-4"
+                    disabled={!email || password.length < 6}
+                  >
+                    Sign In
+                  </button>
+                </div>
+              </form>
+              {/* Create account */}
+              <div className="account-container w-100 d-flex flex-column m-0">
+                <h6
+                  style={{
+                    marginTop: "15%",
+                    fontSize: "20px",
+                    fontWeight: "400",
+                  }}
+                >
+                  New to Ace online?
+                </h6>
+                <p
+                  style={{ fontSize: "14px", marginBottom: "15px" }}
+                  className="p-0"
+                >
+                  Create an account and join Ace Rewards for:
+                </p>
+                <div className="check-text d-flex flex-row gap-2 p-0 w-100">
+                  <CheckOutlined />{" "}
+                  <p style={{ fontSize: "12px" }} className="p-0 ">
+                    Free delivery from store with qualifying online purchases of
+                    $50 or more.
+                  </p>
+                </div>
+                <div className="check-text d-flex gap-2  p-0 w-100">
+                  <CheckOutlined />
+                  <p style={{ fontSize: "12px" }} className="p-0 m-0">
+                    Exclusive offers and instant savings.
+                  </p>
+                </div>
+                <div className="check-text d-flex gap-2 p-0 w-100">
+                  <CheckOutlined />
+                  <p style={{ fontSize: "12px" }} className="p-0 ">
+                    $5 reward earned every 2,500 points.
+                  </p>
+                </div>
+                <p
+                  style={{ fontSize: "12px", marginBottom: "15px" }}
+                  className="p-0"
+                >
+                  If you’ve already signed up for Ace Rewards, we’ll link your
+                  <br />
+                  accounts when you create your online account.
+                </p>
+                <div className="m-0 p-0 w-100 d-flex flex-column justify-content-center align-items-center">
+                  <Link to="/register" className="w-100 p-0 m-0">
+                    <button type="submit" className="button-account w-100">
+                      Create Account
+                    </button>
+                  </Link>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      marginBottom: "15px",
+                      marginTop: "10px",
+                    }}
+                    className="p-0"
+                  >
+                    Note: joining Ace Rewards or linking accounts is optional
+                    (but why not, it’s free!)
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <h1 className="text-danger">Loading...</h1>
+        )}
       </div>
       <div className="footer w-100 p-4 d-flex flex-column">
         <div className="contact-div w-100 d-flex flex-row gap-5 p-2 text-align-center">
