@@ -1,5 +1,5 @@
 .global {
-    height: 100vh;
+    height: 100v;
     overflow: hidden;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .side-div {
-    height: auto;
+    height: 900px;
     overflow-y: scroll;
 }
 

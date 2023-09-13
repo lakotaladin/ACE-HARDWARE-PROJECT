@@ -184,7 +184,11 @@ const Location = () => {
           ))}
         </div>
         <div style={{ flex: "70%" }}>
-          <MapContainer center={mapCenter} zoom={13} style={{ width: "100%" }}>
+          <MapContainer
+            center={mapCenter}
+            zoom={13}
+            style={{ width: "100%", height: "100vh" }}
+          >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
             {selectedLocation && (
