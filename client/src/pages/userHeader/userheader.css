@@ -1,0 +1,17 @@
+.navigation-container {
+    margin-bottom: 2%;
+}
+
+.navigation-container a {
+    color: grey;
+}
+
+.arrow-left {
+    transform: scale(0.8);
+}
+
+.container {
+    width: 80%;
+    display: flex;
+    margin-top: 1%;
+}

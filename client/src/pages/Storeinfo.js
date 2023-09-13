@@ -3,6 +3,13 @@ import Footer from "../components/footer/Footer";
 import Header from "../components/nav/Header";
 import "./storeinfo.css";
 import React from "react";
+import img1 from "../resources/img1.png";
+import img2 from "../resources/img2.png";
+import img3 from "../resources/img3.png";
+import img4 from "../resources/img4.png";
+import img5 from "../resources/img5.png";
+import img6 from "../resources/img6.png";
+// import img7 from "../resources/img7.png";
 import check from "../resources/ace_check.png";
 import { LeftOutlined } from "@ant-design/icons";
 
@@ -10,7 +17,7 @@ const Storeinfo = () => {
   return (
     <>
       <Header />
-      <div className="global-store d-flex flex-column w-100 p-0 m-0">
+      <div className="global-store d-flex flex-column w-100 p-0 mb-4">
         <div className="global w-100 p-0 d-flex flex-column">
           <div className="container d-flex flex-column">
             <div className="navigation-container d-flex flex-row">
@@ -46,6 +53,30 @@ const Storeinfo = () => {
                     Change Store
                   </button>
                 </Link>
+              </div>
+            </div>
+            <div className="cards w-100 pt-3 gap-4 d-flex flex-row p-0 mt-3">
+              <div className="card w-50 m-0 p-0">
+                <img src={img1} alt="Store info" />
+              </div>
+              <div className="card d-flex w-50 justify-content-center align-items-center m-0 p-0">
+                <img style={{ width: "40%" }} src={img2} alt="Store info" />
+              </div>
+            </div>
+            <div className="cards w-100 pt-3 gap-4 d-flex flex-row p-0 mt-3">
+              <div className="card w-50 m-0 p-0">
+                <img style={{ width: "100%" }} src={img3} alt="Store info" />
+              </div>
+              <div className="card d-flex w-50 justify-content-center align-items-center m-0 p-0">
+                <img style={{ width: "100%" }} src={img4} alt="Store info" />
+              </div>
+            </div>
+            <div className="cards w-100 pt-3 gap-4 d-flex flex-row p-0 mt-3">
+              <div className="card w-50 m-0 p-0">
+                <img style={{ width: "100%" }} src={img5} alt="Store info" />
+              </div>
+              <div className="card d-flex w-50 justify-content-center align-items-center m-0 p-0">
+                <img style={{ width: "100%" }} src={img6} alt="Store info" />
               </div>
             </div>
           </div>

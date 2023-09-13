@@ -8,7 +8,11 @@ import { Menu } from "antd";
 import userLogo from "../../resources/header_user-circle-light_red.svg";
 import starLogo from "../../resources/header_AR icon.svg";
 import cartLogo from "../../resources/Korpa.svg";
-import { SearchOutlined } from "@ant-design/icons";
+import {
+  CaretDownOutlined,
+  CaretUpOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 import logo from "../../resources/ace_logo.png";
 import location from "../../resources/location_icon.svg";
 import Item from "antd/es/list/Item";
@@ -17,11 +21,24 @@ const { SubMenu } = Menu;
 
 const Header = () => {
   const [currnet, setCurrent] = useState("");
+  const [openMenu, setOpenMenu] = useState(false);
+  const [openMenu2, setOpenMenu2] = useState(false);
+  const [openMenu3, setOpenMenu3] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
   let dispatch = useDispatch();
   let { user } = useSelector((state) => ({ ...state }));
   let history = useHistory();
+
+  const toggleMenu = () => {
+    setOpenMenu(!openMenu);
+  };
+  const toggleMenu2 = () => {
+    setOpenMenu2(!openMenu2);
+  };
+  const toggleMenu3 = () => {
+    setOpenMenu3(!openMenu3);
+  };
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -116,7 +133,9 @@ const Header = () => {
                       alt="Login/Register"
                     />
                     <p className="p-0 m-0">
-                      <b>Hi there,</b>
+                      <b style={{ fontWeight: "500", fontSize: "14px" }}>
+                        Hi there,
+                      </b>
                       <br /> <Link to="/login">Sign in</Link> |{" "}
                       <Link to="/register">New Account</Link>
                     </p>
@@ -124,7 +143,9 @@ const Header = () => {
                   <div className="header-login-register-section">
                     <img src={starLogo} alt="Login/Register" />
                     <p className="p-2 m-0">
-                      <b>Ace Rewards</b>
+                      <b style={{ fontWeight: "500", fontSize: "14px" }}>
+                        Ace Rewards
+                      </b>
                       <br /> <Link to="/">Learn more</Link>
                     </p>
                   </div>
@@ -135,7 +156,9 @@ const Header = () => {
                       alt="Login/Register"
                     />
                     <p className="p-2 m-0">
-                      <b>Cart</b>
+                      <b style={{ fontWeight: "500", fontSize: "14px" }}>
+                        Cart
+                      </b>
                       <br />
                       <p>0 Items</p>
                     </p>
@@ -163,12 +186,6 @@ const Header = () => {
                 </Menu.Item>
                 <Menu.Item className="custom-menu-item">
                   Ace Handyman Services
-                </Menu.Item>
-                <Menu.Item className="custom-menu-item">
-                  <Item className="custom-menu-item" onClick={logout}>
-                    {" "}
-                    Logout
-                  </Item>
                 </Menu.Item>
               </Menu>
             </div>
@@ -197,21 +214,50 @@ const Header = () => {
                 </button>
 
                 <div className="login-and-register-section gap-2">
-                  <div className="header-login-register-section gap-2 w-50">
+                  <div className="header-login-register-section d-flex gap-2 w-50">
                     <img
                       className="headerLogo"
                       src={userLogo}
                       alt="Login/Register"
                     />
                     <p className="p-0 m-0">
-                      <b>Hi, Aladin</b>
+                      <b style={{ fontWeight: "500", fontSize: "14px" }}>
+                        Hi, Aladin
+                      </b>
                       <br />
+                      <div className="dropdown-container">
+                        <b
+                          style={{ fontWeight: "500", fontSize: "14px" }}
+                          onClick={toggleMenu}
+                        >
+                          Your Account
+                        </b>{" "}
+                        {openMenu ? (
+                          <CaretUpOutlined className="arrow-user" />
+                        ) : (
+                          <CaretDownOutlined className="arrow-user" />
+                        )}
+                        {openMenu && (
+                          <div className="dropdown-content p-0">
+                            <Link to="#">Account</Link>
+                            <Link to="#">Profile</Link>
+                            <Link to="#">Purchase History</Link>
+                            <Link to="#">Ace Rewards</Link>
+                            <Link to="#">My Local Ace</Link>
+                            <Link to="#" onClick={logout}>
+                              Sign Out
+                            </Link>
+                          </div>
+                        )}
+                      </div>
                     </p>
                   </div>
                   <div className="header-login-register-section-logged">
                     <img src={starLogo} alt="Login/Register" />
                     <p className="p-2 m-0">
-                      <b>Ace Rewards</b>
+                      <b style={{ fontWeight: "500", fontSize: "14px" }}>
+                        Ace Rewards
+                      </b>
                       <br />
                       <span style={{ fontSize: "14px" }}>
                         1,000/2,500 Points
@@ -225,9 +271,11 @@ const Header = () => {
                       alt="Login/Register"
                     />
                     <p className="p-2 m-0">
-                      <b>Cart</b>
+                      <b style={{ fontWeight: "500", fontSize: "14px" }}>
+                        Cart
+                      </b>
                       <br />
-                      <p>0 Items</p>
+                      <p>0 Item</p>
                     </p>
                   </div>
                 </div>
@@ -253,12 +301,6 @@ const Header = () => {
                 </Menu.Item>
                 <Menu.Item className="custom-menu-item">
                   Ace Handyman Services
-                </Menu.Item>
-                <Menu.Item className="custom-menu-item">
-                  <Item className="custom-menu-item" onClick={logout}>
-                    {" "}
-                    Logout
-                  </Item>
                 </Menu.Item>
               </Menu>
             </div>
@@ -286,14 +328,43 @@ const Header = () => {
                       style={{ textDecoration: "none" }}
                       to="/store-details"
                     >
-                      <b>Calais Ace Home Center</b> - Calais, ME{" "}
+                      {" "}
+                      <b>Calais Ace Home Center</b> - Calais, ME {"  "}
                       <b>
                         <span className="text-success">Open</span>
                       </b>{" "}
                       until 6 PM
                     </Link>{" "}
-                    | <b>Store Info & Directions</b> | <b>Services & Brands</b>{" "}
-                    | <u>Change store</u>
+                    |{" "}
+                    <div className="dropdown-container">
+                      <b onClick={toggleMenu2}>Store Info & Directions</b>{" "}
+                      {openMenu2 ? <CaretUpOutlined /> : <CaretDownOutlined />}
+                      {openMenu2 && (
+                        <div className="dropdown-content">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                        </div>
+                      )}
+                    </div>{" "}
+                    | {"  "}
+                    <div className="dropdown-container">
+                      <b onClick={toggleMenu3}>Services & Brands</b>{" "}
+                      {openMenu3 ? <CaretUpOutlined /> : <CaretDownOutlined />}
+                      {openMenu3 && (
+                        <div className="dropdown-content">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                        </div>
+                      )}
+                    </div>{" "}
+                    |{" "}
+                    <Link to="/location">
+                      <u style={{ fontSize: "14px", marginLeft: "5px" }}>
+                        Change store
+                      </u>
+                    </Link>
                   </p>
                 </div>
               </div>

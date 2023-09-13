@@ -1,6 +1,6 @@
 .global-store {
     overflow-x: hidden;
-    height: 100vh;
+    height: auto;
 }
 
 .global {
@@ -44,4 +44,9 @@
     margin: 15px;
     border-radius: 5px;
     border: 1px solid black;
+}
+
+.card {
+    border-radius: 0% !important;
+    border: none !important;
 }

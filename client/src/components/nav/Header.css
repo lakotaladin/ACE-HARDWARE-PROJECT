@@ -175,15 +175,92 @@
 }
 
 .location-text {
+    font-size: 14px;
     flex-direction: column;
     text-align: start;
 }
+
+.location-text b {
+    font-size: 13px;
+    margin: 0% 3px 0% 0px;
+}
+
 
 .location-text p {
     margin: 0%;
     padding: 0%;
 }
 
-#location-img {
 
-}
+/* Dropdown user  */
+.dropdown-container-user {
+    position: relative;
+    display: inline-block;
+  }
+
+ .arrow-user {
+    transform: scale(0.9);
+ }
+  
+  .dropdown-content-user {
+    display: block;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    z-index: 99999999999999 !important;
+    top: 100%; /* Postavlja dropdown ispod teksta */
+    left: 0;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 150px; /* Prilagodite širinu prema vašim potrebama */
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: lightgrey;
+  }
+
+
+
+/* Dropdown */
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 99999999999999 !important;
+    top: 100%; /* Postavlja dropdown ispod teksta */
+    left: 0;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 150px; /* Prilagodite širinu prema vašim potrebama */
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: lightgrey;
+  }
+
+  
