@@ -11,6 +11,7 @@ import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import Storeinfo from "./pages/Storeinfo";
 import User from "./pages/userPages/User";
+import Profile from "./pages/userPages/User";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const App = () => {
         <Route exact path="/register/complete" component={RegisterComplete} />
         <Route exact path="/location" component={Location} />
         <Route exact path="/store-details" component={Storeinfo} />
-        <Route exact path="/myaccount" component={User} />
+        <Route exact path="/myaccount" component={Profile} />
       </Switch>
     </>
   );

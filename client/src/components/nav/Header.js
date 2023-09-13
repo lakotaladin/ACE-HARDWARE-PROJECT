@@ -238,8 +238,8 @@ const Header = () => {
                         )}
                         {openMenu && (
                           <div className="dropdown-content p-0">
-                            <Link to="/myaccount">Account</Link>
-                            <Link to="#">Profile</Link>
+                            <Link to="#">Account</Link>
+                            <Link to="/myaccount">Profile</Link>
                             <Link to="#">Purchase History</Link>
                             <Link to="#">Ace Rewards</Link>
                             <Link to="#">My Local Ace</Link>

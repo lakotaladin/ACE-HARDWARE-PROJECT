@@ -40,7 +40,7 @@
 
 .nav:hover {
     color: black;
-    border-bottom: 5px solid #D40029;
+    /* border-bottom: 5px solid #D40029; */
 }
 
 .active {

@@ -1,0 +1,84 @@
+.global-profile {
+    background-color: #F7F7F7;
+    overflow-x: hidden;
+}
+
+.container-profile {
+    width: 80%;
+    background-color: white;
+    margin: auto;
+} 
+
+.card-one {
+    
+    padding:  0% 3% 3% 3%;
+    border-right: 1px solid lightgrey;
+}
+
+.card-two {
+    padding:  0% 3% 3% 3%;
+}
+
+.button-pay {
+   border: 1px solid lightgrey;
+   padding: 1%;
+   width: 175px;
+   height: 50px;
+   background-color: white; 
+}
+
+.form-account label {
+   font-weight: 400;
+   margin: 1px;
+}
+
+.form-account input {
+    padding: 1%;
+    border: 1px solid lightgray;
+    border-radius: 0%;
+}
+ 
+.input-password {
+    padding: 1%;
+    border: 1px solid lightgray;
+    border-radius: 0%;
+}
+
+
+.check-box {
+    margin-right: 1%;
+    padding: 0%;
+}
+
+
+.button-save {
+    padding: 1%;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    margin-top: 2%;
+    background-color:#D40029;
+    width: 150px;
+    height: 50px;
+}
+
+
+/* Location */
+
+
+.logo-ace {
+    width: 80%;
+    padding: 0%;
+    margin: 0%;
+}
+
+.section-two {
+    height: 70%;
+}
+
+.change-store {
+    border: none;
+    width: 200px;
+    background-color: #D40029;
+    border-radius: 0%;
+}

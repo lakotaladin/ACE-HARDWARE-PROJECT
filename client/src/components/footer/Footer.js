@@ -9,6 +9,7 @@ import twit from "../../resources/twiter.png";
 import pint from "../../resources/pint.png";
 import yt from "../../resources/yt.png";
 import privacy from "../../resources/privacy.png";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Footer = () => {
   return (
@@ -17,7 +18,7 @@ const Footer = () => {
         <div className="footer-container-one m-0 w-100">
           <div className="footer-card d-flex m-0">
             <h5>More Ways to Shop</h5>
-            <a href="#">Store Locator</a>
+            <Link to="/Location">Store Locator</Link>
             <a href="#">Shop Our Ad</a>
             <a href="#">Brands We Love</a>
             <a href="#">The Print Studio</a>
