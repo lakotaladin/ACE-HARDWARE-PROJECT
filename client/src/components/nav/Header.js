@@ -15,7 +15,6 @@ import {
 } from "@ant-design/icons";
 import logo from "../../resources/ace_logo.png";
 import location from "../../resources/location_icon.svg";
-import Item from "antd/es/list/Item";
 
 const { SubMenu } = Menu;
 
@@ -239,14 +238,12 @@ const Header = () => {
                         )}
                         {openMenu && (
                           <div className="dropdown-content p-0">
-                            <Link to="#">Account</Link>
+                            <Link to="/myaccount">Account</Link>
                             <Link to="#">Profile</Link>
                             <Link to="#">Purchase History</Link>
                             <Link to="#">Ace Rewards</Link>
                             <Link to="#">My Local Ace</Link>
-                            <Link to="#" onClick={logout}>
-                              Sign Out
-                            </Link>
+                            <Link onClick={logout}>Sign Out</Link>
                           </div>
                         )}
                       </div>

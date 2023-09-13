@@ -13,5 +13,36 @@
 .container {
     width: 80%;
     display: flex;
-    margin-top: 1%;
+    margin: 1% 9% 0% 9%;
+}
+
+
+/* Nav */
+.nav-bar {
+    width: 100%;
+    margin: auto;
+    padding-bottom: 3px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	/* justify-content: center; */
+    align-items: stretch;
+}
+
+.nav {
+	padding: 20px 25px 30px;
+	color: black;
+    font-weight: 400;
+	text-align: center;
+    text-decoration: none;
+}
+
+
+.nav:hover {
+    color: black;
+    border-bottom: 5px solid #D40029;
+}
+
+.active {
+    border-bottom: 5px solid #D40029;
 }
