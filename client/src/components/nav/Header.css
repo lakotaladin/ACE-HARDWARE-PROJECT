@@ -1,3 +1,61 @@
+.cascading-menu {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .menu-text {
+    display: block;
+    color: #333;
+    text-decoration: underline;
+  }
+  
+  .sub-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    display: none;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    width: 200px;
+  }
+  
+  .cascading-menu.inside .sub-menu {
+    display: block;
+  }
+  
+  .sub-menu a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .sub-menu a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .sub-menu2 {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: none;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    width: 200px;
+  }
+  
+  .sub-menu-link-hovered .sub-menu2 {
+    display: block;
+  }
+  
+
+
+/* Kraj */
 .ant-menu-horizontal {
     border: none !important;
 }

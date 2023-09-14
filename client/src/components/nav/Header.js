@@ -34,14 +34,34 @@ const Header = () => {
   const [openMenu2, setOpenMenu2] = useState(false);
   const [openMenu3, setOpenMenu3] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [isTextOpen, setIsTextOpen] = useState(false);
+  const [isLinkHovered, setIsLinkHovered] = useState(false);
+  const [isInside, setIsInside] = useState(false);
 
   let dispatch = useDispatch();
   let { user } = useSelector((state) => ({ ...state }));
   let history = useHistory();
 
-  //   Map location
-  const latitude = 45.18047;
-  const longitude = -67.28653;
+  const handleTextClick = () => {
+    setIsTextOpen(!isTextOpen);
+  };
+
+  const handleLinkMouseEnter = () => {
+    setIsLinkHovered(true);
+  };
+
+  const handleLinkMouseLeave = () => {
+    setIsLinkHovered(false);
+  };
+
+  const handleMenuMouseEnter = () => {
+    setIsInside(true);
+  };
+
+  const handleMenuMouseLeave = () => {
+    setIsInside(false);
+    setIsTextOpen(false);
+  };
 
   let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -194,18 +214,66 @@ const Header = () => {
                   <Menu.Item key="setting:1">Option 1</Menu.Item>
                   <Menu.Item key="setting:2">Option 2</Menu.Item>
                 </SubMenu>
+                <div
+                  className={`cascading-menu ${isInside ? "inside" : ""}`}
+                  onMouseEnter={handleMenuMouseEnter}
+                  onMouseLeave={handleMenuMouseLeave}
+                >
+                  <span className="menu-text" onClick={handleTextClick}>
+                    Hover Me
+                  </span>
+                  {isTextOpen && (
+                    <div
+                      className={`sub-menu ${
+                        isLinkHovered ? "sub-menu-link-hovered" : ""
+                      }`}
+                      onMouseEnter={handleLinkMouseEnter}
+                      onMouseLeave={handleLinkMouseLeave}
+                    >
+                      <a
+                        href="#"
+                        onMouseEnter={handleLinkMouseEnter}
+                        onMouseLeave={handleLinkMouseLeave}
+                      >
+                        Link 1
+                      </a>
+                      <a
+                        href="#"
+                        onMouseEnter={handleLinkMouseEnter}
+                        onMouseLeave={handleLinkMouseLeave}
+                      >
+                        Link 2
+                      </a>
+                      {isLinkHovered && (
+                        <div className="sub-menu2">
+                          <a href="#">Sub Link 1</a>
+                          <a href="#">Sub Link 2</a>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
                 <Menu.Item className="custom-menu-item">
                   Sales & Specials
                 </Menu.Item>
-                <Menu.Item className="custom-menu-item">Local Ad</Menu.Item>
                 <Menu.Item className="custom-menu-item">
-                  The Paint Studio
+                  {" "}
+                  <a href="https://www.acehardware.com/local-ad">Local Ad</a>
                 </Menu.Item>
                 <Menu.Item className="custom-menu-item">
-                  Ace Project Place
+                  <a href="https://www.acehardware.com/thepaintstudio">
+                    The Paint Studio
+                  </a>
                 </Menu.Item>
                 <Menu.Item className="custom-menu-item">
-                  Ace Handyman Services
+                  <a href="https://www.acehardware.com/aceprojectplace">
+                    Ace Project Place
+                  </a>
+                </Menu.Item>
+                <Menu.Item className="custom-menu-item">
+                  <a href="https://www.acehandymanservices.com/?utm_source=acehardware.com&utm_medium=referral&utm_campaign=header_link&source=ace_site">
+                    Ace Handyman Services
+                  </a>
                 </Menu.Item>
               </Menu>
             </div>
@@ -312,15 +380,24 @@ const Header = () => {
                 <Menu.Item className="custom-menu-item">
                   Sales & Specials
                 </Menu.Item>
-                <Menu.Item className="custom-menu-item">Local Ad</Menu.Item>
                 <Menu.Item className="custom-menu-item">
-                  The Paint Studio
+                  {" "}
+                  <a href="https://www.acehardware.com/local-ad">Local Ad</a>
                 </Menu.Item>
                 <Menu.Item className="custom-menu-item">
-                  Ace Project Place
+                  <a href="https://www.acehardware.com/thepaintstudio">
+                    The Paint Studio
+                  </a>
                 </Menu.Item>
                 <Menu.Item className="custom-menu-item">
-                  Ace Handyman Services
+                  <a href="https://www.acehardware.com/aceprojectplace">
+                    Ace Project Place
+                  </a>
+                </Menu.Item>
+                <Menu.Item className="custom-menu-item">
+                  <a href="https://www.acehandymanservices.com/?utm_source=acehardware.com&utm_medium=referral&utm_campaign=header_link&source=ace_site">
+                    Ace Handyman Services
+                  </a>
                 </Menu.Item>
               </Menu>
             </div>
