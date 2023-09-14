@@ -12,6 +12,9 @@ import starLogo from "../../resources/header_AR icon.svg";
 import cartLogo from "../../resources/Korpa.svg";
 import acestore from "../../resources/ace_store.png";
 import acerewards from "../../resources/acerewards.png";
+import ace_services from "../../resources/services.png";
+import ace_services2 from "../../resources/services2.png";
+
 import {
   CaretDownOutlined,
   CaretUpOutlined,
@@ -457,99 +460,29 @@ const Header = () => {
                             <div className="drop-contentt justify-content-between d-flex flex-column m-0 p-0">
                               <div className="p-0 m-0 w-100 d-flex flex-column">
                                 <b
-                                  style={{ fontSize: "17px" }}
+                                  style={{ fontSize: "18px" }}
                                   className="p-0 m-0"
                                 >
-                                  Featured Brands
+                                  Store Services
                                 </b>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  KeyStart
-                                </p>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  LARSON
-                                </p>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  BLACK+DECKER
-                                </p>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  DEWALT
-                                </p>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  Craftsman
-                                </p>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  Amy Howard
-                                </p>
+                                <img
+                                  src={ace_services}
+                                  style={{ width: "80%" }}
+                                />
+                              </div>
+                            </div>
+                            <div className="drop-contentt justify-content-between d-flex flex-column m-0 p-0">
+                              <div className="p-0 m-0 w-100 d-flex flex-column">
+                                <img
+                                  src={ace_services2}
+                                  style={{ width: "70%", marginTop: "10%" }}
+                                />
                               </div>
                             </div>
                             <div className="drop-contentt justify-content-between d-flex flex-column m-0 p-0">
                               <div className="p-0 m-0 w-100 d-flex flex-column">
                                 <b
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  Featured Brands
-                                </b>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  KeyStart
-                                </p>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  LARSON
-                                </p>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  BLACK+DECKER
-                                </p>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  DEWALT
-                                </p>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  Craftsman
-                                </p>
-                                <p
-                                  style={{ fontSize: "17px" }}
-                                  className="p-0 m-0"
-                                >
-                                  Amy Howard
-                                </p>
-                              </div>
-                            </div>
-                            <div className="drop-contentt justify-content-between d-flex flex-column m-0 p-0">
-                              <div className="p-0 m-0 w-100 d-flex flex-column">
-                                <b
-                                  style={{ fontSize: "17px" }}
+                                  style={{ fontSize: "18px" }}
                                   className="p-0 m-0"
                                 >
                                   Featured Brands
@@ -632,7 +565,7 @@ const Header = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="rewards align-items-center d-flex flex-column m-0">
+                            <div className="rewardss align-items-center d-flex flex-column m-0">
                               <Link
                                 style={{ width: "100%", textAlign: "center" }}
                                 to="/store-details"
