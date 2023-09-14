@@ -18,8 +18,8 @@ const Storeinfo = () => {
     <>
       <Header />
       <div className="global-store d-flex flex-column w-100 p-0 mb-4">
-        <div className="global w-100 p-0 d-flex flex-column">
-          <div className="container d-flex flex-column">
+        <div className="globall w-100 p-0 d-flex flex-column">
+          <div className="containerr d-flex flex-column">
             <div className="navigation-container d-flex flex-row">
               <p
                 className="p-0 m-0"
@@ -33,7 +33,7 @@ const Storeinfo = () => {
               </p>
             </div>
             <div className="name-store d-flex flex-row justify-content-between w-100 p-3 m-0">
-              <div className="store-text d-flex flex-column p-4 m-0">
+              <div className="store-text  d-flex flex-column p-4 m-0">
                 <h4>Calais Ace Home Center</h4>
                 <h6>Calais, ME 04619</h6>
                 <p style={{ fontSize: "14px" }}>

@@ -7,6 +7,9 @@ import firebase from "firebase/compat/app";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Menu } from "antd";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/leaflet.css";
 import userLogo from "../../resources/header_user-circle-light_red.svg";
 import starLogo from "../../resources/header_AR icon.svg";
 import cartLogo from "../../resources/Korpa.svg";
@@ -39,6 +42,13 @@ const Header = () => {
   //   Map location
   const latitude = 45.18047;
   const longitude = -67.28653;
+
+  let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+  });
+
+  L.Marker.prototype.options.icon = DefaultIcon;
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
@@ -254,7 +264,9 @@ const Header = () => {
                             <Link to="#">Purchase History</Link>
                             <Link to="#">Ace Rewards</Link>
                             <Link to="#">My Local Ace</Link>
-                            <Link onClick={logout}>Sign Out</Link>
+                            <Link to="#" onClick={logout}>
+                              Sign Out
+                            </Link>
                           </div>
                         )}
                       </div>
@@ -359,7 +371,7 @@ const Header = () => {
                           <div className="store-dropdown d-flex flex-row justify-content-between bg-white">
                             <div className="drop-content d-flex flex-column m-0 p-0">
                               <MapContainer
-                                center={[latitude, longitude]}
+                                center={[45.18047, -67.28653]}
                                 zoom={13}
                                 style={{ height: "400px", width: "100%" }}
                               >
@@ -368,13 +380,7 @@ const Header = () => {
                                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 />
                                 <Marker
-                                  icon={
-                                    new L.Icon({
-                                      iconUrl: "putanja/do/ikonice.png", // Postavite putanju do ikonice
-                                      iconSize: [32, 32], // Postavite veličinu ikonice prema potrebi
-                                    })
-                                  }
-                                  position={[latitude, longitude]}
+                                  position={[45.18047, -67.28653]}
                                 ></Marker>
                               </MapContainer>
                               <Link

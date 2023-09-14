@@ -3,7 +3,7 @@
     height: auto;
 }
 
-.global {
+.globall {
     height: auto;
     margin: 1% 0% 0% 0%;
     overflow-x: hidden;
@@ -22,10 +22,10 @@
     transform: scale(0.8);
 }
 
-.container {
+.containerr {
     width: 80%;
     display: flex;
-    margin-top: 1%;
+    margin: 1% auto auto auto;
 }
 
 .name-store {
