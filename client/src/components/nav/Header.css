@@ -230,6 +230,84 @@
     background-color: lightgrey;
   }
 
+/* For store and map - Store info & Directions */
+.dropdown-containerr {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-contentt {
+    display: block;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    /* background-color:aqua; */
+    background-color: rgba(153, 153, 153, 0.5);
+    z-index: 99999999999999 !important;
+    top: 160%; 
+    /* left: 0; */
+    right: -801%;
+    padding: 0px;
+    border-radius: 5px;
+    min-width: 1910px;
+    height: 162vh; 
+  }
+
+  .store-dropdown {
+    width: 80%;
+    height: 25%;
+    padding: 1% 3% 1% 3%;
+  }
+
+  .drop-content {
+    width: 18%;
+    height: 320px;
+    z-index: 999999999900;
+  }
+  .rewards {
+    height: 300px;
+    border-left: 1px solid lightgrey;
+    padding-left: 5%;
+  }
+
+  .details:hover {
+    background-color: #EEEEEE !important;
+  }
+  
+  /* Dropdown for Services & Brands */
+  .dropdown-containerrr {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-contenttt {
+    display: block;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    /* background-color:aqua; */
+    background-color: rgba(153, 153, 153, 0.5);
+    z-index: 99999999999999 !important;
+    top: 160%; 
+    /* left: 0; */
+    right: -855%;
+    padding: 0px;
+    border-radius: 5px;
+    min-width: 1910px;
+    height: 162vh; 
+  }
+
+  .store-dropdownn {
+    width: 80%;
+    height: 25%;
+    padding: 1% 3% 1% 3%;
+  }
+
+  .drop-contentt {
+    width: 18%;
+    height: 320px;
+    z-index: 999999999900;
+  }
 
 
 /* Dropdown */

@@ -10,7 +10,6 @@ import RegisterComplete from "./pages/auth/RegisterComplete";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import Storeinfo from "./pages/Storeinfo";
-import User from "./pages/userPages/User";
 import Profile from "./pages/userPages/User";
 import Account from "./pages/userPages/Account";
 

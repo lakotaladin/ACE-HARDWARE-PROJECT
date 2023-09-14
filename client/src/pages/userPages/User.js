@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 const Profile = () => {
   const [activeLink, setActiveLink] = useState("Profile");
   const [newEmail, setNewEmail] = useState("");
-  const [currentEmail, setCurrentEmail] = useState(""); // Dodajte stanje za trenutnu e-mail adresu
+  const [currentEmail, setCurrentEmail] = useState(""); 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
 

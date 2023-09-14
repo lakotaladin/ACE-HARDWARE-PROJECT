@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../nav/Header.css";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import L from "leaflet";
 import { Link } from "react-router-dom";
 import firebase from "firebase/compat/app";
 import { useHistory } from "react-router-dom";
@@ -8,6 +10,8 @@ import { Menu } from "antd";
 import userLogo from "../../resources/header_user-circle-light_red.svg";
 import starLogo from "../../resources/header_AR icon.svg";
 import cartLogo from "../../resources/Korpa.svg";
+import acestore from "../../resources/ace_store.png";
+import acerewards from "../../resources/acerewards.png";
 import {
   CaretDownOutlined,
   CaretUpOutlined,
@@ -28,6 +32,10 @@ const Header = () => {
   let dispatch = useDispatch();
   let { user } = useSelector((state) => ({ ...state }));
   let history = useHistory();
+
+  //   Map location
+  const latitude = 45.18047;
+  const longitude = -67.28653;
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
@@ -303,11 +311,18 @@ const Header = () => {
             </div>
           )}
         </div>
-        <div className="location-header-section w-100 p-0 m-0">
+        <div className="location-header-section w-100 p-1 m-0">
           <img
             src={location}
             id="location-img"
-            style={{ width: "1.7%", padding: "0px", marginLeft: "50px" }}
+            style={{
+              width: "30px",
+              height: "35px",
+              padding: "0px",
+              marginLeft: "50px",
+              marginTop: "2px",
+              marginBottom: "1%",
+            }}
             alt="Location"
           />
 
@@ -333,14 +348,102 @@ const Header = () => {
                       until 6 PM
                     </Link>{" "}
                     |{" "}
-                    <div className="dropdown-container">
+                    <div className="dropdown-containerr">
                       <b onClick={toggleMenu2}>Store Info & Directions</b>{" "}
                       {openMenu2 ? <CaretUpOutlined /> : <CaretDownOutlined />}
                       {openMenu2 && (
-                        <div className="dropdown-content">
-                          <a href="#">Link 1</a>
-                          <a href="#">Link 2</a>
-                          <a href="#">Link 3</a>
+                        <div className="dropdown-contentt">
+                          <div className="store-dropdown d-flex flex-row justify-content-between bg-white">
+                            <div className="drop-content d-flex flex-column m-0 p-0">
+                              <MapContainer
+                                center={[latitude, longitude]}
+                                zoom={13}
+                                style={{ height: "400px", width: "100%" }}
+                              >
+                                <TileLayer
+                                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                />
+                                <Marker
+                                  icon={
+                                    new L.Icon({
+                                      iconUrl: "putanja/do/ikonice.png", // Postavite putanju do ikonice
+                                      iconSize: [32, 32], // Postavite veličinu ikonice prema potrebi
+                                    })
+                                  }
+                                  position={[latitude, longitude]}
+                                ></Marker>
+                              </MapContainer>
+                              <Link
+                                style={{ width: "100%", textAlign: "center" }}
+                                to="/Location"
+                              >
+                                <button
+                                  className="details"
+                                  style={{
+                                    width: "100%",
+                                    marginTop: "2px",
+                                    padding: "2%",
+                                    border: "1px solid grey",
+                                    backgroundColor: "white",
+                                  }}
+                                >
+                                  Get Directions
+                                </button>
+                              </Link>
+                            </div>
+                            <div className="drop-content justify-content-between d-flex flex-column m-0 p-0">
+                              <img src={acestore} alt="Ace Store" />
+                              <Link
+                                style={{ width: "100%", textAlign: "center" }}
+                                to="/store-details"
+                              >
+                                <button
+                                  className="details"
+                                  style={{
+                                    width: "100%",
+                                    marginTop: "2px",
+                                    padding: "2%",
+                                    border: "1px solid grey",
+                                    backgroundColor: "white",
+                                  }}
+                                >
+                                  Full store details
+                                </button>
+                              </Link>
+                            </div>
+                            <div className="drop-content-contact justify-content-between align-text-start d-flex flex-column gap-3 m-0 p-0">
+                              <div className="p-0 m-0 w-100 d-flex flex-column">
+                                <b className="p-0 m-0">
+                                  Calais Ace Home Center
+                                </b>
+                                <p className="p-0 m-0">295 North St</p>
+                                <p className="p-0 m-0">Calais, ME 04619</p>
+                              </div>
+                              <div className="p-0 m-0 w-100 d-flex flex-column">
+                                <p className="p-0 m-0">
+                                  Mon - Fri 7:00am - 6:00pm
+                                </p>
+                                <p className="p-0 m-0">Sat 8:00am - 5:00pm</p>
+                                <p className="p-0 m-0">Sun 9:00am - 4:00pm</p>
+                              </div>
+                              <div className="pb-5 m-0 w-100 d-flex flex-column">
+                                <p className="p-0 m-0">Phone: (207) 454-2309</p>
+                                <p className="p-0 m-0">
+                                  Email address: contactus@calaisace.com
+                                </p>
+                                <p className="p-0 m-0">Owner: Drew Case</p>
+                                <p className="p-0 m-0">Manager: Drew Case</p>
+                              </div>
+                            </div>
+                            <div className="rewards align-items-center d-flex flex-column m-0">
+                              <img
+                                style={{ margin: "auto" }}
+                                src={acerewards}
+                                alt="Ace Rewards"
+                              />
+                            </div>
+                          </div>
                         </div>
                       )}
                     </div>{" "}
@@ -349,10 +452,206 @@ const Header = () => {
                       <b onClick={toggleMenu3}>Services & Brands</b>{" "}
                       {openMenu3 ? <CaretUpOutlined /> : <CaretDownOutlined />}
                       {openMenu3 && (
-                        <div className="dropdown-content">
-                          <a href="#">Link 1</a>
-                          <a href="#">Link 2</a>
-                          <a href="#">Link 3</a>
+                        <div className="dropdown-contenttt">
+                          <div className="store-dropdownn d-flex flex-row justify-content-between bg-white">
+                            <div className="drop-contentt justify-content-between d-flex flex-column m-0 p-0">
+                              <div className="p-0 m-0 w-100 d-flex flex-column">
+                                <b
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Featured Brands
+                                </b>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  KeyStart
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  LARSON
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  BLACK+DECKER
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  DEWALT
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Craftsman
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Amy Howard
+                                </p>
+                              </div>
+                            </div>
+                            <div className="drop-contentt justify-content-between d-flex flex-column m-0 p-0">
+                              <div className="p-0 m-0 w-100 d-flex flex-column">
+                                <b
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Featured Brands
+                                </b>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  KeyStart
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  LARSON
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  BLACK+DECKER
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  DEWALT
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Craftsman
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Amy Howard
+                                </p>
+                              </div>
+                            </div>
+                            <div className="drop-contentt justify-content-between d-flex flex-column m-0 p-0">
+                              <div className="p-0 m-0 w-100 d-flex flex-column">
+                                <b
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Featured Brands
+                                </b>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  KeyStart
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  LARSON
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  BLACK+DECKER
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  DEWALT
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Craftsman
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Amy Howard
+                                </p>
+                              </div>
+                            </div>
+                            <div className="drop-content-contact justify-content-between align-text-start d-flex flex-column gap-3 m-0 p-0">
+                              <div className="p-0 m-0 w-100 d-flex flex-column">
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 mt-4"
+                                >
+                                  Scotts
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  ThermaTru Doors
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Toro
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Parcel Depot
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Clark+Kensington
+                                </p>
+                                <p
+                                  style={{ fontSize: "17px" }}
+                                  className="p-0 m-0"
+                                >
+                                  Benjamin Moore
+                                </p>
+                              </div>
+                            </div>
+                            <div className="rewards align-items-center d-flex flex-column m-0">
+                              <Link
+                                style={{ width: "100%", textAlign: "center" }}
+                                to="/store-details"
+                              >
+                                <button
+                                  className="details"
+                                  style={{
+                                    width: "100%",
+                                    marginTop: "2px",
+                                    padding: "2%",
+                                    border: "1px solid grey",
+                                    backgroundColor: "white",
+                                  }}
+                                >
+                                  Full store details
+                                </button>
+                              </Link>
+                            </div>
+                          </div>
                         </div>
                       )}
                     </div>{" "}
