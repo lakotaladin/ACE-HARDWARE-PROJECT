@@ -217,7 +217,7 @@ const Register = () => {
         </div>
 
         {/* Section register */}
-        <div className="section-global w-100 m-0 p-0 d-flex">
+        <div className="section-globall w-100 m-0 p-0 d-flex">
           <div className="form-container p-0 d-flex flex-column">
             {registerForm()}
           </div>
