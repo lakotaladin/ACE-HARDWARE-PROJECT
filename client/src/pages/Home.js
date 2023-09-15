@@ -16,6 +16,20 @@ import grill2 from "../homeassets/2.jpg";
 import grill3 from "../homeassets/3.jpg";
 import grill4 from "../homeassets/4.jpg";
 import generac from "../homeassets/generac.jpg";
+import cat1 from "../homeassets/cat1.png";
+import cat2 from "../homeassets/cat2.png";
+import cat3 from "../homeassets/cat3.png";
+import cat4 from "../homeassets/cat4.png";
+import cat5 from "../homeassets/cat5.png";
+// import cat6 from "../homeassets/cat6.png";
+import cat7 from "../homeassets/cat7.png";
+import cat8 from "../homeassets/cat8.png";
+// import cat9 from "../homeassets/cat9.png";
+import cat10 from "../homeassets/cat10.png";
+import cat11 from "../homeassets/cat11.png";
+import cat13 from "../homeassets/cat13.png";
+import cat14 from "../homeassets/sale.svg";
+
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Modal } from "antd";
 
@@ -298,7 +312,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill1}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "3%",
+                      }}
+                      src={cat1}
                       alt="Slika 1"
                       className="card-img-top rounded-circle"
                     />
@@ -313,7 +331,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill2}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "3%",
+                      }}
+                      src={cat2}
                       alt="Slika 2"
                       className="card-img-top rounded-circle"
                     />
@@ -329,7 +351,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill3}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "4%",
+                      }}
+                      src={cat3}
                       alt="Slika 3"
                       className="card-img-top rounded-circle"
                     />
@@ -343,7 +369,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill4}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "3%",
+                      }}
+                      src={cat4}
                       alt="Slika 4"
                       className="card-img-top rounded-circle"
                     />
@@ -360,7 +390,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill1}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "3%",
+                      }}
+                      src={cat5}
                       alt="Slika 1"
                       className="card-img-top rounded-circle"
                     />
@@ -376,7 +410,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill2}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "4%",
+                      }}
+                      src={cat7}
                       alt="Slika 2"
                       className="card-img-top rounded-circle"
                     />
@@ -394,7 +432,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill1}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "3%",
+                      }}
+                      src={cat8}
                       alt="Slika 1"
                       className="card-img-top rounded-circle"
                     />
@@ -409,7 +451,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill2}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "3%",
+                      }}
+                      src={cat10}
                       alt="Slika 2"
                       className="card-img-top rounded-circle"
                     />
@@ -425,7 +471,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill3}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "3%",
+                      }}
+                      src={cat11}
                       alt="Slika 3"
                       className="card-img-top rounded-circle"
                     />
@@ -441,7 +491,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill4}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "3%",
+                      }}
+                      src={cat13}
                       alt="Slika 4"
                       className="card-img-top rounded-circle"
                     />
@@ -458,7 +512,11 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill1}
+                      style={{
+                        backgroundColor: "#EFEFEF",
+                        padding: "3%",
+                      }}
+                      src={cat13}
                       alt="Slika 1"
                       className="card-img-top rounded-circle"
                     />
@@ -472,7 +530,7 @@ const Home = () => {
                 <Link to="#" className="textlink">
                   <div className="card bg-white border-0">
                     <img
-                      src={grill2}
+                      src={cat14}
                       alt="Slika 2"
                       className="card-img-top rounded-circle"
                     />
