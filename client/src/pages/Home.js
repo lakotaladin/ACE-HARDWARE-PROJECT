@@ -21,15 +21,22 @@ import cat2 from "../homeassets/cat2.png";
 import cat3 from "../homeassets/cat3.png";
 import cat4 from "../homeassets/cat4.png";
 import cat5 from "../homeassets/cat5.png";
-// import cat6 from "../homeassets/cat6.png";
 import cat7 from "../homeassets/cat7.png";
 import cat8 from "../homeassets/cat8.png";
-// import cat9 from "../homeassets/cat9.png";
+import cat12 from "../homeassets/cat12.png";
 import cat10 from "../homeassets/cat10.png";
 import cat11 from "../homeassets/cat11.png";
 import cat13 from "../homeassets/cat13.png";
 import cat14 from "../homeassets/sale.svg";
-
+import yeti from "../homeassets/yeticollection.png";
+import colorad from "../homeassets/colorsad.png";
+import waystoshop from "../homeassets/ways.png";
+import loveace from "../homeassets/loveace.png";
+import allbrands from "../homeassets/allbrands.png";
+import women from "../homeassets/women.jpg";
+import compressor from "../homeassets/compressor.jpg";
+import garage from "../homeassets/garage.jpg";
+import pellet from "../homeassets/pellet.jpg";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Modal } from "antd";
 
@@ -461,7 +468,7 @@ const Home = () => {
                     />
                     <div className="card-body">
                       <h6 className="card-title font-weight-bold">
-                        Outdoor Heating
+                        Air Conditioners
                       </h6>
                     </div>
                   </div>
@@ -481,7 +488,7 @@ const Home = () => {
                     />
                     <div className="card-body">
                       <h6 className="card-title font-weight-bold">
-                        Air Conditioners
+                        Tool Storage
                       </h6>
                     </div>
                   </div>
@@ -495,14 +502,12 @@ const Home = () => {
                         backgroundColor: "#EFEFEF",
                         padding: "3%",
                       }}
-                      src={cat13}
+                      src={cat12}
                       alt="Slika 4"
                       className="card-img-top rounded-circle"
                     />
                     <div className="card-body">
-                      <h6 className="card-title font-weight-bold">
-                        Tool Storage
-                      </h6>
+                      <h6 className="card-title font-weight-bold">Paint</h6>
                     </div>
                   </div>
                 </Link>
@@ -534,6 +539,112 @@ const Home = () => {
                       alt="Slika 2"
                       className="card-img-top rounded-circle"
                     />
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/* YEYI Collection */}
+          <div className="container-fluid p-0 m-0">
+            <Link to="#">
+              <img className="mt-4 mb-5" src={yeti} alt="YETI Collection" />
+            </Link>
+          </div>
+          {/* Colors ad */}
+          <div className="container-fluid p-0 m-0">
+            <Link to="#">
+              <img className="mt-4 mb-5" src={colorad} alt="YETI Collection" />
+            </Link>
+          </div>
+        </div>
+        {/* Convenient Ways to Shop Ace */}
+        <div className="container-fluid p-0 m-0">
+          <Link to="#">
+            <img className="mt-4 mb-5" src={waystoshop} alt="YETI Collection" />
+          </Link>
+        </div>
+        {/* Paypal and Resons To Love Ace */}
+        <div className="homecontainer p-0 d-flex flex-column">
+          <div className="container-fluid p-0 m-0">
+            <Link to="#">
+              <img className="mt-4 mb-5" src={loveace} alt="Love Ace" />
+            </Link>
+          </div>
+          {/* Brands */}
+          <div className="container-fluid p-0 mt-1">
+            <Link to="#">
+              <img className="mt-4 mb-5" src={allbrands} alt="All brands" />
+            </Link>
+          </div>
+          {/* Videos */}
+          <div className="container-fluid p-0 m-0">
+            <div className="row mt-5 text-center">
+              <h1>Tips & Advice</h1>
+              <br />
+              <a
+                style={{ fontSize: "18px" }}
+                className="mt-3 mb-5"
+                href="https://tips.acehardware.com/"
+                target="_blank"
+              >
+                <u
+                  style={{
+                    color: "#F01839",
+                    fontWeight: "bold",
+                  }}
+                >
+                  See More
+                </u>
+              </a>
+              <div className="col-md-3 mb-5">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img src={women} alt="Slika 1" className="card-img-top" />
+                    <div className="card-body">
+                      <h4 style={{ color: "black" }}>
+                        What to do to your home in September
+                      </h4>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-3">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img src={pellet} alt="Slika 2" className="card-img-top" />
+                    <div className="card-body">
+                      <h4 style={{ color: "black" }}>
+                        Our Review Of The Treager Steak Pellet Kit
+                      </h4>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-3">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={compressor}
+                      alt="Slika 3"
+                      className="card-img-top"
+                    />
+                    <div className="card-body">
+                      <h4 style={{ color: "black" }}>
+                        Why You Need An Air Compressor
+                      </h4>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-3">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img src={garage} alt="Slika 4" className="card-img-top" />
+                    <div className="card-body">
+                      <h4 style={{ color: "black" }}>
+                        Yes, You Can Paint Your Garage Floor
+                      </h4>
+                    </div>
                   </div>
                 </Link>
               </div>
