@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./home.css";
 import Header from "../components/nav/Header";
 import ScrollToTopButton from "../components/ScrollOnTop/ScrollOnTopButton";
@@ -9,10 +9,32 @@ import saveyeti from "../homeassets/saveyeti.png";
 import traeger from "../homeassets/traeger.png";
 import solostove from "../homeassets/solostove.png";
 import grill from "../homeassets/grill.jpg";
+import details from "../homeassets/detailsship.png";
 import peoplecard from "../homeassets/peoplescard.jpg";
+import grill1 from "../homeassets/1.jpg";
+import grill2 from "../homeassets/2.jpg";
+import grill3 from "../homeassets/3.jpg";
+import grill4 from "../homeassets/4.jpg";
+import generac from "../homeassets/generac.jpg";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Modal } from "antd";
 
 const Home = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  // Za modal
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <>
       <Header />
@@ -131,7 +153,7 @@ const Home = () => {
                       Bonfire 2.0 + Stand&nbsp;&amp;&nbsp;Shelter
                     </h5>
                     <p className="card-text">
-                      <p>Bonfire 2.0 + Stand&nbsp;&amp;&nbsp;Shelter</p>
+                      19.5 in. W Stainless Steel Round Wood&nbsp;Fire&nbsp;Pit
                     </p>
                   </div>
                   <div className="card-footer m-0">
@@ -141,6 +163,322 @@ const Home = () => {
                   </div>
                 </div>
               </Link>
+            </div>
+          </div>
+          <div className="details p-0 m-0">
+            <Link to="#">
+              <img className="w-100" src={details} alt="delivery" />
+            </Link>
+            <div className="detailsdiv d-flex p-0 m-0 justify-content-end">
+              <p onClick={showModal} className="detailstext p-0 m-0">
+                <u>*See Details</u>
+              </p>
+              <Modal
+                open={isModalVisible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                footer={null} // Ukloni footer
+                centered // Modal se otvara na sredini ekrana
+              >
+                <p className="p-3">
+                  *FREE ASSEMBLY AND DELIVERY FROM YOUR LOCAL ACE on grills
+                  $399+ for Ace Rewards members. At participating locations only
+                  within the local delivery area, as defined by store. Online
+                  and Ace app purchases eligible when Ace Rewards member's
+                  account is associated with its acehardware.com and Ace App
+                  login, is currently signed in and member's purchase is
+                  associated with a participating store. Member must select
+                  "Free Delivery From Store" and "Assembly" in cart. Delivery
+                  dates subject to availability. Offer not valid on prior
+                  purchases or ship to home orders. Excludes Char-Broil.
+                </p>
+              </Modal>
+            </div>
+          </div>
+          {/* Our best deals */}
+          <div className="container-fluid p-0 m-0">
+            <div className="row">
+              <div className="col-md-12 text-center">
+                <h1 style={{ fontWeight: "bold" }}>
+                  Our Best Deals on Grilling
+                </h1>
+              </div>
+            </div>
+            <div className="row mt-4 text-center">
+              <div className="col-md-3">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img src={grill1} alt="Slika 1" className="card-img-top" />
+                    <div className="card-body">
+                      <h4 className="card-title font-weight-bold">Buy & Get</h4>
+                      <p className="card-text hover-underline">
+                        Buy Traeger Ironwood 650 Wood Pellet Grill, Get Folding
+                        Front Shelf and Grill Cover Free
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-3">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img src={grill2} alt="Slika 2" className="card-img-top" />
+                    <div className="card-body">
+                      <h4 className="card-title font-weight-bold">
+                        Save up to &#x24;70
+                      </h4>
+                      <p className="card-text hover-underline">
+                        on Big Green Egg Large and XLarge Grill EGGspander Kit
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-3">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img src={grill3} alt="Slika 3" className="card-img-top" />
+                    <div className="card-body">
+                      <h4 className="card-title font-weight-bold">
+                        Master the Art of Grilling
+                      </h4>
+                      <p className="card-text hover-underline">
+                        Shop Weber Grills
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-3">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img src={grill4} alt="Slika 4" className="card-img-top" />
+                    <div className="card-body">
+                      <h4 className="card-title font-weight-bold">
+                        Explore Outdoor Pizza Ovens
+                      </h4>
+                      <p className="card-text hover-underline">
+                        Shop Ooni Ovens
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/* Generac banner  */}
+          <div className="container-fluid p-0 m-0">
+            <Link to="#">
+              <img
+                style={{ width: "100%", marginTop: "2%", marginBottom: "2%" }}
+                src={generac}
+                alt="Generac"
+              />
+            </Link>
+          </div>
+          {/* Shop by Category */}
+          <div className="container-fluid category-div p-0 m-0">
+            <div className="row p-0 m-0">
+              <div className="col-md-12 text-center">
+                <h1
+                  style={{
+                    fontWeight: "bold",
+                    marginTop: "2%",
+                    marginBottom: "2%",
+                  }}
+                >
+                  Shop by Category
+                </h1>
+              </div>
+            </div>
+            {/* Prvi red */}
+            <div className="row mt-4 text-center">
+              {/* Kolona 1 */}
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill1}
+                      alt="Slika 1"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title">Grills & Smokers</h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              {/* Dodajte još 6 kartica u kolonu 1 */}
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill2}
+                      alt="Slika 2"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">
+                        Lawn Mowers
+                      </h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill3}
+                      alt="Slika 3"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">Lawn Care</h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill4}
+                      alt="Slika 4"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">
+                        Outdoor Storage
+                      </h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              {/* Dodajte još 3 kartice u kolonu 1 */}
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill1}
+                      alt="Slika 1"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">
+                        Outdoor Power Equipment
+                      </h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill2}
+                      alt="Slika 2"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">Coolers</h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+            {/* Drugi red */}
+            <div className="row mt-4 text-center">
+              {/* Kolona 2 */}
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill1}
+                      alt="Slika 1"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">Patio</h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              {/* Dodajte još 6 kartica u kolonu 2 */}
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill2}
+                      alt="Slika 2"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">
+                        Outdoor Heating
+                      </h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill3}
+                      alt="Slika 3"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">
+                        Air Conditioners
+                      </h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill4}
+                      alt="Slika 4"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">
+                        Tool Storage
+                      </h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              {/* Dodajte još 3 kartice u kolonu 2 */}
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill1}
+                      alt="Slika 1"
+                      className="card-img-top rounded-circle"
+                    />
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">Drinkware</h6>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="col-md-2 col-4 p-0">
+                <Link to="#" className="textlink">
+                  <div className="card bg-white border-0">
+                    <img
+                      src={grill2}
+                      alt="Slika 2"
+                      className="card-img-top rounded-circle"
+                    />
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

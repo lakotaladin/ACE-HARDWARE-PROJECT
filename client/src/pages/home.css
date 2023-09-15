@@ -14,6 +14,7 @@
 
 .card {
     width: 90%;
+    box-shadow: none !important;
 }
 
 .card, .card-footer {
@@ -37,4 +38,41 @@
 
 .card-text {
     color: black;
+}
+
+/* Details div */
+
+.detailsdiv{
+    width: 98%;
+}
+
+.details{
+    width: 98%;
+    margin: 4% 0% 4% 0% !important;
+    background-color: white;
+}
+.details:hover{
+    background-color: white;
+}
+
+.detailsdiv{
+    background-color: white;
+}
+
+.detailstext {
+    background-color: white;
+}
+/* Link od kartica */
+.card-title {
+   color: black !important;
+   font-weight: bold;
+}
+.textlink:hover {
+    text-decoration: underline !important;
+    color: black !important;
+}
+
+.category-div .card {
+    width: 90% !important;
+    height: auto !important;
 }
