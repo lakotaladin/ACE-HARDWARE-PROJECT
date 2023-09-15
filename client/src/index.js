@@ -5,8 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from "redux";
-import "leaflet/dist/leaflet.css";
-import { Provider, createStoreHook } from "react-redux";
+import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./reducers";
 

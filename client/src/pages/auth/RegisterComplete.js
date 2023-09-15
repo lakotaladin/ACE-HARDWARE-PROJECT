@@ -18,6 +18,7 @@ const RegisterComplete = ({ history }) => {
     setEmail(window.localStorage.getItem("emailForRegistration"));
     console.log(window.location.href);
     console.log(window.localStorage.getItem("emailForRegistration"));
+    // window.location.href = "/";
   }, []);
 
   const handleSubmit = async (e) => {

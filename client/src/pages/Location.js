@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import SearchInput from "../components/LocationCard/SearchInput";
 import LocationCard from "../components/LocationCard/LocationCard";
 import "../pages/location.css";
@@ -101,11 +101,13 @@ const Location = () => {
 
   // Dodajte stanje za praćenje trenutno selektovane lokacije
   const [selectedLocation, setSelectedLocation] = useState(locations[0]);
-  const [mapCenter, setMapCenter] = useState([51.505, -0.09]); // Default centar mape
+  // const [mapCenter, setMapCenter] = useState([51.505, -0.09]); // Default centar mape
 
   const L = require("leaflet");
 
   const markerRef = useRef(null);
+
+  const map = useRef(null);
 
   delete L.Icon.Default.prototype._getIconUrl;
 
@@ -129,7 +131,10 @@ const Location = () => {
     setSelectedLocation(location);
     location.isHighlighted = true;
 
-    setMapCenter([location.latitude, location.longitude]); // Postavi centar mape na selektovanu lokaciju
+    map.current.setView([location.latitude, location.longitude], 11, {
+      animation: true,
+    });
+    // setMapCenter([location.latitude, location.longitude]); // Postavi centar mape na selektovanu lokaciju
   };
 
   // Postavite prvu lokaciju kao selektovanu po defaultu prilikom prvog renderovanja
@@ -175,9 +180,9 @@ const Location = () => {
               highlighted={location === selectedLocation}
               onShowDetails={() => {
                 if (location === selectedLocation) {
-                  markerRef.current._events.click[0].fn.bind(markerRef.current)(
-                    {}
-                  );
+                  markerRef?.current?._events.click[0].fn.bind(
+                    markerRef.current
+                  )({});
                 }
               }}
             />
@@ -185,13 +190,46 @@ const Location = () => {
         </div>
         <div style={{ flex: "70%" }}>
           <MapContainer
-            center={mapCenter}
+            center={[selectedLocation.latitude, selectedLocation.longitude]}
             zoom={13}
+            ref={map}
             style={{ width: "100%", height: "100vh" }}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-            {selectedLocation && (
+            {locations.map((location) => (
+              <Marker
+                ref={
+                  selectedLocation.id === location.id ? markerRef : undefined
+                }
+                cancelable={true}
+                draggable={false}
+                position={[location.latitude, location.longitude]}
+              >
+                <Popup>
+                  <div className="w-100 p-0 m-0 d-flex flex-row">
+                    <div className="m-2">
+                      <img
+                        style={{ width: "80px", height: "60px" }}
+                        src={logo}
+                        alt="Ace Hardware logo"
+                      />
+                    </div>
+                    <div className="marker-text p-0 m-0">
+                      <b>{selectedLocation.name}</b>
+                      <p>{selectedLocation.description}</p>
+                      <p>{selectedLocation.adress}</p>
+                      <p>{selectedLocation.phone}</p>
+                      <div className="w-100 mt-2">
+                        <p>{selectedLocation.work}</p>
+                        <p>{selectedLocation.worksat}</p>
+                        <p>{selectedLocation.worksun}</p>
+                      </div>
+                    </div>
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
+            {/* {selectedLocation && (
               <Marker
                 ref={markerRef}
                 cancelable={true}
@@ -224,7 +262,7 @@ const Location = () => {
                   </div>
                 </Popup>
               </Marker>
-            )}
+            )} */}
           </MapContainer>
         </div>
       </div>

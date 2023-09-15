@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import firebase from "firebase/compat/app";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Menu } from "antd";
+import { Dropdown, Menu, Space } from "antd";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
@@ -17,10 +17,12 @@ import acestore from "../../resources/ace_store.png";
 import acerewards from "../../resources/acerewards.png";
 import ace_services from "../../resources/services.png";
 import ace_services2 from "../../resources/services2.png";
+import brands from "../../resources/brandsheader.png";
 
 import {
   CaretDownOutlined,
   CaretUpOutlined,
+  RightOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
 import logo from "../../resources/ace_logo.png";
@@ -42,26 +44,29 @@ const Header = () => {
   let { user } = useSelector((state) => ({ ...state }));
   let history = useHistory();
 
-  const handleTextClick = () => {
-    setIsTextOpen(!isTextOpen);
-  };
-
-  const handleLinkMouseEnter = () => {
-    setIsLinkHovered(true);
-  };
-
-  const handleLinkMouseLeave = () => {
-    setIsLinkHovered(false);
-  };
-
-  const handleMenuMouseEnter = () => {
-    setIsInside(true);
-  };
-
-  const handleMenuMouseLeave = () => {
-    setIsInside(false);
-    setIsTextOpen(false);
-  };
+  const items = [
+    {
+      key: "2",
+      label: "sub menu",
+      children: [
+        {
+          key: "2-1",
+          label: (
+            <div className="w-100 d-flex flex-row p-0 m-0">
+              <div style={{ width: "100%" }}>
+                <h3>Featured brands</h3>
+                <img style={{ width: "100%" }} src={brands} alt="" />
+              </div>
+              <div style={{ width: "100%" }}>
+                <h3>Featured brands</h3>
+                <img style={{ width: "100%" }} src={brands} alt="" />
+              </div>
+            </div>
+          ),
+        },
+      ],
+    },
+  ];
 
   let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -214,45 +219,15 @@ const Header = () => {
                   <Menu.Item key="setting:1">Option 1</Menu.Item>
                   <Menu.Item key="setting:2">Option 2</Menu.Item>
                 </SubMenu>
-                <div
-                  className={`cascading-menu ${isInside ? "inside" : ""}`}
-                  onMouseEnter={handleMenuMouseEnter}
-                  onMouseLeave={handleMenuMouseLeave}
+                <Dropdown
+                  menu={{
+                    items,
+                  }}
                 >
-                  <span className="menu-text" onClick={handleTextClick}>
-                    Hover Me
-                  </span>
-                  {isTextOpen && (
-                    <div
-                      className={`sub-menu ${
-                        isLinkHovered ? "sub-menu-link-hovered" : ""
-                      }`}
-                      onMouseEnter={handleLinkMouseEnter}
-                      onMouseLeave={handleLinkMouseLeave}
-                    >
-                      <a
-                        href="#"
-                        onMouseEnter={handleLinkMouseEnter}
-                        onMouseLeave={handleLinkMouseLeave}
-                      >
-                        Link 1
-                      </a>
-                      <a
-                        href="#"
-                        onMouseEnter={handleLinkMouseEnter}
-                        onMouseLeave={handleLinkMouseLeave}
-                      >
-                        Link 2
-                      </a>
-                      {isLinkHovered && (
-                        <div className="sub-menu2">
-                          <a href="#">Sub Link 1</a>
-                          <a href="#">Sub Link 2</a>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
+                  <a className="cascader" onClick={(e) => e.preventDefault()}>
+                    <Space>Cascading menu</Space>
+                  </a>
+                </Dropdown>
                 <Menu.Item className="custom-menu-item">
                   Sales & Specials
                 </Menu.Item>
