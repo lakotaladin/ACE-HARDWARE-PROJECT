@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Home from "./pages/Home";
@@ -21,7 +21,7 @@ const App = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        const idTokenResult = await user.getIdTokenResult();
+        const idTokenResult = await user?.getIdTokenResult();
         // console.log("user", user);
         dispatch({
           type: "LOGGED_IN_USER",
@@ -36,7 +36,7 @@ const App = () => {
     //cleanup
 
     return () => unsubscribe();
-  }, []);
+  }, [auth]);
   return (
     <>
       {/* <Header /> */}

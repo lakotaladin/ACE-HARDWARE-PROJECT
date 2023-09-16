@@ -18,11 +18,11 @@ import acerewards from "../../resources/acerewards.png";
 import ace_services from "../../resources/services.png";
 import ace_services2 from "../../resources/services2.png";
 import brands from "../../resources/brandsheader.png";
+import brands2 from "../../resources/brandsheader2.png";
 
 import {
   CaretDownOutlined,
   CaretUpOutlined,
-  RightOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
 import logo from "../../resources/ace_logo.png";
@@ -36,9 +36,6 @@ const Header = () => {
   const [openMenu2, setOpenMenu2] = useState(false);
   const [openMenu3, setOpenMenu3] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [isTextOpen, setIsTextOpen] = useState(false);
-  const [isLinkHovered, setIsLinkHovered] = useState(false);
-  const [isInside, setIsInside] = useState(false);
 
   let dispatch = useDispatch();
   let { user } = useSelector((state) => ({ ...state }));
@@ -46,25 +43,74 @@ const Header = () => {
 
   const items = [
     {
-      key: "2",
-      label: "sub menu",
-      children: [
+      key: "1",
+      label: <span style={{ fontWeight: "bold" }}>Shop by Brand</span>,
+      items: [
         {
           key: "2-1",
           label: (
-            <div className="w-100 d-flex flex-row p-0 m-0">
-              <div style={{ width: "100%" }}>
-                <h3>Featured brands</h3>
-                <img style={{ width: "100%" }} src={brands} alt="" />
+            <div className="brandscascader w-100 d-flex flex-row gap-4 p-1 m-0">
+              <div className="brand-1" style={{ width: "100%" }}>
+                <h5 style={{ borderBottom: "1px solid lightgrey" }}>
+                  Featured brands
+                </h5>
+                <img
+                  style={{ width: "100%" }}
+                  src={brands}
+                  alt="Brands images"
+                />
               </div>
-              <div style={{ width: "100%" }}>
-                <h3>Featured brands</h3>
-                <img style={{ width: "100%" }} src={brands} alt="" />
+              <div className="brand-2" style={{ width: "100%" }}>
+                <h5 style={{ borderBottom: "1px solid lightgrey" }}>
+                  Brands A-Z
+                </h5>
+                <img style={{ width: "100%" }} src={brands2} alt="Brands" />
               </div>
             </div>
           ),
         },
       ],
+    },
+    {
+      key: "2",
+      label: <span style={{ fontWeight: "bold" }}>Ace Gift Card</span>,
+      items: [],
+    },
+    {
+      key: "3",
+      label: "Grills & Smokers",
+    },
+    {
+      key: "4",
+      label: "Outdoor Living and Patio",
+    },
+    {
+      key: "5",
+      label: "Lawn and Garden",
+    },
+    {
+      key: "6",
+      label: "Tools",
+    },
+    {
+      key: "7",
+      label: "Paint and Supplies",
+    },
+    {
+      key: "8",
+      label: "Heating and Cooling",
+    },
+    {
+      key: "9",
+      label: "Home and Decor",
+    },
+    {
+      key: "10",
+      label: "Building Supplies",
+    },
+    {
+      key: "11",
+      label: "Hardware",
     },
   ];
 
@@ -211,45 +257,52 @@ const Header = () => {
                 </div>
               </div>
               <Menu
+                className="custom-menu-items"
                 onClick={handleClick}
                 selectedKeys={[currnet]}
                 mode="horizontal"
               >
-                <SubMenu className="custom-menu-item" title="Departments">
-                  <Menu.Item key="setting:1">Option 1</Menu.Item>
-                  <Menu.Item key="setting:2">Option 2</Menu.Item>
-                </SubMenu>
                 <Dropdown
                   menu={{
                     items,
                   }}
                 >
-                  <a className="cascader" onClick={(e) => e.preventDefault()}>
-                    <Space>Cascading menu</Space>
-                  </a>
+                  <Link
+                    className="cascader"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <Space>Departments</Space>
+                  </Link>
                 </Dropdown>
-                <Menu.Item className="custom-menu-item">
-                  Sales & Specials
-                </Menu.Item>
-                <Menu.Item className="custom-menu-item">
-                  {" "}
-                  <a href="https://www.acehardware.com/local-ad">Local Ad</a>
-                </Menu.Item>
-                <Menu.Item className="custom-menu-item">
-                  <a href="https://www.acehardware.com/thepaintstudio">
-                    The Paint Studio
-                  </a>
-                </Menu.Item>
-                <Menu.Item className="custom-menu-item">
-                  <a href="https://www.acehardware.com/aceprojectplace">
-                    Ace Project Place
-                  </a>
-                </Menu.Item>
-                <Menu.Item className="custom-menu-item">
-                  <a href="https://www.acehandymanservices.com/?utm_source=acehardware.com&utm_medium=referral&utm_campaign=header_link&source=ace_site">
-                    Ace Handyman Services
-                  </a>
-                </Menu.Item>
+
+                <Link href="#" className="cascader">
+                  <Space>Sales & Specials</Space>
+                </Link>
+
+                <Link
+                  className="cascader"
+                  href="https://www.acehardware.com/local-ad"
+                >
+                  <Space>Local Ad</Space>
+                </Link>
+                <Link
+                  className="cascader"
+                  href="https://www.acehardware.com/thepaintstudio"
+                >
+                  <Space>The Paint Studio</Space>
+                </Link>
+                <Link
+                  className="cascader"
+                  href="https://www.acehardware.com/aceprojectplace"
+                >
+                  <Space>Ace Project Place</Space>
+                </Link>
+                <Link
+                  className="cascader"
+                  href="https://www.acehandymanservices.com/?utm_source=acehardware.com&utm_medium=referral&utm_campaign=header_link&source=ace_site"
+                >
+                  <Space>Ace Handyman Services</Space>
+                </Link>
               </Menu>
             </div>
           ) : (
@@ -344,36 +397,52 @@ const Header = () => {
                 </div>
               </div>
               <Menu
+                className="custom-menu-items"
                 onClick={handleClick}
                 selectedKeys={[currnet]}
                 mode="horizontal"
               >
-                <SubMenu className="custom-menu-item" title="Departments">
-                  <Menu.Item key="setting:1">Option 1</Menu.Item>
-                  <Menu.Item key="setting:2">Option 2</Menu.Item>
-                </SubMenu>
-                <Menu.Item className="custom-menu-item">
-                  Sales & Specials
-                </Menu.Item>
-                <Menu.Item className="custom-menu-item">
-                  {" "}
-                  <a href="https://www.acehardware.com/local-ad">Local Ad</a>
-                </Menu.Item>
-                <Menu.Item className="custom-menu-item">
-                  <a href="https://www.acehardware.com/thepaintstudio">
-                    The Paint Studio
-                  </a>
-                </Menu.Item>
-                <Menu.Item className="custom-menu-item">
-                  <a href="https://www.acehardware.com/aceprojectplace">
-                    Ace Project Place
-                  </a>
-                </Menu.Item>
-                <Menu.Item className="custom-menu-item">
-                  <a href="https://www.acehandymanservices.com/?utm_source=acehardware.com&utm_medium=referral&utm_campaign=header_link&source=ace_site">
-                    Ace Handyman Services
-                  </a>
-                </Menu.Item>
+                <Dropdown
+                  menu={{
+                    items,
+                  }}
+                >
+                  <Link
+                    className="cascader"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <Space>Departments</Space>
+                  </Link>
+                </Dropdown>
+
+                <Link href="#" className="cascader">
+                  <Space>Sales & Specials</Space>
+                </Link>
+
+                <Link
+                  className="cascader"
+                  href="https://www.acehardware.com/local-ad"
+                >
+                  <Space>Local Ad</Space>
+                </Link>
+                <Link
+                  className="cascader"
+                  href="https://www.acehardware.com/thepaintstudio"
+                >
+                  <Space>The Paint Studio</Space>
+                </Link>
+                <Link
+                  className="cascader"
+                  href="https://www.acehardware.com/aceprojectplace"
+                >
+                  <Space>Ace Project Place</Space>
+                </Link>
+                <Link
+                  className="cascader"
+                  href="https://www.acehandymanservices.com/?utm_source=acehardware.com&utm_medium=referral&utm_campaign=header_link&source=ace_site"
+                >
+                  <Space>Ace Handyman Services</Space>
+                </Link>
               </Menu>
             </div>
           )}

@@ -3,7 +3,7 @@
 }
 
 .homecontainer {
-    margin: 0.5% auto auto auto;
+    margin: 0.2% auto auto auto;
     width: 80%;
     height: auto;
 }
@@ -26,6 +26,9 @@
     padding-bottom:0% !important;
 }
 
+.linkcard:hover {
+    font-weight: 500;
+}
 .card-footer{
     border: 1px solid #EEEE;
     margin: 0% !important;

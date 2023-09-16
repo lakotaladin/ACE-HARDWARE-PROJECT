@@ -82,7 +82,7 @@ const Home = () => {
                     </p>
                   </div>
                   <div className="card-footer m-0">
-                    <Link to="#">
+                    <Link className="linkcard" to="#">
                       <u style={{ color: "#D40029" }}>Shop Fall now</u>
                     </Link>
                   </div>
@@ -113,7 +113,7 @@ const Home = () => {
                     </p>
                   </div>
                   <div className="card-footer m-0">
-                    <Link to="#">
+                    <Link className="linkcard" to="#">
                       <u style={{ color: "#D40029" }}>Shop YETI</u>
                     </Link>
                   </div>
@@ -145,7 +145,7 @@ const Home = () => {
                     </p>
                   </div>
                   <div className="card-footer m-0">
-                    <Link to="#">
+                    <Link className="linkcard" to="#">
                       <u style={{ color: "#D40029" }}>Shop now</u>
                     </Link>
                   </div>
@@ -178,7 +178,7 @@ const Home = () => {
                     </p>
                   </div>
                   <div className="card-footer m-0">
-                    <Link to="#">
+                    <Link className="linkcard" to="#">
                       <u style={{ color: "#D40029" }}>Shop Outdoor Heating</u>
                     </Link>
                   </div>
