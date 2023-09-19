@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./login.css";
 import { auth } from "../../firebase";
 import "firebase/compat/firestore";
@@ -10,7 +10,7 @@ import phone from "../../resources/phone.png";
 import mail from "../../resources/mail.png";
 import { Link } from "react-router-dom";
 import { CheckOutlined } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = ({ history }) => {
   const [loading, setLoading] = useState(false);
@@ -19,6 +19,10 @@ const Login = ({ history }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   let dispatch = useDispatch();
+  const { user } = useSelector((state) => ({ ...state }));
+  useEffect(() => {
+    if (user && user?.token) history.push("/");
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

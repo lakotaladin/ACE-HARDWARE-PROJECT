@@ -597,7 +597,10 @@ const Home = () => {
                 </u>
               </a>
               <div className="col-md-3 mb-5">
-                <Link to="#" className="textlink">
+                <a
+                  href="https://www.youtube.com/watch?v=3OXFdFcuV5I"
+                  className="textlink"
+                >
                   <div className="card bg-white border-0">
                     <img src={women} alt="Slika 1" className="card-img-top" />
                     <div className="card-body">
@@ -606,10 +609,14 @@ const Home = () => {
                       </h4>
                     </div>
                   </div>
-                </Link>
+                </a>
               </div>
               <div className="col-md-3">
-                <Link to="#" className="textlink">
+                <a
+                  href="https://www.youtube.com/watch?v=F9MaG4wc3n8"
+                  target="_blank"
+                  className="textlink"
+                >
                   <div className="card bg-white border-0">
                     <img src={pellet} alt="Slika 2" className="card-img-top" />
                     <div className="card-body">
@@ -618,10 +625,14 @@ const Home = () => {
                       </h4>
                     </div>
                   </div>
-                </Link>
+                </a>
               </div>
               <div className="col-md-3">
-                <Link to="#" className="textlink">
+                <a
+                  href="https://www.youtube.com/watch?v=9Sn8B2ukPL8"
+                  target="_blank"
+                  className="textlink"
+                >
                   <div className="card bg-white border-0">
                     <img
                       src={compressor}
@@ -634,10 +645,14 @@ const Home = () => {
                       </h4>
                     </div>
                   </div>
-                </Link>
+                </a>
               </div>
               <div className="col-md-3">
-                <Link to="#" className="textlink">
+                <a
+                  href="https://www.youtube.com/watch?v=-ydGXR8fGz8&t=1s"
+                  target="_blank"
+                  className="textlink"
+                >
                   <div className="card bg-white border-0">
                     <img src={garage} alt="Slika 4" className="card-img-top" />
                     <div className="card-body">
@@ -646,7 +661,7 @@ const Home = () => {
                       </h4>
                     </div>
                   </div>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

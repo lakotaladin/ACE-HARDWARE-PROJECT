@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./register.css";
 import aceLogo from "../../resources/ace_logo.png";
 import arrow from "../../resources/arrow.png";
@@ -9,11 +9,17 @@ import { Link } from "react-router-dom";
 import { auth } from "../../firebase";
 import "firebase/compat/firestore";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
-const Register = () => {
+const Register = ({ history }) => {
   const [email, setEmail] = useState("");
   const [checkbox1, setCheckbox1] = useState(false);
   const [checkbox2, setCheckbox2] = useState(false);
+
+  const { user } = useSelector((state) => ({ ...state }));
+  useEffect(() => {
+    if (user && user?.token) history.push("/");
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
