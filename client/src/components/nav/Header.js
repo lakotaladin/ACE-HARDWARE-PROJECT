@@ -338,7 +338,7 @@ const Header = () => {
                     />
                     <p className="p-0 m-0">
                       <b style={{ fontWeight: "500", fontSize: "14px" }}>
-                        Hi, {user?.name}
+                        Hi, {user?.email.split("@")[0]}
                       </b>
                       <br />
                       <div className="dropdown-container">
