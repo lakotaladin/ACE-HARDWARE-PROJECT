@@ -122,7 +122,7 @@ const Profile = () => {
       setCurrentEmail(email); // Postavite trenutnu e-mail adresu u stanje
       setNewEmail(email); // Postavite trenutnu e-mail adresu kao početnu vrijednost input polja
     }
-  }, []);
+  }, [user, history]);
   return (
     <>
       <Header />

@@ -355,6 +355,9 @@ const Header = () => {
                         )}
                         {openMenu && (
                           <div className="dropdown-content p-0">
+                            {user && user?.role === "admin" && (
+                              <Link to="/admin/dashboard">Dashboard</Link>
+                            )}
                             <Link to="/account">Account</Link>
                             <Link to="/myaccount">Profile</Link>
                             <Link to="/user/wishlist">Wishlist</Link>
