@@ -45,7 +45,7 @@ const Header = () => {
     {
       key: "1",
       label: <span style={{ fontWeight: "bold" }}>Shop by Brand</span>,
-      items: [
+      children: [
         {
           key: "2-1",
           label: (
@@ -74,7 +74,7 @@ const Header = () => {
     {
       key: "2",
       label: <span style={{ fontWeight: "bold" }}>Ace Gift Card</span>,
-      items: [],
+      children: [],
     },
     {
       key: "3",

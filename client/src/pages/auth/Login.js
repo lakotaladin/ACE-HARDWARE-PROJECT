@@ -32,7 +32,7 @@ const Login = ({ history }) => {
       const result = await auth.signInWithEmailAndPassword(email, password);
       // console.log(result);
       const { user } = result;
-      const idTokenResult = await user.getIdTokenResult();
+      const idTokenResult = await user?.getIdTokenResult();
       createOrUpdateUser(idTokenResult.token)
         .then((res) =>
           dispatch({

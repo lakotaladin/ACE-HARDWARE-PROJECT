@@ -1,4 +1,4 @@
-/* .brandscascader:hover{
+.brandscascader:hover{
   background-color: white !important;
 }
 .ant-menu-submenu-title:hover {
@@ -9,7 +9,7 @@
 }
 .brand-2:hover{
   background-color: white !important;
-} */
+}
 
 .cascader {
   color: #333333 !important;
