@@ -19,6 +19,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import History from "./pages/userPages/History";
 import Wishlist from "./pages/userPages/Wishlist";
 import CategoryCreate from "./pages/admin/category/CategoryCreate";
+import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -62,6 +63,11 @@ const App = () => {
         <UserRoute exact path="/user/wishlist" component={Wishlist} />
         <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
         <AdminRoute exact path="/admin/category" component={CategoryCreate} />
+        <AdminRoute
+          exact
+          path="/admin/category/:slug"
+          component={CategoryUpdate}
+        />
         <Route exact path="/location" component={Location} />
         <Route exact path="/store-details" component={Storeinfo} />
       </Switch>
