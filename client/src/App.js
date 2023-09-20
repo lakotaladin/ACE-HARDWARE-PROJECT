@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegisterComplete from "./pages/auth/RegisterComplete";
 import { auth } from "./firebase";
+import { currentUser } from "./functions/auth";
 import { useDispatch } from "react-redux";
 import Storeinfo from "./pages/Storeinfo";
 import Profile from "./pages/userPages/User";
@@ -17,26 +18,30 @@ const App = () => {
   const dispatch = useDispatch();
 
   // to check firebase auth state
-
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        const idTokenResult = await user?.getIdTokenResult();
-        // console.log("user", user);
-        dispatch({
-          type: "LOGGED_IN_USER",
-          payload: {
-            email: user.email,
-            token: idTokenResult.token,
-          },
-        });
+        const idTokenResult = await user.getIdTokenResult();
+        console.log("user", user);
+
+        currentUser(idTokenResult.token)
+          .then((res) => {
+            dispatch({
+              type: "LOGGED_IN_USER",
+              payload: {
+                email: res.data.email,
+                token: idTokenResult.token,
+                role: res.data.role,
+                _id: res.data._id,
+              },
+            });
+          })
+          .catch((err) => console.log(err));
       }
     });
-
-    //cleanup
-
+    // cleanup
     return () => unsubscribe();
-  }, [auth]);
+  }, [dispatch]);
   return (
     <>
       {/* <Header /> */}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./login.css";
 import { auth } from "../../firebase";
 import "firebase/compat/firestore";
+import { createOrUpdateUser } from "../../functions/auth";
 import { toast } from "react-toastify";
 import ForgotPasswordModal from "../../components/ForgotPasswordModal/ForgotPasswordModal";
 import aceLogo from "../../resources/ace_logo.png";
@@ -17,12 +18,12 @@ const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
-
-  let dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
   useEffect(() => {
-    if (user && user?.token) history.push("/");
-  }, [user]);
+    if (user && user.token) history.push("/");
+  }, [user, history]);
+
+  let dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,17 +33,22 @@ const Login = ({ history }) => {
       // console.log(result);
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
+      createOrUpdateUser(idTokenResult.token)
+        .then((res) =>
+          dispatch({
+            type: "LOGGED_IN_USER",
+            payload: {
+              email: res.data.email,
+              token: idTokenResult.token,
+              role: res.data.role,
+              _id: res.data._id,
+            },
+          })
+        )
+        .catch((error) => {
+          toast.error(error.message);
+        });
 
-      dispatch({
-        type: "LOGGED_IN_USER",
-        payload: {
-          email: user.email,
-          token: idTokenResult.token,
-        },
-      });
-      toast.success("Sucessfully logged!");
-      setEmail("");
-      setPassword("");
       history.push("/");
     } catch (error) {
       // console.log(error);

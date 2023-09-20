@@ -338,7 +338,7 @@ const Header = () => {
                     />
                     <p className="p-0 m-0">
                       <b style={{ fontWeight: "500", fontSize: "14px" }}>
-                        Hi, Aladin
+                        Hi, {user?.name}
                       </b>
                       <br />
                       <div className="dropdown-container">

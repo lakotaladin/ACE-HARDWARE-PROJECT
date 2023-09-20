@@ -86,12 +86,6 @@ const Register = ({ history }) => {
           onChange={(e) => setEmail(e.target.value)}
           autoFocus
         ></input>
-        <input
-          className="input-form"
-          placeholder="Password"
-          type="password"
-          autoFocus
-        ></input>
       </div>
       <div className="email-pass-div2 d-flex flex-column m-0 w-100">
         <label>About you</label>
