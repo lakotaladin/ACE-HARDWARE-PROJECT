@@ -357,9 +357,9 @@ const Header = () => {
                           <div className="dropdown-content p-0">
                             <Link to="/account">Account</Link>
                             <Link to="/myaccount">Profile</Link>
-                            <Link to="#">Purchase History</Link>
-                            <Link to="#">Ace Rewards</Link>
-                            <Link to="#">My Local Ace</Link>
+                            <Link to="/user/wishlist">Wishlist</Link>
+                            <Link to="/user/history">History</Link>
+
                             <Link to="#" onClick={logout}>
                               Sign Out
                             </Link>

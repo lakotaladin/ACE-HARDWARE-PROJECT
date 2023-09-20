@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./account.css";
 import { RightOutlined } from "@ant-design/icons";
-// import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import Header from "../../components/nav/Header";
 import Footer from "../../components/footer/Footer";
-// import { Input } from "antd";
-// import logo_ace from "../../resources/ace_logo.png";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import firebase from "firebase/compat/app";
 import { useHistory } from "react-router-dom";
@@ -16,12 +13,6 @@ const Account = () => {
   const [activeLink, setActiveLink] = useState("Account");
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
-  // const [passwordVisible, setPasswordVisible] = useState(false);
-  // const [passwordVisible2, setPasswordVisible2] = useState(false);
-
-  //   Map location
-  // const latitude = 45.18047;
-  // const longitude = -67.28653;
 
   //  Fetch user from firebase
 
@@ -89,35 +80,21 @@ const Account = () => {
               Profile
             </Link>
             <Link
-              to="#"
-              onClick={() => handleNavLinkClick("Ace Rewards")}
-              className={`nav ${activeLink === "Ace Rewards" ? "active" : ""}`}
+              to="/user/wishlist"
+              onClick={() => handleNavLinkClick("Wishlist")}
+              className={`nav ${activeLink === "Wishlist" ? "active" : ""}`}
             >
-              Ace Rewards
+              Wishlist
             </Link>
+
             <Link
-              to="#"
-              onClick={() => handleNavLinkClick("Adress Book")}
-              className={`nav ${activeLink === "Adress Book" ? "active" : ""}`}
+              to="/user/history"
+              onClick={() => handleNavLinkClick("History")}
+              className={`nav ${activeLink === "History" ? "active" : ""}`}
             >
-              Adress Book
+              History
             </Link>
-            <Link
-              to="#"
-              onClick={() => handleNavLinkClick("Purachase History")}
-              className={`nav ${
-                activeLink === "Purachase History" ? "active" : ""
-              }`}
-            >
-              Purachase History
-            </Link>
-            <Link
-              to="#"
-              onClick={() => handleNavLinkClick("Lists")}
-              className={`nav ${activeLink === "Lists" ? "active" : ""}`}
-            >
-              Lists
-            </Link>
+
             <button
               style={{ background: "none", border: "none" }}
               onClick={logout}

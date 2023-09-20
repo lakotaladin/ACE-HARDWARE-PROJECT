@@ -8,6 +8,7 @@ import { Input } from "antd";
 import logo_ace from "../../resources/ace_logo.png";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import firebase from "firebase/compat/app";
+import { auth } from "../../firebase";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -15,9 +16,20 @@ import { toast } from "react-toastify";
 const Profile = () => {
   const [activeLink, setActiveLink] = useState("Profile");
   const [newEmail, setNewEmail] = useState("");
-  const [currentEmail, setCurrentEmail] = useState(""); 
+  const [currentEmail, setCurrentEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
+
+  // Validation
+
+  // if (!password) {
+  //   toast.error("Email and password is required!");
+  // }
+
+  // if (password.length < 6) {
+  //   toast.error("Password must be at lest 6 characters long");
+  // }
 
   //   Map location
   const latitude = 45.18047;
@@ -26,6 +38,60 @@ const Profile = () => {
   let dispatch = useDispatch();
   let { user } = useSelector((state) => ({ ...state }));
   let history = useHistory();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // setLoading(true);
+    await auth.currentUser
+      .updatePassword()
+      .then(() => {
+        // setLoadin(false);
+        setPassword("");
+        toast.success("Password updated!");
+      })
+      .catch((err) => {
+        // setLoadin(true);
+        toast.error(err.message);
+      });
+  };
+
+  const passwordUpdateForm = () => (
+    <form
+      onSubmit={handleSubmit}
+      className="form-account d-flex flex-column w-100 p-0 m-0"
+    >
+      <label>New Password</label>
+      <Input.Password
+        className="input-password"
+        value={password}
+        placeholder="Enter new password"
+        onChange={(e) => setPassword(e.target.value)}
+        visibilityToggle={{
+          visible: passwordVisible,
+          onVisibleChange: setPasswordVisible,
+        }}
+        type="password"
+        // disabled={loading}
+      />
+      <label>Confirm Password</label>
+      <Input.Password
+        className="input-password"
+        placeholder="Repeat new password"
+        visibilityToggle={{
+          visible: passwordVisible2,
+          onVisibleChange: setPasswordVisible2,
+        }}
+        type="password"
+      />
+
+      <button
+        className="button-save"
+        disabled={!password || password.length < 6}
+      >
+        SAVE
+      </button>
+    </form>
+  );
 
   const updateEmail = async () => {
     try {
@@ -90,34 +156,19 @@ const Profile = () => {
               Profile
             </Link>
             <Link
-              to="#"
-              onClick={() => handleNavLinkClick("Ace Rewards")}
-              className={`nav ${activeLink === "Ace Rewards" ? "active" : ""}`}
+              to="/user/wishlist"
+              onClick={() => handleNavLinkClick("Wishlist")}
+              className={`nav ${activeLink === "Wishlist" ? "active" : ""}`}
             >
-              Ace Rewards
+              Wishlist
             </Link>
+
             <Link
-              to="#"
-              onClick={() => handleNavLinkClick("Adress Book")}
-              className={`nav ${activeLink === "Adress Book" ? "active" : ""}`}
+              to="/user/history"
+              onClick={() => handleNavLinkClick("History")}
+              className={`nav ${activeLink === "History" ? "active" : ""}`}
             >
-              Adress Book
-            </Link>
-            <Link
-              to="#"
-              onClick={() => handleNavLinkClick("Purachase History")}
-              className={`nav ${
-                activeLink === "Purachase History" ? "active" : ""
-              }`}
-            >
-              Purachase History
-            </Link>
-            <Link
-              to="#"
-              onClick={() => handleNavLinkClick("Lists")}
-              className={`nav ${activeLink === "Lists" ? "active" : ""}`}
-            >
-              Lists
+              History
             </Link>
             <button
               style={{ background: "none", border: "none" }}
@@ -187,28 +238,7 @@ const Profile = () => {
                 <p style={{ fontWeight: "400", fontSize: "18px" }}>
                   Change Password
                 </p>
-                <form className="form-account d-flex flex-column w-100 p-0 m-0">
-                  <label>Old Password</label>
-                  <Input.Password
-                    className="input-password"
-                    visibilityToggle={{
-                      visible: passwordVisible,
-                      onVisibleChange: setPasswordVisible,
-                    }}
-                    type="password"
-                  />
-                  <label>New Password</label>
-                  <Input.Password
-                    className="input-password"
-                    visibilityToggle={{
-                      visible: passwordVisible2,
-                      onVisibleChange: setPasswordVisible2,
-                    }}
-                    type="password"
-                  />
-
-                  <button className="button-save">SAVE</button>
-                </form>
+                {passwordUpdateForm()}
               </div>
               <p
                 style={{ fontWeight: "400", fontSize: "18px", marginTop: "4%" }}

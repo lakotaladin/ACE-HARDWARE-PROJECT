@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 import { CheckOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 
+
+
 const Login = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -24,34 +26,42 @@ const Login = ({ history }) => {
   }, [user, history]);
 
   let dispatch = useDispatch();
-
+  const roleBasedRedirect = (res) => {
+    if (res.data.role === "admin") {
+      window.location.href = "/admin/dashboard";
+    } else {
+      window.location.href = "/";
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    // console.table(email, password);
     try {
       const result = await auth.signInWithEmailAndPassword(email, password);
       // console.log(result);
       const { user } = result;
       const idTokenResult = await user?.getIdTokenResult();
+
       createOrUpdateUser(idTokenResult.token)
-        .then((res) =>
+        .then((res) => {
           dispatch({
             type: "LOGGED_IN_USER",
             payload: {
+              name: res.data.name,
               email: res.data.email,
               token: idTokenResult.token,
               role: res.data.role,
               _id: res.data._id,
             },
-          })
-        )
-        .catch((error) => {
-          toast.error(error.message);
-        });
+          });
+          roleBasedRedirect(res);
+        })
+        .catch((err) => console.log(err));
 
-      history.push("/");
+      // history.push("/");
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       toast.error(error.message);
       setLoading(false);
     }

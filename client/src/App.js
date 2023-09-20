@@ -13,6 +13,11 @@ import { useDispatch } from "react-redux";
 import Storeinfo from "./pages/Storeinfo";
 import Profile from "./pages/userPages/User";
 import Account from "./pages/userPages/Account";
+import UserRoute from "./components/routes/UserRoute";
+import AdminRoute from "./components/routes/AdminRoute";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import History from "./pages/userPages/History";
+import Wishlist from "./pages/userPages/Wishlist";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,17 +49,19 @@ const App = () => {
   }, [dispatch]);
   return (
     <>
-      {/* <Header /> */}
       <ToastContainer />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/register/complete" component={RegisterComplete} />
+        <UserRoute exact path="/myaccount" component={Profile} />
+        <UserRoute exact path="/account" component={Account} />
+        <UserRoute exact path="/user/history" component={History} />
+        <UserRoute exact path="/user/wishlist" component={Wishlist} />
+        <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
         <Route exact path="/location" component={Location} />
         <Route exact path="/store-details" component={Storeinfo} />
-        <Route exact path="/myaccount" component={Profile} />
-        <Route exact path="/account" component={Account} />
       </Switch>
     </>
   );
