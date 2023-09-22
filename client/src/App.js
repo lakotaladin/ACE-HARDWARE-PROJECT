@@ -25,6 +25,7 @@ import SubUpdate from "./pages/admin/sub/SubUpdate";
 import ProductCreate from "./pages/admin/product/ProductCreate";
 import ProductUpdate from "./pages/admin/product/ProductUpdate";
 import AllProducts from "./pages/admin/product/AllProducts";
+import LayoutPage from "./components/layout/LayoutPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ const App = () => {
           component={ProductUpdate}
         />
         <Route exact path="/location" component={Location} />
+        <Route exact path="/layout" component={LayoutPage} />
         <Route exact path="/store-details" component={Storeinfo} />
       </Switch>
     </>
