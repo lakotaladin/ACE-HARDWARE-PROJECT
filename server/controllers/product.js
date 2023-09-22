@@ -37,3 +37,30 @@ exports.remove = async (req, res) => {
     return res.staus(400).send("Product delete failed");
   }
 };
+
+exports.read = async (req, res) => {
+  const product = await Product.findOne({ slug: req.params.slug })
+    .populate("category")
+    .populate("subs")
+    .exec();
+  res.json(product);
+};
+
+exports.update = async (req, res) => {
+  try {
+    if (req.body.title) {
+      req.body.slug = slugify(req.body.title);
+    }
+    const updated = await Product.findOneAndUpdate(
+      { slug: req.params.slug },
+      req.body,
+      { new: true }
+    ).exec();
+    res.json(updated);
+  } catch (err) {
+    console.log("PRODUCT UPDATE ERROR ----> ", err);
+    res.status(400).json({
+      err: err.message,
+    });
+  }
+};

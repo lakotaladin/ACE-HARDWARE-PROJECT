@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { Card } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import defaultImage from "../../resources/default.jpg";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
-const AdminProductCard = ({ product }) => {
+const AdminProductCard = ({ product, handleRemove }) => {
   // destructure
-  const { title, price, description, images } = product;
+  const { title, description, price, images, slug } = product;
   const [hovered, setHovered] = useState(false);
 
   return (
     <Card
       cover={
         <img
+          alt="Product"
           src={
             hovered
               ? images && images.length
@@ -34,8 +36,13 @@ const AdminProductCard = ({ product }) => {
         />
       }
       actions={[
-        <EditOutlined className="text-warning" />,
-        <DeleteOutlined className="text-danger" />,
+        <Link to={`/admin/product/${slug}`}>
+          <EditOutlined className="text-warning" />
+        </Link>,
+        <DeleteOutlined
+          className="text-danger"
+          onClick={() => handleRemove(slug)}
+        />,
       ]}
     >
       <Meta
