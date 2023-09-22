@@ -68,7 +68,7 @@ const ProductCard = ({ product }) => {
           className="description-card w-100 p-0 m-0 d-flex flex-column"
         >
           <p className="w-100 p-0 m-0 ">Rating...</p>
-          <p className="w-100 p-0 m-0 ">&#x24; {price}</p>
+          <b className="w-100 p-0 m-0 ">&#x24; {price}</b>
         </div>
       </Card>
     </Col>

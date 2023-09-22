@@ -49,10 +49,71 @@ const productSchema = new mongoose.Schema(
     shipping: {
       type: String,
       enum: ["Yes", "No"],
+      default: "Yes",
     },
     thermometer: {
       type: String,
+      required: true,
       enum: ["Yes", "No"],
+    },
+    // For product card
+    // isFreePickup: {
+    //   type: String,
+    //   enum: ["Yes", "No"],
+    //   default: "Yes",
+    // },
+    // For sort by option
+    // recommended: {
+    //   type: String,
+    //   enum: ["Yes", "No"],
+    //   default: "No",
+    // },
+    // availability: {
+    //   type: String,
+    //   enum: ["Yes", "No"],
+    //   default: "Yes",
+    // },
+    // frontSideShelf: {
+    //   type: String,
+    //   enum: ["Yes", "No"],
+    //   default: "No",
+    // },
+    // gateSurfaceMaterial: {
+    //   enum: [
+    //     "Carbon Steel",
+    //     "Cast Iron",
+    //     "Cold Rolled Steel",
+    //     "Procelain",
+    //     "Procelain Coated Cast Iron",
+    //   ],
+    // required: true,
+    // },
+    // priparyOutputBurner: {
+    //   enum: [
+    //     "<5000 British Thermal Unit",
+    //     ">5001 British Thermal Unit",
+    //     "20001-30000 British Thermal Unit",
+    //     "30001-40000 British Thermal Unit",
+    //     "40001-50000 British Thermal Unit",
+    //     "5000-20000 British Thermal Unit",
+    //     "50001-20000 British Thermal Unit",
+    //   ],
+    // required: true,
+    // },
+    // frontSideShelf: {
+    //   type: String,
+    //   enum: ["Clearance", "Sale"],
+    //   default: "",
+    // },
+    // required: true,
+    burnerOutputRange: {
+      enum: [
+        "Charcoal",
+        "Liquid Propane",
+        "Natural Gas",
+        "Natural Gas/Propane",
+        "Wood Chips",
+      ],
     },
     fueltype: {
       enum: [
@@ -84,6 +145,7 @@ const productSchema = new mongoose.Schema(
     },
     technology: {
       enum: ["Bluetooth", "WiFi"],
+      default: "",
     },
     color: {
       type: String,
@@ -91,14 +153,8 @@ const productSchema = new mongoose.Schema(
         "Black",
         "Black/Silver",
         "Blue",
-        "Copper",
-        "Deep Ocean Blue",
         "Fireman Red",
         "GRAY",
-        "Green",
-        "Indigo",
-        "Orange",
-        "RED",
         "Silver",
         "Stainless Steel",
         "Titanium",

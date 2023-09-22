@@ -13,6 +13,7 @@ const Collapsediv = ({ title, links }) => {
     borderTop: "1px solid #ccc",
     overflow: "hidden",
     borderBottom: "1px solid #ccc",
+    padding: "2%",
   };
 
   const headerStyle = {
@@ -37,14 +38,18 @@ const Collapsediv = ({ title, links }) => {
     color: "red",
   };
 
+  const plusminus = {
+    color: "#D40029",
+  };
+
   return (
     <div style={divStyle}>
       <div style={headerStyle} onClick={toggleCollapse}>
         <span style={titleStyle}>{title}</span>
         {isCollapsed ? (
-          <PlusOutlined style={{ color: "red" }} />
+          <PlusOutlined style={plusminus} />
         ) : (
-          <MinusOutlined style={{ color: "red" }} />
+          <MinusOutlined style={plusminus} />
         )}
       </div>
       <div>

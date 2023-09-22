@@ -7,10 +7,9 @@ import ScrollToTopButton from "../ScrollOnTop/ScrollOnTopButton";
 import { LeftOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Collapsediv from "./Collapsediv";
-import { getProductsByCount } from "../../functions/product";
+import { getProducts } from "../../functions/product";
 import ProductCard from "../cards/ProductCard";
-
-//
+import LoadingCard from "../cards/LoadingCard";
 
 const { Sider, Content } = Layout;
 const contentStyle = {
@@ -34,14 +33,11 @@ const LayoutPage = () => {
 
   const loadAllProducts = () => {
     setLoading(true);
-    getProductsByCount(10).then((res) => {
+    // sort, order, limit function. CreatedAt have in database we need to fetch this
+    getProducts("createdAt", "desc", 10).then((res) => {
       setProducts(res.data);
       setLoading(false);
     });
-    // .catch((err) => {
-    //   setLoading(false);
-    //   console.log(err);
-    // });
   };
   return (
     <>
@@ -75,7 +71,9 @@ const LayoutPage = () => {
               <Breadcrumb.Item>Aladin</Breadcrumb.Item>
             </Breadcrumb>
             <div className="page-title d-flex flex-row  justify-content-between p-0 m-0">
-              <h2 className="mt-3">Sub Category 0 Items Found</h2>
+              <h2 className="mt-3">
+                On this Category ({products.length} items Found)
+              </h2>
               <div className="recommended d-flex flex-row align-items-center p-0 m-0">
                 <p style={{ fontSize: "14px" }} className="p-0 m-0">
                   Sort by
@@ -136,32 +134,39 @@ const LayoutPage = () => {
               </div>
             </div>
           </div>
-          {loading ? (
-            <h1>Loading...</h1>
-          ) : (
-            <Layout
-              style={{
-                height: "100vh",
-                width: "80%",
-                margin: "auto",
-                backgroundColor: "white",
-                overflowX: "hidden",
-              }}
-            >
-              <Layout hasSider>
-                <Sider width="17%" style={siderStyle}>
-                  <Collapsediv title="Naslov Div-a" links={links} />
-                </Sider>
-                <Content style={contentStyle}>
-                  <div className="row">
-                    {products.map((product) => (
-                      <ProductCard key={product._id} product={product} />
-                    ))}
-                  </div>
-                </Content>
-              </Layout>
+          <Layout
+            style={{
+              height: "100vh",
+              width: "80%",
+              margin: "auto",
+              backgroundColor: "white",
+              overflowX: "hidden",
+            }}
+          >
+            <Layout hasSider>
+              <Sider width="17%" style={siderStyle}>
+                <Collapsediv title="Naslov Div-a" links={links} />
+              </Sider>
+              <Content style={contentStyle}>
+                {loading ? (
+                  <LoadingCard count={3} />
+                ) : (
+                  <>
+                    <div className="row">
+                      {products.map((product) => (
+                        <ProductCard key={product._id} product={product} />
+                      ))}
+                    </div>
+                    <div className="newarrivals">
+                      <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
+                        New arriwals
+                      </h4>
+                    </div>
+                  </>
+                )}
+              </Content>
             </Layout>
-          )}
+          </Layout>
         </Space>
         <Footer />
         <ScrollToTopButton />
