@@ -8,7 +8,8 @@ exports.authCheck = async (req, res, next) => {
       .auth()
       .verifyIdToken(req.headers.authtoken);
     // console.log("FIREBASE USER IN AUTHCHECK", firebaseUser);
-    req.user = firebaseUser;
+    const user = await User.find({ email: firebaseUser.email });
+    req.user = { ...firebaseUser, ...user };
     next();
   } catch (err) {
     res.status(401).json({

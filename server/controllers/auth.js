@@ -1,5 +1,19 @@
 const User = require("../models/user");
 
+exports.registerUser = async (req, res) => {
+  // const { email, name, lastName, streetAddress, phone, phoneType, month } = req.body;
+  const user = new User(req.body);
+  user.role = "subscriber";
+  user.verified = false;
+  user.cart = [];
+  try {
+    await user.save();
+    res.status(201).json(user);
+  } catch (e) {
+    res.status(400).json({ error: e });
+  }
+};
+
 exports.createOrUpdateUser = async (req, res) => {
   const { email } = req.user;
 

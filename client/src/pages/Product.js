@@ -8,6 +8,7 @@ import { Breadcrumb } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import ScrollToTopButton from "../components/ScrollOnTop/ScrollOnTopButton";
+import ProductListItems from "../components/cards/ProductListItems";
 
 const Product = ({ match }) => {
   const [product, setProduct] = useState({});
@@ -47,6 +48,9 @@ const Product = ({ match }) => {
             <SingleProduct product={product} />
           </div>
           <div className="row">
+            <div>Related Products</div>
+            <div>Related Products</div>
+            <div>Related Products</div>
             <div>Related Products</div>
           </div>
         </div>

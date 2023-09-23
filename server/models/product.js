@@ -78,7 +78,14 @@ const productSchema = new mongoose.Schema(
     //   enum: ["Yes", "No"],
     //   default: "No",
     // },
+    // assembly: {
+    // type: String,
+    //   type: String,
+    //   enum: ["Yes", "No"],
+    //   default: "Yes",
+    // },
     // gateSurfaceMaterial: {
+    // type: String,
     //   enum: [
     //     "Carbon Steel",
     //     "Cast Iron",
@@ -88,7 +95,8 @@ const productSchema = new mongoose.Schema(
     //   ],
     // required: true,
     // },
-    // priparyOutputBurner: {
+    // primaryOutputBurner: {
+    // type: String,
     //   enum: [
     //     "<5000 British Thermal Unit",
     //     ">5001 British Thermal Unit",
@@ -107,6 +115,7 @@ const productSchema = new mongoose.Schema(
     // },
     // required: true,
     burnerOutputRange: {
+      type: String,
       enum: [
         "Charcoal",
         "Liquid Propane",
@@ -116,6 +125,7 @@ const productSchema = new mongoose.Schema(
       ],
     },
     fueltype: {
+      type: String,
       enum: [
         "Charcoal",
         "Liquid Propane",
@@ -125,6 +135,7 @@ const productSchema = new mongoose.Schema(
       ],
     },
     ignitiontype: {
+      type: String,
       enum: [
         "Continuous Spark",
         "Electrical",
@@ -134,6 +145,7 @@ const productSchema = new mongoose.Schema(
       ],
     },
     numberOfMainBurner: {
+      type: String,
       enum: [
         "1 Burner",
         "2 Burner",
@@ -144,6 +156,7 @@ const productSchema = new mongoose.Schema(
       ],
     },
     technology: {
+      type: String,
       enum: ["Bluetooth", "WiFi"],
       default: "",
     },

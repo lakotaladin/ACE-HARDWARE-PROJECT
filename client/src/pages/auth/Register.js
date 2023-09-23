@@ -10,11 +10,18 @@ import { auth } from "../../firebase";
 import "firebase/compat/firestore";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { useForm } from "antd/es/form/Form";
+import { Form } from "antd";
 
 const Register = ({ history }) => {
   const [email, setEmail] = useState("");
   const [checkbox1, setCheckbox1] = useState(false);
   const [checkbox2, setCheckbox2] = useState(false);
+
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  const [form] = useForm();
 
   const { user } = useSelector((state) => ({ ...state }));
   useEffect(() => {
@@ -23,6 +30,10 @@ const Register = ({ history }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const userData = form.getFieldsValue();
+    console.log({ userData });
+
     // console.log("ENV ------>", process.env.REACT_APP_REGISTER_REDIRECT_URL);
     const config = {
       url: process.env.REACT_APP_REGISTER_REDIRECT_URL,
@@ -30,6 +41,7 @@ const Register = ({ history }) => {
     };
 
     await auth.sendSignInLinkToEmail(email, config);
+    await axios.post(process.env.REACT_APP_API + "/register", userData);
     toast.success(
       `Email is sent to ${email}, Click the link to complete registration.`
     );
@@ -51,7 +63,8 @@ const Register = ({ history }) => {
   const isButtonDisabled = !(checkbox1 && checkbox2);
 
   const registerForm = () => (
-    <form
+    <Form
+      form={form}
       onSubmit={handleSubmit}
       className="form-register w-100 m-0 d-flex flex-column"
     >
@@ -82,6 +95,7 @@ const Register = ({ history }) => {
           className="input-form"
           placeholder="Email"
           type="email"
+          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           autoFocus
@@ -184,7 +198,7 @@ const Register = ({ history }) => {
           </button>
         </div>
       </div>
-    </form>
+    </Form>
   );
 
   return (

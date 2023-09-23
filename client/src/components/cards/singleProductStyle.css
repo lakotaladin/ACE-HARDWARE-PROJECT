@@ -16,3 +16,10 @@
 .block {
     border-bottom: 1px solid #cccc;
 }
+/* Carousel style */
+
+.slider img,
+.card-omage {
+    height: 450px;
+    object-fit: cover;
+}
