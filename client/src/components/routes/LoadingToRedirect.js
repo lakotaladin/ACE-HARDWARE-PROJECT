@@ -1,3 +1,4 @@
+import { SyncOutlined } from "@ant-design/icons";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -17,7 +18,9 @@ const LoadingToRedirect = () => {
 
   return (
     <div className="container p-5 text-center">
-      <p>Redirecting you in {count} seconds</p>
+      <p>
+        <SyncOutlined spin /> Redirecting you in {count} seconds
+      </p>
     </div>
   );
 };

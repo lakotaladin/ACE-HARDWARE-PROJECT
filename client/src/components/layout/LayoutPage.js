@@ -7,7 +7,7 @@ import ScrollToTopButton from "../ScrollOnTop/ScrollOnTopButton";
 import { LeftOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Collapsediv from "./Collapsediv";
-import { getProducts } from "../../functions/product";
+import { getProductsByCount } from "../../functions/product";
 import ProductCard from "../cards/ProductCard";
 import LoadingCard from "../cards/LoadingCard";
 
@@ -33,8 +33,7 @@ const LayoutPage = () => {
 
   const loadAllProducts = () => {
     setLoading(true);
-    // sort, order, limit function. CreatedAt have in database we need to fetch this
-    getProducts("createdAt", "desc", 10).then((res) => {
+    getProductsByCount(10).then((res) => {
       setProducts(res.data);
       setLoading(false);
     });
@@ -151,18 +150,11 @@ const LayoutPage = () => {
                 {loading ? (
                   <LoadingCard count={3} />
                 ) : (
-                  <>
-                    <div className="row">
-                      {products.map((product) => (
-                        <ProductCard key={product._id} product={product} />
-                      ))}
-                    </div>
-                    <div className="newarrivals">
-                      <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
-                        New arriwals
-                      </h4>
-                    </div>
-                  </>
+                  <div className="row">
+                    {products.map((product) => (
+                      <ProductCard key={product._id} product={product} />
+                    ))}
+                  </div>
                 )}
               </Content>
             </Layout>

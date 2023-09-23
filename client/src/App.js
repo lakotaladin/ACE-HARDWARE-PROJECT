@@ -26,6 +26,7 @@ import ProductCreate from "./pages/admin/product/ProductCreate";
 import ProductUpdate from "./pages/admin/product/ProductUpdate";
 import AllProducts from "./pages/admin/product/AllProducts";
 import LayoutPage from "./components/layout/LayoutPage";
+import Product from "./pages/Product";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ const App = () => {
           path="/admin/product/:slug"
           component={ProductUpdate}
         />
+        <Route exact path="/product/:slug" component={Product} />
         <Route exact path="/location" component={Location} />
         <Route exact path="/layout" component={LayoutPage} />
         <Route exact path="/store-details" component={Storeinfo} />

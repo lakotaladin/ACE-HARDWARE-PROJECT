@@ -47,7 +47,7 @@ const AllProducts = () => {
   };
 
   return (
-    <div className="container-fluid d-flex flex-dow">
+    <div className="container-fluid d-flex flex-row">
       <AdminNav />
       <div className="row">
         <div className="col">
