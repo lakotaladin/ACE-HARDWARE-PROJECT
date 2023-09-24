@@ -12,9 +12,16 @@ import { auth } from "../../firebase";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { currentUser } from "../../functions/auth";
 
 const Profile = () => {
   const [activeLink, setActiveLink] = useState("Profile");
+  const [userData, setUserData] = useState({
+    name: "",
+    lastName: "",
+    streetAddress: "",
+    phone: "",
+  });
   const [newEmail, setNewEmail] = useState("");
   const [currentEmail, setCurrentEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -121,13 +128,18 @@ const Profile = () => {
     if (email) {
       setCurrentEmail(email); // Postavite trenutnu e-mail adresu u stanje
       setNewEmail(email); // Postavite trenutnu e-mail adresu kao početnu vrijednost input polja
+      currentUser()
+        .then((usr) => {
+          setUserData((userData) => ({ ...userData, ...usr }));
+        })
+        .catch(console.error);
     }
   }, [user, history]);
   return (
     <>
       <Header />
       {/* User header */}
-      <div className="container d-flex flex-column">
+      <div className="accountInfo bg-white d-flex flex-column">
         <div className="navigation-container d-flex flex-row">
           <p className="p-0 m-0" style={{ color: "grey", fontSize: "12px" }}>
             <Link style={{ textDecoration: "none" }} to="/">
@@ -200,11 +212,50 @@ const Profile = () => {
                 for your online account. If you would like to make any changes
                 to this information, you may do so below.
               </p>
-              <form className="form-account d-flex flex-column w-100 p-0 m-0">
+              <form
+                onSubmit={handleSubmit}
+                className="form-account d-flex flex-column w-100 p-0 m-0"
+              >
                 <label>First Name</label>
-                <input type="text" required />
+                <input
+                  type="text"
+                  name="name"
+                  value={userData.name}
+                  onChange={(e) =>
+                    setUserData({ ...userData, name: e.target.value })
+                  }
+                  required
+                />
                 <label>Last name</label>
-                <input type="text" required />
+                <input
+                  type="text"
+                  name="lastName"
+                  value={userData.lastName}
+                  onChange={(e) =>
+                    setUserData({ ...userData, lastName: e.target.value })
+                  }
+                  required
+                />
+                <label>Adress:</label>
+                <input
+                  type="text"
+                  value={userData.streetAddress}
+                  name="streetAddress"
+                  onChange={(e) =>
+                    setUserData({ ...userData, streetAddress: e.target.value })
+                  }
+                  required
+                />
+                <label>Phone</label>
+                <input
+                  type="number"
+                  name="phone"
+                  value={userData.phone}
+                  onChange={(e) =>
+                    setUserData({ ...userData, phone: e.target.value })
+                  }
+                  required
+                />
                 <label>Email</label>
                 <input
                   type="email"

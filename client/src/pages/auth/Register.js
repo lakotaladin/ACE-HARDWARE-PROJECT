@@ -16,6 +16,13 @@ import { Button, Form, Input, Select } from "antd";
 
 const Register = ({ history }) => {
   const [email, setEmail] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
+  const [Address, setAddress] = useState("");
+  const [name, setName] = useState("");
+  const [phoneType, setPhoneType] = useState("");
+  const [month, setMonth] = useState("");
+
   const [checkbox1, setCheckbox1] = useState(false);
   const [checkbox2, setCheckbox2] = useState(false);
 
@@ -26,11 +33,18 @@ const Register = ({ history }) => {
     if (user && user?.token) history.push("/");
   }, [user, history]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    // e.preventDefault();
 
     try {
-      const userData = form.getFieldsValue();
+      let userData = {
+        name: name,
+        lastName: lastName,
+        streetAddress: Address,
+        phone: phoneNumber,
+        phoneType: phoneType,
+        month: month,
+      };
       console.log({ userData });
 
       const config = {
@@ -46,7 +60,6 @@ const Register = ({ history }) => {
       window.localStorage.setItem("emailForRegistration", email);
       setEmail("");
     } catch (error) {
-      // Ovde možete rukovati greškama ako dođe do problema prilikom slanja podataka na bekend.
       console.error("Greška prilikom slanja podataka na bekend:", error);
     }
   };
@@ -117,6 +130,7 @@ const Register = ({ history }) => {
             placeholder="Name"
             autoFocus
             required
+            onChange={(e) => setName(e.target.value)}
           ></Input>
         </Form.Item>
         <Form.Item type="text" name="lastName">
@@ -125,6 +139,7 @@ const Register = ({ history }) => {
             placeholder="Last Name"
             autoFocus
             required
+            onChange={(e) => setLastName(e.target.value)}
           ></Input>
         </Form.Item>
         <Form.Item type="text" name="streetAddress">
@@ -133,6 +148,7 @@ const Register = ({ history }) => {
             placeholder="Street Address"
             autoFocus
             required
+            onChange={(e) => setAddress(e.target.value)}
           ></Input>
         </Form.Item>
         <div className="selectInputs w-100 d-flex flex-row p-0 m-0 gap-1">
@@ -142,11 +158,12 @@ const Register = ({ history }) => {
               placeholder="Phone Number"
               autoFocus
               required
+              onChange={(e) => setphoneNumber(e.target.value)}
             ></Input>
           </Form.Item>
           <Form.Item name="phoneType">
             <Select
-              defaultValue="phone"
+              onChange={(value) => setPhoneType(value)}
               style={{
                 width: 120,
               }}
@@ -173,7 +190,7 @@ const Register = ({ history }) => {
         </p>
         <Form.Item name="month">
           <Select
-            defaultValue=""
+            onChange={(value) => setMonth(value)}
             placeholder="Birthday (optional)"
             style={{
               width: "100%",

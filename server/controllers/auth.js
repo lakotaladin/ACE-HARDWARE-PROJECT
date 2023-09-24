@@ -1,9 +1,17 @@
 const User = require("../models/user");
 
 exports.registerUser = async (req, res) => {
-  const { email, name, lastName, streetAddress, phone, phoneType, month } =
-    req.body;
-  const user = new User(req.body);
+  const { name, lastName, streetAddress, phone, phoneType, month } = req.body;
+  // console.log(name);
+  const user = new User({
+    name,
+    lastName,
+    streetAddress,
+    phone,
+    phoneType,
+    month,
+  });
+
   user.role = "subscriber";
   user.verified = false;
   user.cart = [];
@@ -11,6 +19,7 @@ exports.registerUser = async (req, res) => {
     await user.save();
     res.status(201).json(user);
   } catch (e) {
+    console.log(e);
     res.status(400).json({ error: e });
   }
 };
@@ -32,8 +41,9 @@ exports.createOrUpdateUser = async (req, res) => {
 };
 
 exports.currentUser = async (req, res) => {
+  // console.log("user", req.user.email);
   User.findOne({ email: req.user.email }).exec((err, user) => {
     if (err) throw new Error(err);
-    res.json(user);
+    return res.status(200).json(user);
   });
 };

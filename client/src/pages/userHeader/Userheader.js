@@ -27,7 +27,7 @@ const Userheader = () => {
     history.push("/login");
   };
   return (
-    <div className="container d-flex flex-column">
+    <div className="accountInfo bg-white container d-flex flex-column">
       <div className="navigation-container d-flex flex-row">
         <p className="p-0 m-0" style={{ color: "grey", fontSize: "12px" }}>
           <Link style={{ textDecoration: "none" }} to="/">

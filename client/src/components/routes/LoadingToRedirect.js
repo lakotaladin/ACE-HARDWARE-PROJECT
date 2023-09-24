@@ -17,8 +17,8 @@ const LoadingToRedirect = () => {
   }, [count, history]);
 
   return (
-    <div className="container p-5 text-center">
-      <p>
+    <div className="bg-white p-5 text-start">
+      <p className="redirect display-6">
         <SyncOutlined spin /> Redirecting you in {count} seconds
       </p>
     </div>

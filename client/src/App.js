@@ -65,7 +65,8 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/register/complete" component={RegisterComplete} />
-        <UserRoute exact path="/myaccount" component={Profile} />
+        {/* <UserRoute exact path="/myaccount" component={Profile} /> */}
+        <Route exact path="/myaccount" component={Profile} />
         <UserRoute exact path="/account" component={Account} />
         <UserRoute exact path="/user/history" component={History} />
         <UserRoute exact path="/user/wishlist" component={Wishlist} />
