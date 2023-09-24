@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AdminNav from "../../../components/nav/AdminNav";
+import "./productcreate.css";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { createProduct } from "../../../functions/product";
@@ -15,7 +16,27 @@ const initialState = {
   categories: [],
   category: "",
   subs: [],
-  shipping: "",
+  shippings: ["Yes", "No"],
+  isFreePickups: ["Yes", "No"],
+  recommendeds: ["Yes", "No"],
+  frontSideShelfs: ["Yes", "No"],
+  assemblys: ["Yes", "No"],
+  gateSurfaceMaterials: [
+    "Carbon Steel",
+    "Cast Iron",
+    "Cold Rolled Steel",
+    "Procelain",
+    "Procelain Coated Cast Iron",
+  ],
+  primaryOutputBurners: [
+    "<5000 British Thermal Unit",
+    ">5001 British Thermal Unit",
+    "20001-30000 British Thermal Unit",
+    "30001-40000 British Thermal Unit",
+    "40001-50000 British Thermal Unit",
+    "5000-20000 British Thermal Unit",
+    "50001-20000 British Thermal Unit",
+  ],
   quantity: "",
   fueltypes: [
     "Charcoal",
@@ -70,11 +91,18 @@ const initialState = {
   ],
   color: "",
   brand: "",
+  shipping: "",
   numberOfMainBurner: "",
   thermometer: "",
   fueltype: "",
   ignitiontype: "",
   technology: "",
+  isFreePickup: "",
+  recommended: "",
+  frontSideShelf: "",
+  assembly: "",
+  gateSurfaceMaterial: "",
+  primaryOutputBurner: "",
 };
 
 const ProductCreate = () => {
@@ -137,7 +165,7 @@ const ProductCreate = () => {
           <hr />
           {/* {JSON.stringify(values)} */}
           {/* Image upload input */}
-          <div className="p-3">
+          <div className="imgdiv w-100 m-0">
             <FileUpload
               values={values}
               setValues={setValues}

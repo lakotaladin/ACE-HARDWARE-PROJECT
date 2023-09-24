@@ -1,7 +1,8 @@
 const User = require("../models/user");
 
 exports.registerUser = async (req, res) => {
-  // const { email, name, lastName, streetAddress, phone, phoneType, month } = req.body;
+  const { email, name, lastName, streetAddress, phone, phoneType, month } =
+    req.body;
   const user = new User(req.body);
   user.role = "subscriber";
   user.verified = false;

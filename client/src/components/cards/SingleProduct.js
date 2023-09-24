@@ -1,7 +1,7 @@
 import React from "react";
 import "./singleProductStyle.css";
 import pplogo from "../../resources/pp-logo.png";
-// import service from "../../resources/serviceace.png";
+import StarRating from "react-star-ratings";
 import instock from "../../resources/instock.png";
 import addtowish from "../../resources/addtowish.png";
 import defaultimg from "../../resources/default.jpg";
@@ -11,8 +11,11 @@ import { ExclamationCircleFilled, RightOutlined } from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ProductListItems from "./ProductListItems";
+import RatingModal from "../modalRating/RatingModal";
+import { showAverage } from "../../functions/rating";
 
-const SingleProduct = ({ product }) => {
+// This is children component of /page/Product.js page
+const SingleProduct = ({ product, onStarClick, star }) => {
   const { title, _id, price, images, quantity } = product;
   // Check product quantity
   const isQuantityAvailable = quantity > 0;
@@ -47,7 +50,22 @@ const SingleProduct = ({ product }) => {
               <div className="block d-flex flex-column align-text-start p-0 m-0">
                 <b style={{ fontSize: "22px" }}>{title}</b>
                 <p>Item # {_id} </p>
-                <p>Rating....</p>
+                {product && product.ratings && product.ratings.length > 0 ? (
+                  showAverage(product)
+                ) : (
+                  <div className="d-flex w-100 p-0 m-0">
+                    <i>No rating yet</i>{" "}
+                  </div>
+                )}
+                <StarRating
+                  name={_id}
+                  rating={2}
+                  changeRating={onStarClick}
+                  numberOfStars={5}
+                  starRatedColor="#E52538"
+                  isSelectable={true}
+                />
+                <RatingModal />
                 <b style={{ fontSize: "30px" }}> &#x24;{price}</b>
               </div>
               <div className="block d-flex flex-row align-text-start align-items-center p-0 m-0">

@@ -68,7 +68,7 @@ const App = () => {
         <UserRoute exact path="/account" component={Account} />
         <UserRoute exact path="/user/history" component={History} />
         <UserRoute exact path="/user/wishlist" component={Wishlist} />
-        <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
+        {/* <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
         <AdminRoute exact path="/admin/category" component={CategoryCreate} />
         <AdminRoute exact path="/admin/sub" component={SubCreate} />
         <AdminRoute
@@ -83,11 +83,21 @@ const App = () => {
           exact
           path="/admin/product/:slug"
           component={ProductUpdate}
-        />
+        /> */}
         <Route exact path="/product/:slug" component={Product} />
         <Route exact path="/location" component={Location} />
         <Route exact path="/layout" component={LayoutPage} />
         <Route exact path="/store-details" component={Storeinfo} />
+
+        {/* Ovo sve brises kad zavrsis */}
+        <Route exact path="/admin/sub/:slug" component={SubUpdate} />
+        <Route exact path="/admin/product" component={ProductCreate} />
+        <Route exact path="/admin/products" component={AllProducts} />
+        <Route exact path="/admin/product/:slug" component={ProductUpdate} />
+        <Route exact path="/admin/dashboard" component={AdminDashboard} />
+        <Route exact path="/admin/category" component={CategoryCreate} />
+        <Route exact path="/admin/sub" component={SubCreate} />
+        <Route exact path="/admin/category/:slug" component={CategoryUpdate} />
       </Switch>
     </>
   );

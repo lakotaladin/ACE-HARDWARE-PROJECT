@@ -12,14 +12,12 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useForm } from "antd/es/form/Form";
-import { Form } from "antd";
+import { Button, Form, Input, Select } from "antd";
 
 const Register = ({ history }) => {
   const [email, setEmail] = useState("");
   const [checkbox1, setCheckbox1] = useState(false);
   const [checkbox2, setCheckbox2] = useState(false);
-
-  const [phoneNumber, setPhoneNumber] = useState("");
 
   const [form] = useForm();
 
@@ -31,25 +29,26 @@ const Register = ({ history }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userData = form.getFieldsValue();
-    console.log({ userData });
+    try {
+      const userData = form.getFieldsValue();
+      console.log({ userData });
 
-    // console.log("ENV ------>", process.env.REACT_APP_REGISTER_REDIRECT_URL);
-    const config = {
-      url: process.env.REACT_APP_REGISTER_REDIRECT_URL,
-      handleCodeInApp: true,
-    };
+      const config = {
+        url: process.env.REACT_APP_REGISTER_REDIRECT_URL,
+        handleCodeInApp: true,
+      };
 
-    await auth.sendSignInLinkToEmail(email, config);
-    await axios.post(process.env.REACT_APP_API + "/register", userData);
-    toast.success(
-      `Email is sent to ${email}, Click the link to complete registration.`
-    );
-    // save user email in local storage
-    window.localStorage.setItem("emailForRegistration", email);
-    // clear state
-
-    setEmail("");
+      await auth.sendSignInLinkToEmail(email, config);
+      await axios.post(process.env.REACT_APP_API + "/register", userData);
+      toast.success(
+        `Email is sent to ${email}, Click the link to complete registration.`
+      );
+      window.localStorage.setItem("emailForRegistration", email);
+      setEmail("");
+    } catch (error) {
+      // Ovde možete rukovati greškama ako dođe do problema prilikom slanja podataka na bekend.
+      console.error("Greška prilikom slanja podataka na bekend:", error);
+    }
   };
 
   const handleCheckbox1Change = () => {
@@ -64,8 +63,16 @@ const Register = ({ history }) => {
 
   const registerForm = () => (
     <Form
-      form={form}
-      onSubmit={handleSubmit}
+      onFinish={handleSubmit}
+      initialValues={{
+        email: "",
+        name: "",
+        lastName: "",
+        streetAddress: "",
+        phone: "",
+        phoneType: "",
+        month: "",
+      }}
       className="form-register w-100 m-0 d-flex flex-column"
     >
       <div className="email-pass-div d-flex flex-column m-0 w-100">
@@ -91,51 +98,139 @@ const Register = ({ history }) => {
         </p>
 
         <label>Account sign in details</label>
-        <input
-          className="input-form"
-          placeholder="Email"
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          autoFocus
-        ></input>
+        <Form.Item type="email" name="email">
+          <Input
+            className="input-form"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoFocus
+            required
+          ></Input>
+        </Form.Item>
       </div>
       <div className="email-pass-div2 d-flex flex-column m-0 w-100">
         <label>About you</label>
-        <input
-          className="input-form"
-          placeholder="Name"
-          type="text"
-          autoFocus
-        ></input>
-        <input
-          className="input-form"
-          placeholder="Last Name"
-          type="text"
-          autoFocus
-        ></input>
-        <input
-          className="input-form"
-          placeholder="Street Adress"
-          type="text"
-          autoFocus
-        ></input>
-        <input
-          className="input-form mb-0"
-          placeholder="Phone Number"
-          type="phone"
-          autoFocus
-        ></input>
+        <Form.Item type="text" name="name">
+          <Input
+            className="input-form"
+            placeholder="Name"
+            autoFocus
+            required
+          ></Input>
+        </Form.Item>
+        <Form.Item type="text" name="lastName">
+          <Input
+            className="input-form"
+            placeholder="Last Name"
+            autoFocus
+            required
+          ></Input>
+        </Form.Item>
+        <Form.Item type="text" name="streetAddress">
+          <Input
+            className="input-form"
+            placeholder="Street Address"
+            autoFocus
+            required
+          ></Input>
+        </Form.Item>
+        <div className="selectInputs w-100 d-flex flex-row p-0 m-0 gap-1">
+          <Form.Item type="phone" name="phone">
+            <Input
+              className="input-form mb-0"
+              placeholder="Phone Number"
+              autoFocus
+              required
+            ></Input>
+          </Form.Item>
+          <Form.Item name="phoneType">
+            <Select
+              defaultValue="phone"
+              style={{
+                width: 120,
+              }}
+              allowClear
+              options={[
+                {
+                  value: "mobile",
+                  label: "Mobile",
+                },
+                {
+                  value: "home",
+                  label: "Home",
+                },
+                {
+                  value: "business",
+                  label: "Business",
+                },
+              ]}
+            />
+          </Form.Item>
+        </div>
         <p style={{ fontSize: "12px", margin: "0% 0% 0% 3%" }} className="p-0">
           Used to look up your account or order information.
         </p>
-        <input
-          className="input-form mt-3"
-          placeholder="Phone Number"
-          type="date"
-          autoFocus
-        ></input>
+        <Form.Item name="month">
+          <Select
+            defaultValue=""
+            placeholder="Birthday (optional)"
+            style={{
+              width: "100%",
+            }}
+            allowClear
+            options={[
+              {
+                value: "january",
+                label: "January",
+              },
+              {
+                value: "february",
+                label: "February",
+              },
+              {
+                value: "march",
+                label: "March",
+              },
+              {
+                value: "april",
+                label: "April",
+              },
+              {
+                value: "may",
+                label: "May",
+              },
+              {
+                value: "june",
+                label: "June",
+              },
+              {
+                value: "july",
+                label: "July",
+              },
+              {
+                value: "august",
+                label: "August",
+              },
+              {
+                value: "september",
+                label: "September",
+              },
+              {
+                value: "october",
+                label: "October",
+              },
+              {
+                value: "november",
+                label: "November",
+              },
+              {
+                value: "december",
+                label: "December",
+              },
+            ]}
+          />
+        </Form.Item>
       </div>
       <div className="email-div3 d-flex flex-column m-0 w-100">
         <h6
@@ -160,7 +255,6 @@ const Register = ({ history }) => {
         </div>
       </div>
       <img style={{ margin: "5%" }} src={acerewards} alt="Ace Rewards" />
-      {/* Create account */}
       <div className="account-container w-100 d-flex flex-column m-0">
         <div className="button-div m-0 w-100 d-flex flex-column justify-content-center align-items-center">
           <div className="form-check">
@@ -189,13 +283,13 @@ const Register = ({ history }) => {
               </a>
             </label>
           </div>
-          <button
-            type="submit"
+          <Button
+            htmlType="submit"
             disabled={isButtonDisabled}
             className="button-account w-100"
           >
             Create Account
-          </button>
+          </Button>
         </div>
       </div>
     </Form>
@@ -230,7 +324,6 @@ const Register = ({ history }) => {
           </div>
         </div>
 
-        {/* Section register */}
         <div className="section-globall w-100 m-0 p-0 d-flex">
           <div className="form-container p-0 d-flex flex-column">
             {registerForm()}

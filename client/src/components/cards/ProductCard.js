@@ -3,6 +3,7 @@ import { Card, Col } from "antd"; // Dodali smo Col komponentu za Bootstrap grid
 import defaultImage from "../../resources/default.jpg";
 import { Link } from "react-router-dom";
 import { HeartOutlined } from "@ant-design/icons";
+import { showAverage } from "../../functions/rating";
 
 const ProductCard = ({ product }) => {
   // destructure
@@ -67,7 +68,13 @@ const ProductCard = ({ product }) => {
           style={{ textAlign: "start" }}
           className="description-card w-100 p-0 m-0 d-flex flex-column"
         >
-          <p className="w-100 p-0 m-0 ">Rating...</p>
+          {product && product.ratings && product.ratings.length > 0 ? (
+            showAverage(product)
+          ) : (
+            <div className="d-flex w-100 p-0 m-0">
+              <i>No rating yet</i>{" "}
+            </div>
+          )}
           <b className="w-100 p-0 m-0 ">&#x24; {price}</b>
         </div>
       </Card>

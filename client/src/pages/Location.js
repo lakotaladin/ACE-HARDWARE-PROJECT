@@ -18,8 +18,8 @@ const locations = [
     work: "Mon-Fri: 7:00am - 6:00pm",
     worksat: "Sat: 8:00am - 5:00pm",
     worksun: "Sun: 9:00am - 4:00pm",
-    latitude: 51.505,
-    longitude: -0.09,
+    latitude: 45.18047,
+    longitude: -67.28653,
   },
   {
     id: 2,
@@ -30,8 +30,8 @@ const locations = [
     work: "Mon-Fri: 7:00am - 6:00pm",
     worksat: "Sat: 8:00am - 5:00pm",
     worksun: "Sun: 9:00am - 4:00pm",
-    latitude: 52.505,
-    longitude: -0.09,
+    latitude: 45.22076,
+    longitude: -67.56633,
   },
   {
     id: 3,
@@ -42,8 +42,8 @@ const locations = [
     work: "Mon-Fri: 7:00am - 6:00pm",
     worksat: "Sat: 8:00am - 5:00pm",
     worksun: "Sun: 9:00am - 4:00pm",
-    latitude: 53.505,
-    longitude: -0.19,
+    latitude: 44.38826,
+    longitude: -68.21203,
   },
   {
     id: 4,
@@ -54,8 +54,8 @@ const locations = [
     work: "Mon-Fri: 7:00am - 6:00pm",
     worksat: "Sat: 8:00am - 5:00pm",
     worksun: "Sun: 9:00am - 4:00pm",
-    latitude: 54.505,
-    longitude: -0.39,
+    latitude: 44.2947,
+    longitude: -68.28929,
   },
   {
     id: 5,
@@ -66,8 +66,8 @@ const locations = [
     work: "Mon-Fri: 7:00am - 6:00pm",
     worksat: "Sat: 8:00am - 5:00pm",
     worksun: "Sun: 9:00am - 4:00pm",
-    latitude: 55.505,
-    longitude: -0.19,
+    latitude: 45.18336,
+    longitude: -69.22096,
   },
   {
     id: 6,
@@ -78,8 +78,8 @@ const locations = [
     work: "Mon-Fri: 7:00am - 6:00pm",
     worksat: "Sat: 8:00am - 5:00pm",
     worksun: "Sun: 9:00am - 4:00pm",
-    latitude: 56.505,
-    longitude: -0.49,
+    latitude: 36.252,
+    longitude: 48.132,
   },
   {
     id: 7,
@@ -90,8 +90,8 @@ const locations = [
     work: "Mon-Fri: 7:00am - 6:00pm",
     worksat: "Sat: 8:00am - 5:00pm",
     worksun: "Sun: 9:00am - 4:00pm",
-    latitude: 56.505,
-    longitude: -0.49,
+    latitude: 1.152,
+    longitude: 59.171,
   },
 ];
 

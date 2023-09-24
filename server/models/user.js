@@ -32,7 +32,19 @@ const userSchema = new mongoose.Schema(
     },
     month: {
       type: String,
-      enum: ["january", "february"],
+      enum: [
+        "january",
+        "february",
+        "march",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+      ],
     },
     role: {
       type: String,
@@ -44,7 +56,7 @@ const userSchema = new mongoose.Schema(
     },
     verified: Boolean,
     address: String,
-    //   wishlist: [{ type: ObjectId, ref: "Product" }],
+    wishlist: [{ type: ObjectId, ref: "Product" }],
   },
   { timestamps: true }
 );

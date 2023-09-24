@@ -80,20 +80,21 @@ const RegisterComplete = ({ history }) => {
   const completeRegistrationForm = () => (
     <>
       <form
+        style={{ height: "auto", overflow: "hidden" }}
         onSubmit={handleSubmit}
-        className="form-register w-100 m-0 d-flex flex-column"
+        className="form-register w-100 m-0 p-3 d-flex flex-column"
       >
-        <div className="email-pass-div d-flex flex-column m-0 w-100">
+        <div className="email-pass-div d-flex flex-column m-0 p-4 w-100">
           <h6
             style={{
               color: "#D40029",
-              fontSize: "20px",
+              fontSize: "22px",
               fontWeight: "400",
             }}
           >
             Complete registration
           </h6>
-
+          <label>Your Email:</label>
           <input
             className="input-form"
             placeholder="Email"
@@ -103,6 +104,7 @@ const RegisterComplete = ({ history }) => {
           ></input>
 
           {/* Treba da unese najmanje 6 karaktera za password */}
+          <label>Type your password:</label>
           <input
             className="input-form"
             placeholder="Password"
@@ -113,7 +115,7 @@ const RegisterComplete = ({ history }) => {
           ></input>
         </div>
 
-        <button type="submit" className="button-account w-100">
+        <button type="submit" className="button-account mt-4 mb-4 w-100">
           Submit
         </button>
       </form>
