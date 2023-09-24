@@ -20,6 +20,7 @@ import ace_services2 from "../../resources/services2.png";
 import brands from "../../resources/brandsheader.png";
 import brands2 from "../../resources/brandsheader2.png";
 
+
 import {
   CaretDownOutlined,
   CaretUpOutlined,
@@ -38,7 +39,7 @@ const Header = () => {
   const [isFocused, setIsFocused] = useState(false);
 
   let dispatch = useDispatch();
-  let { user } = useSelector((state) => ({ ...state }));
+  let { user, cart } = useSelector((state) => ({ ...state }));
   let history = useHistory();
 
   const items = [
@@ -241,18 +242,20 @@ const Header = () => {
                     </p>
                   </div>
                   <div className="header-login-register-section">
-                    <img
-                      className="headerLogo"
-                      src={cartLogo}
-                      alt="Login/Register"
-                    />
-                    <p className="p-2 m-0">
-                      <b style={{ fontWeight: "500", fontSize: "14px" }}>
-                        Cart
-                      </b>
-                      <br />
-                      <p>0 Items</p>
-                    </p>
+                    <Link className="d-flex flex-row p-0 m-0" to="/cart">
+                      <img
+                        className="headerLogo"
+                        src={cartLogo}
+                        alt="Login/Register"
+                      />
+                      <p className="p-2 m-0">
+                        <b style={{ fontWeight: "500", fontSize: "14px" }}>
+                          Cart
+                        </b>
+                        <br />
+                        <p>0 Items</p>
+                      </p>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -384,18 +387,20 @@ const Header = () => {
                     </p>
                   </div>
                   <div className="header-login-register-section">
-                    <img
-                      className="headerLogo"
-                      src={cartLogo}
-                      alt="Login/Register"
-                    />
-                    <p className="p-2 m-0">
-                      <b style={{ fontWeight: "500", fontSize: "14px" }}>
-                        Cart
-                      </b>
-                      <br />
-                      <p>0 Item</p>
-                    </p>
+                    <Link to="/cart">
+                      <img
+                        className="headerLogo"
+                        src={cartLogo}
+                        alt="Login/Register"
+                      />
+                      <p className="p-2 m-0">
+                        <b style={{ fontWeight: "500", fontSize: "14px" }}>
+                          Cart
+                        </b>
+                        <br />
+                        <p> {cart.length} Item</p>
+                      </p>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./singleProductStyle.css";
 import pplogo from "../../resources/pp-logo.png";
 import StarRating from "react-star-ratings";
 import instock from "../../resources/instock.png";
 import addtowish from "../../resources/addtowish.png";
 import defaultimg from "../../resources/default.jpg";
-import { Card } from "antd";
+import { Card, Tooltip } from "antd";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { ExclamationCircleFilled, RightOutlined } from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
@@ -13,12 +13,49 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ProductListItems from "./ProductListItems";
 import RatingModal from "../modalRating/RatingModal";
 import { showAverage } from "../../functions/rating";
+import _ from "lodash";
+import { useSelector, useDispatch } from "react-redux";
 
 // This is children component of /page/Product.js page
 const SingleProduct = ({ product, onStarClick, star }) => {
   const { title, _id, price, images, quantity } = product;
+
+  // redux
+  const { user, cart } = useSelector((state) => ({ ...state }));
+  const dispatch = useDispatch();
+
   // Check product quantity
   const isQuantityAvailable = quantity > 0;
+
+  // Tooltip
+  const [tooltip, setTooltip] = useState("Click to add");
+
+  // Handle add to card
+  const handleaddToCart = () => {
+    // cart array
+    let cart = [];
+    if (typeof window !== "undefined") {
+      // if cart is in localstorage GET it
+      if (localStorage.getItem("cart")) {
+        cart = JSON.parse(localStorage.getItem("cart"));
+      }
+      // push new product to cart, default is 1
+      cart.push({ ...product, count: 1 });
+      // remove duplicates
+      let unique = _.uniqWith(cart, _.isEqual);
+      // save to local storage
+      // console.log('unique', unique)
+      localStorage.setItem("cart", JSON.stringify(unique));
+      //show tooltip
+      setTooltip("Added");
+
+      // add to redux state
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: unique,
+      });
+    }
+  };
 
   return (
     <>
@@ -61,7 +98,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                   name={_id}
                   rating={2}
                   changeRating={onStarClick}
-                  numberOfStars={5}
+                  numberOfStars={star}
                   starRatedColor="#E52538"
                   isSelectable={true}
                 />
@@ -172,31 +209,35 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                     <option value="15">15</option>
                   </select>
                   {/* Add to card */}
-                  <button
-                    style={{
-                      height: "48px",
-                      fontWeight: "500",
-                      fontSize: "14px",
-                      backgroundColor: "#d40029",
-                      padding: "15px 20px",
-                      lineHeight: "normal",
-                      overflow: "hidden",
-                      display: "inline-block",
-                      color: "white",
-                      letterSpacing: "1.25px",
-                      boxShadow:
-                        "0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);",
-                      border: "none",
-                      borderRadius: "4px",
-                    }}
-                    id="add-to-cart"
-                    className="show-loading-animation w-100 mz-button mz-animated-btn ace-add-to-cart-btn "
-                    data-mz-action="addToCart"
-                    disabled={!isQuantityAvailable}
-                  >
-                    {" "}
-                    ADD TO CART{" "}
-                  </button>
+                  <Tooltip title={tooltip}>
+                    <a onClick={handleaddToCart}>
+                      <button
+                        style={{
+                          height: "48px",
+                          fontWeight: "500",
+                          fontSize: "14px",
+                          backgroundColor: "#d40029",
+                          padding: "15px 20px",
+                          lineHeight: "normal",
+                          overflow: "hidden",
+                          display: "inline-block",
+                          color: "white",
+                          letterSpacing: "1.25px",
+                          boxShadow:
+                            "0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);",
+                          border: "none",
+                          borderRadius: "4px",
+                        }}
+                        id="add-to-cart"
+                        className="show-loading-animation w-100 mz-button mz-animated-btn ace-add-to-cart-btn "
+                        data-mz-action="addToCart"
+                        disabled={!isQuantityAvailable}
+                      >
+                        {" "}
+                        ADD TO CART{" "}
+                      </button>
+                    </a>
+                  </Tooltip>
                 </div>
                 {/* Add to wish list */}
                 <Link to="#" style={{ margin: "1% auto " }}>

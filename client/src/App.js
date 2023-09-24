@@ -27,6 +27,7 @@ import ProductUpdate from "./pages/admin/product/ProductUpdate";
 import AllProducts from "./pages/admin/product/AllProducts";
 import LayoutPage from "./components/layout/LayoutPage";
 import Product from "./pages/Product";
+import Cart from "./pages/Cart";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -88,6 +89,7 @@ const App = () => {
         <Route exact path="/location" component={Location} />
         <Route exact path="/layout" component={LayoutPage} />
         <Route exact path="/store-details" component={Storeinfo} />
+        <Route exact path="/cart" component={Cart} />
 
         {/* Ovo sve brises kad zavrsis */}
         <Route exact path="/admin/sub/:slug" component={SubUpdate} />
