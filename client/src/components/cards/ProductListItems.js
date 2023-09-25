@@ -26,10 +26,10 @@ const ProductListItems = ({ product }) => {
     <>
       <div
         style={{ backgroundColor: "#F7F7F7" }}
-        className="w-100 d-flex flex-column gap-3 m-0 p-0"
+        className="bg-white w-100 d-flex flex-column gap-3 m-0 p-0"
       >
-        <h3 className="info-title p-2 m-0">Product Overview</h3>
-        <div className="w-100 spec p-2 pb-0 m-0">
+        <h3 className="bg-white info-title p-2 m-0">Product Overview</h3>
+        <div className="bg-white w-100 spec p-2 pb-0 m-0">
           <p>{description}</p>
         </div>
         <h3 className="info-title p-2 pb-0 m-0">Specifications</h3>

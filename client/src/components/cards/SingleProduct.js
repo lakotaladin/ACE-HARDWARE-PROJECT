@@ -25,7 +25,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
   const dispatch = useDispatch();
 
   // Check product quantity
-  const isQuantityAvailable = quantity > 0;
+  const isQuantityAvailable = product.quantity > 0;
 
   // Tooltip
   const [tooltip, setTooltip] = useState("Click to add");
@@ -209,7 +209,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                   </select>
                   {/* Add to card */}
                   <Tooltip title={tooltip}>
-                    <a onClick={handleaddToCart}>
+                    <a className="w-100 p-0 m-0" onClick={handleaddToCart}>
                       <button
                         style={{
                           height: "48px",
