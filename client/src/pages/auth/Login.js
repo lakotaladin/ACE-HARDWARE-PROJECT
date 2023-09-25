@@ -26,7 +26,7 @@ const Login = ({ history }) => {
     if (intended) {
       return;
     } else {
-      if (user && user.token) history.push("/");
+      if (user && user?.token) history.push("/");
     }
   }, [user, history]);
 
@@ -38,9 +38,9 @@ const Login = ({ history }) => {
       history.push(intended.from);
     } else {
       if (res.data.role === "admin") {
-        history.push("/admin/dashboard");
+        window.location.href = "/admin/dashboard";
       } else {
-        history.push("/user/history");
+        window.location.href = "/";
       }
     }
   };

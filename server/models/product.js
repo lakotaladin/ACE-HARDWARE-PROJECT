@@ -99,7 +99,6 @@ const productSchema = new mongoose.Schema(
         "5000-20000 British Thermal Unit",
         "50001-20000 British Thermal Unit",
       ],
-      required: true,
     },
 
     fueltype: {

@@ -36,10 +36,10 @@ const Account = () => {
 
   useEffect(() => {
     const email = firebase.auth().currentUser?.email;
-    const name = firebase.auth().currentUser?.email.split("@gmail.com");
+    const myname = user?.name;
     if (email) {
       setUserEmail(email);
-      setUserName(name);
+      setUserName(myname);
     } else {
       if (!email) {
         toast.success("You need to Sign In first");
@@ -176,7 +176,7 @@ const Account = () => {
                   Account Adress
                 </p>
                 <div className="info-containerr w-100 d-flex flex-column m-0">
-                  <p className="p-text">Aladin</p>
+                  <p className="p-text">{userName}</p>
                   <p className="p-text p-0">
                     5811 Danbury Ln, Sarasota, FL 34233 Novi Pazar, FL 36300
                   </p>

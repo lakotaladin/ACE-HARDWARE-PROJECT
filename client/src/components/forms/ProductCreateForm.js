@@ -27,6 +27,7 @@ const ProductCreateForm = ({
     numberOfMainBurners,
     technologyes,
     frontSideShelfs,
+    primaryOutputBurners,
     assemblys,
     gateSurfaceMaterials,
     isFreePickups,
@@ -176,6 +177,21 @@ const ProductCreateForm = ({
         >
           <option>Please select</option>
           {assemblys.map((rec) => (
+            <option key={rec} value={rec}>
+              {rec}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label className="m-0 p-0">Primary Output Burner</label>
+        <select
+          name="primaryOutputBurner"
+          className="form-control mb-4"
+          onChange={handleChange}
+        >
+          <option>Please select</option>
+          {primaryOutputBurners.map((rec) => (
             <option key={rec} value={rec}>
               {rec}
             </option>

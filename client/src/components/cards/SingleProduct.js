@@ -102,7 +102,6 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                   starRatedColor="#E52538"
                   isSelectable={true}
                 />
-                <RatingModal />
                 <b style={{ fontSize: "30px" }}> &#x24;{price}</b>
               </div>
               <div className="block d-flex flex-row align-text-start align-items-center p-0 m-0">
@@ -247,6 +246,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                     alt="Add to Wish list"
                   />
                 </Link>
+                <RatingModal />
               </div>
             </div>
           </div>

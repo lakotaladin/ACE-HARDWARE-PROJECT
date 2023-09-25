@@ -47,16 +47,16 @@ const AllProducts = () => {
   };
 
   return (
-    <div className="container-fluid d-flex flex-row">
+    <div className="w-100 container-fluid d-flex flex-row">
       <AdminNav />
-      <div className="row">
+      <div className="row w-100">
         <div className="col">
           {loading ? (
             <h4 className="text-danger">Loading...</h4>
           ) : (
             <h4>All Products</h4>
           )}
-          <div className="row">
+          <div className="row w-100">
             {products.map((product) => (
               <div key={product._id} className="col-md-4 pb-3">
                 <AdminProductCard

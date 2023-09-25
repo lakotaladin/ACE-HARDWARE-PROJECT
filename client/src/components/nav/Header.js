@@ -45,7 +45,11 @@ const Header = () => {
   const items = [
     {
       key: "1",
-      label: <span style={{ fontWeight: "bold" }}>Shop by Brand</span>,
+      label: (
+        <Link to="/layout">
+          <span style={{ fontWeight: "bold" }}>Shop by Brand</span>
+        </Link>
+      ),
       children: [
         {
           key: "2-1",
@@ -341,7 +345,7 @@ const Header = () => {
                     />
                     <p className="p-0 m-0">
                       <b style={{ fontWeight: "500", fontSize: "14px" }}>
-                        Hi, {user?.email.split("@")[0]}
+                        Hi, {user?.name}
                       </b>
                       <br />
                       <div className="dropdown-container">
@@ -387,18 +391,21 @@ const Header = () => {
                     </p>
                   </div>
                   <div className="header-login-register-section">
-                    <Link to="/cart">
+                    <Link
+                      className="w-100 d-flex flex-row gap-1 p-0 m-0"
+                      to="/cart"
+                    >
                       <img
                         className="headerLogo"
                         src={cartLogo}
                         alt="Login/Register"
                       />
-                      <p className="p-2 m-0">
+                      <p className="w-100 p-1 m-0">
                         <b style={{ fontWeight: "500", fontSize: "14px" }}>
                           Cart
                         </b>
                         <br />
-                        <p> {cart.length} Item</p>
+                        <p className="p-0 m-0"> {cart.length} Item</p>
                       </p>
                     </Link>
                   </div>

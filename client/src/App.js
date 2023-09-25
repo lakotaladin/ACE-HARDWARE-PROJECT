@@ -44,6 +44,9 @@ const App = () => {
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
+                name: res.data.name,
+                lastName: res.data.lastName,
+                adress: res.data.streetAddress,
                 email: res.data.email,
                 token: idTokenResult.token,
                 role: res.data.role,
@@ -65,12 +68,11 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/register/complete" component={RegisterComplete} />
-        {/* <UserRoute exact path="/myaccount" component={Profile} /> */}
-        <Route exact path="/myaccount" component={Profile} />
+        <UserRoute exact path="/myaccount" component={Profile} />
         <UserRoute exact path="/account" component={Account} />
         <UserRoute exact path="/user/history" component={History} />
         <UserRoute exact path="/user/wishlist" component={Wishlist} />
-        {/* <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
+        <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
         <AdminRoute exact path="/admin/category" component={CategoryCreate} />
         <AdminRoute exact path="/admin/sub" component={SubCreate} />
         <AdminRoute
@@ -85,22 +87,12 @@ const App = () => {
           exact
           path="/admin/product/:slug"
           component={ProductUpdate}
-        /> */}
+        />
         <Route exact path="/product/:slug" component={Product} />
         <Route exact path="/location" component={Location} />
         <Route exact path="/layout" component={LayoutPage} />
         <Route exact path="/store-details" component={Storeinfo} />
         <Route exact path="/cart" component={Cart} />
-
-        {/* Ovo sve brises kad zavrsis */}
-        <Route exact path="/admin/sub/:slug" component={SubUpdate} />
-        <Route exact path="/admin/product" component={ProductCreate} />
-        <Route exact path="/admin/products" component={AllProducts} />
-        <Route exact path="/admin/product/:slug" component={ProductUpdate} />
-        <Route exact path="/admin/dashboard" component={AdminDashboard} />
-        <Route exact path="/admin/category" component={CategoryCreate} />
-        <Route exact path="/admin/sub" component={SubCreate} />
-        <Route exact path="/admin/category/:slug" component={CategoryUpdate} />
       </Switch>
     </>
   );

@@ -59,7 +59,7 @@ const Storeinfo = () => {
               <div className="card w-50 m-0 p-0">
                 <img src={img1} alt="Store info" />
               </div>
-              <div className="card d-flex w-50 justify-content-center align-items-center m-0 p-0">
+              <div className="bg-white card d-flex w-50 justify-content-center align-items-center m-0 p-0">
                 <img style={{ width: "40%" }} src={img2} alt="Store info" />
               </div>
             </div>
@@ -67,7 +67,7 @@ const Storeinfo = () => {
               <div className="card w-50 m-0 p-0">
                 <img style={{ width: "100%" }} src={img3} alt="Store info" />
               </div>
-              <div className="card d-flex w-50 justify-content-center align-items-center m-0 p-0">
+              <div className="bg-white card d-flex w-50 justify-content-center align-items-center m-0 p-0">
                 <img style={{ width: "100%" }} src={img4} alt="Store info" />
               </div>
             </div>
