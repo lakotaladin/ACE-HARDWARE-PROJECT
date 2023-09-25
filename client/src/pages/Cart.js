@@ -1,15 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { userCart } from "../functions/user";
 import Header from "../components/nav/Header";
 import Footer from "../components/footer/Footer";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ProductCardInCheckout from "../components/cards/ProductCardInCheckout";
 
-const Cart = () => {
+const Cart = ({ history }) => {
   const { cart, user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
   // Get Total price
   const getTotal = () => {
@@ -19,7 +19,13 @@ const Cart = () => {
   };
 
   const saveOrderToDb = () => {
-    //
+    // console.log("cart", JSON.stringify(cart, null, 4));
+    userCart(cart, user?.token)
+      .then((res) => {
+        console.log("CART POST RES", res);
+        if (res.data.ok) history.push("/checkout");
+      })
+      .catch((err) => console.log("cart save err", err));
   };
 
   const showCartItems = () => (
@@ -50,7 +56,7 @@ const Cart = () => {
         style={{ width: "80%", margin: "auto", justifyItems: "center" }}
         className="cartglobal p-0"
       >
-        <div className="cardheader p-0 d-flex flex-row justify-content-between align-items-center ">
+        <div className="cardheader pt-3 pb-3 d-flex flex-row justify-content-between align-items-center ">
           <div className="p-2 d-flex flex-row gap-3 align-items-center">
             <h4 className="p-0 m-0">Cart</h4>
           </div>
@@ -66,12 +72,6 @@ const Cart = () => {
             >
               <u style={{ fontWeight: "500" }}>Continue Shopping</u>
             </Link>
-            <button
-              style={{ backgroundColor: "#D7002A", width: "250px" }}
-              className="rounded p-3 m-2 border-0 text-white"
-            >
-              Checkout
-            </button>
           </div>
         </div>
         {/* {JSON.stringify(cart)} */}
@@ -122,14 +122,16 @@ const Cart = () => {
               </div>
               <hr />
               {user ? (
-                <button
-                  style={{ backgroundColor: "#D7002A", width: "100%" }}
-                  className="rounded p-3 border-0 text-white"
-                  disabled={!cart.length}
-                  onClick={saveOrderToDb}
-                >
-                  Checkout
-                </button>
+                <Link className="p-0 m-0 text-white" to="/checkout">
+                  <button
+                    style={{ backgroundColor: "#D7002A", width: "100%" }}
+                    className="rounded p-3 border-0 text-white"
+                    disabled={!cart.length}
+                    onClick={saveOrderToDb}
+                  >
+                    Checkout
+                  </button>
+                </Link>
               ) : (
                 <Link
                   style={{ color: "white" }}

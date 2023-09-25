@@ -71,14 +71,13 @@ const SideDrawer = () => {
 
         <Link className="p-0 m-0" to="/cart">
           <button
-            style={{ fontSize: "15px" }}
+            style={{ fontSize: "15px", backgroundColor: "#D40029" }}
             onClick={() =>
               dispatch({
                 type: "SET_VISIBLE",
                 payload: false,
               })
             }
-            style={{ backgroundColor: "#D40029" }}
             className="text-center text-white rounded pt-3 pb-3 border-0 btn-block"
           >
             View cart & Checkout

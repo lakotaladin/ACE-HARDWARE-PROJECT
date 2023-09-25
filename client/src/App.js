@@ -29,6 +29,9 @@ import ProductUpdate from "./pages/admin/product/ProductUpdate";
 import AllProducts from "./pages/admin/product/AllProducts";
 import LayoutPage from "./components/layout/LayoutPage";
 import Product from "./pages/Product";
+import Checkout from "./pages/Checkout";
+import CreateCouponPage from "./pages/admin/coupon/CreateCouponPage";
+import Payment from "./pages/Payment";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -84,6 +87,7 @@ const App = () => {
         />
         <AdminRoute exact path="/admin/sub/:slug" component={SubUpdate} />
         <AdminRoute exact path="/admin/product" component={ProductCreate} />
+        <AdminRoute exact path="/admin/coupon" component={CreateCouponPage} />
         <AdminRoute exact path="/admin/products" component={AllProducts} />
         <AdminRoute
           exact
@@ -95,6 +99,8 @@ const App = () => {
         <Route exact path="/layout" component={LayoutPage} />
         <Route exact path="/store-details" component={Storeinfo} />
         <Route exact path="/cart" component={Cart} />
+        <UserRoute exact path="/checkout" component={Checkout} />
+        <UserRoute exact path="/checkout" component={Payment} />
       </Switch>
     </>
   );
