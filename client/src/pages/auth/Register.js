@@ -111,38 +111,114 @@ const Register = ({ history }) => {
         </p>
 
         <label>Account sign in details</label>
-        <Form.Item type="email" name="email">
+        <Form.Item
+          type="email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Type your email!",
+            },
+            {
+              type: "email",
+              message: "Wrong email format!",
+            },
+          ]}
+        >
           <Input
             className="input-form"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoFocus
-            required
           ></Input>
         </Form.Item>
       </div>
       <div className="email-pass-div2 d-flex flex-column m-0 w-100">
         <label>About you</label>
-        <Form.Item type="text" name="name">
+        <Form.Item
+          type="text"
+          name="name"
+          rules={[
+            {
+              required: true,
+              message: "Please enter your name!",
+            },
+            {
+              pattern: /^[A-Za-z\s]+$/,
+              message:
+                "Please enter a valid name with only letters and spaces!",
+            },
+            {
+              min: 2,
+              message: "Name must be at least 2 characters long!",
+            },
+            {
+              max: 16,
+              message: "Name cannot exceed 16 characters!",
+            },
+          ]}
+        >
           <Input
             className="input-form"
             placeholder="Name"
             autoFocus
-            required
             onChange={(e) => setName(e.target.value)}
           ></Input>
         </Form.Item>
-        <Form.Item type="text" name="lastName">
+        <Form.Item
+          type="text"
+          name="lastName"
+          rules={[
+            {
+              required: true,
+              message: "Please enter your last name!",
+            },
+            {
+              pattern: /^[A-Za-z\s]+$/,
+              message:
+                "Please enter a valid name with only letters and spaces!",
+            },
+            {
+              min: 2,
+              message: "Name must be at least 2 characters long!",
+            },
+            {
+              max: 16,
+              message: "Name cannot exceed 16 characters!",
+            },
+          ]}
+        >
           <Input
             className="input-form"
             placeholder="Last Name"
             autoFocus
-            required
             onChange={(e) => setLastName(e.target.value)}
           ></Input>
         </Form.Item>
-        <Form.Item type="text" name="streetAddress">
+        <Form.Item
+          type="text"
+          name="streetAddress"
+          rules={[
+            {
+              required: true,
+              message: "Please enter your address!",
+            },
+            {
+              pattern: /^[A-Za-z0-9\s,.-]+$/,
+              message:
+                "Please enter a valid address with letters, numbers, spaces, and common punctuation!",
+            },
+            {
+              min: 5,
+              message: "Address must be at least 5 characters long!",
+            },
+            {
+              max: 30,
+              message: "Address cannot exceed 30 characters!",
+            },
+          ]}
+        >
           <Input
             className="input-form"
             placeholder="Street Address"
@@ -152,9 +228,32 @@ const Register = ({ history }) => {
           ></Input>
         </Form.Item>
         <div className="selectInputs w-100 d-flex flex-row p-0 m-0 gap-1">
-          <Form.Item type="phone" name="phone">
+          <Form.Item
+            className="w-100"
+            type="phone"
+            name="phone"
+            rules={[
+              {
+                required: true,
+                message: "Please enter your phone number!",
+              },
+              {
+                pattern: /^[/^\+?[0-9]+$/,
+                message:
+                  "Please enter a valid phone number (only numbers and optional + sign).",
+              },
+              {
+                min: 6,
+                message: "Phone number must be at least 5 characters long!",
+              },
+              {
+                max: 20,
+                message: "Phone number cannot exceed 20 characters!",
+              },
+            ]}
+          >
             <Input
-              className="input-form mb-0"
+              className="input-form  mb-0"
               placeholder="Phone Number"
               autoFocus
               required

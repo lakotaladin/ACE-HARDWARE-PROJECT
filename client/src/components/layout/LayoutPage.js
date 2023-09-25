@@ -67,7 +67,7 @@ const LayoutPage = () => {
                 </Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>Products</Breadcrumb.Item>
-              <Breadcrumb.Item>Aladin</Breadcrumb.Item>
+              <Breadcrumb.Item>Product</Breadcrumb.Item>
             </Breadcrumb>
             <div className="page-title d-flex flex-row  justify-content-between p-0 m-0">
               <h2 className="mt-3">
@@ -150,7 +150,7 @@ const LayoutPage = () => {
                 {loading ? (
                   <LoadingCard count={3} />
                 ) : (
-                  <div className="row">
+                  <div className="row w-100 p-0 m-0">
                     {products.map((product) => (
                       <ProductCard key={product._id} product={product} />
                     ))}

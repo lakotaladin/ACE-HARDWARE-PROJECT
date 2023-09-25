@@ -69,7 +69,7 @@ const Product = ({ match }) => {
               </Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>Products</Breadcrumb.Item>
-            <Breadcrumb.Item>Aladin</Breadcrumb.Item>
+            <Breadcrumb.Item>{slug}</Breadcrumb.Item>
           </Breadcrumb>
           <div className="row pt-4">
             <SingleProduct
@@ -78,14 +78,23 @@ const Product = ({ match }) => {
               star={star}
             />
           </div>
-          <div className="row">
-            <h4>Related Products</h4>
+          <div className="row w-100 d-flex flex-row m-auto mt-4">
+            <h3 style={{ borderBottom: "2px solid #EEEE" }}>
+              Related Products
+            </h3>
           </div>
         </div>
-        <div className="row w-100 pb-5 col-md-4">
+        {/* <div
+          style={{ border: "none" }}
+          className="related d-flex flex-row w-100 justify-content-center pb-5"
+        > */}
+        <div className="w-100 d-flex flex-row p-0 m-0">
           {related.length ? (
-            related.map((r) => (
-              <div key={r._id}>
+            related.map((r, index) => (
+              <div
+                className={`relatedproducts justify-content-center w-100 mb-5 p-0 d-flex flex-row`}
+                key={r._id}
+              >
                 <ProductCard product={r} />
               </div>
             ))
@@ -93,6 +102,7 @@ const Product = ({ match }) => {
             <div className="text-center col">No Products Found</div>
           )}
         </div>
+        {/* </div> */}
         <Footer />
         <ScrollToTopButton />
       </div>

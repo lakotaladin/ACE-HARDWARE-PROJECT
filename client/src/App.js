@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+import { auth } from "./firebase";
+import { currentUser } from "./functions/auth";
+import { useDispatch } from "react-redux";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import SideDrawer from "./components/drawer/SideDrawer";
+import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import Location from "./pages/Location";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegisterComplete from "./pages/auth/RegisterComplete";
-import { auth } from "./firebase";
-import { currentUser } from "./functions/auth";
-import { useDispatch } from "react-redux";
 import Storeinfo from "./pages/Storeinfo";
 import Profile from "./pages/userPages/User";
 import Account from "./pages/userPages/Account";
@@ -27,7 +29,6 @@ import ProductUpdate from "./pages/admin/product/ProductUpdate";
 import AllProducts from "./pages/admin/product/AllProducts";
 import LayoutPage from "./components/layout/LayoutPage";
 import Product from "./pages/Product";
-import Cart from "./pages/Cart";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ const App = () => {
   }, [dispatch]);
   return (
     <>
+      <SideDrawer />
       <ToastContainer />
       <Switch>
         <Route exact path="/" component={Home} />

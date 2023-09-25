@@ -45,7 +45,7 @@
 
 
 .form-container {
-    min-width: 450px;
+    min-width: 500px !important;
     border: 1px solid #CCCCCC;
     border-top: 5px solid #D40029;
     border-radius: 5px;
@@ -60,21 +60,27 @@
 
 .input-form {
     width: 100%;
-    margin-bottom: 20px;
-    padding: 2%;
+    margin-bottom: 5px;
+        padding: 3%;
     border: 1px solid #ACACAC;
     border-radius: 4px;
 }
+.ant-select-selection-item {
+    /*  */
+}
 
-label {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 2%;
+.ant-select-selector {
+    padding: 4.5% !important;
+    border: 1px solid #ACACAC !important;
+}
+
+.selectInputs {
+    height: 45px;
 }
 
 
 .email-pass-div {
-    padding: 7%;
+    padding: 7% 7% 0% 7%;
     border-bottom: 1px solid #CCCCCC;
 }
 
@@ -144,6 +150,7 @@ label {
     border-radius: 5px;
     font-size: 14px;
     padding: 13px;
+    height: 50px;
     margin-top: 10px;
 }
 

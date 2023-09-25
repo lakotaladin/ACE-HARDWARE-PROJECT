@@ -5,9 +5,15 @@ import StarRating from "react-star-ratings";
 import instock from "../../resources/instock.png";
 import addtowish from "../../resources/addtowish.png";
 import defaultimg from "../../resources/default.jpg";
-import { Card, Tooltip } from "antd";
+import { Card, Col, Row, Tooltip } from "antd";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { ExclamationCircleFilled, RightOutlined } from "@ant-design/icons";
+import {
+  ExclamationCircleFilled,
+  MailOutlined,
+  PrinterOutlined,
+  RightOutlined,
+  TwitterOutlined,
+} from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ProductListItems from "./ProductListItems";
@@ -54,6 +60,11 @@ const SingleProduct = ({ product, onStarClick, star }) => {
         type: "ADD_TO_CART",
         payload: unique,
       });
+      // show cart items in side drawer when user click add to cart
+      dispatch({
+        type: "SET_VISIBLE",
+        payload: true,
+      });
     }
   };
 
@@ -69,7 +80,13 @@ const SingleProduct = ({ product, onStarClick, star }) => {
               {images && images.length ? (
                 <Carousel showArrows={true} autoPlay infiniteLoop>
                   {images &&
-                    images.map((i) => <img src={i.url} key={i.public_id} />)}
+                    images.map((i) => (
+                      <img
+                        style={{ objectFit: "scale-down" }}
+                        src={i.url}
+                        key={i.public_id}
+                      />
+                    ))}
                 </Carousel>
               ) : (
                 <Card
@@ -87,6 +104,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
               <div className="block d-flex flex-column align-text-start p-0 m-0">
                 <b style={{ fontSize: "22px" }}>{title}</b>
                 <p>Item # {_id} </p>
+                <b style={{ fontSize: "30px" }}> &#x24;{price}</b>
                 {product && product.ratings && product.ratings.length > 0 ? (
                   showAverage(product)
                 ) : (
@@ -94,15 +112,16 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                     <i>No rating yet</i>{" "}
                   </div>
                 )}
-                <StarRating
-                  name={_id}
-                  rating={2}
-                  changeRating={onStarClick}
-                  numberOfStars={star}
-                  starRatedColor="#E52538"
-                  isSelectable={true}
-                />
-                <b style={{ fontSize: "30px" }}> &#x24;{price}</b>
+                <RatingModal>
+                  <StarRating
+                    name={_id}
+                    numberOfStars={5}
+                    rating={star}
+                    changeRating={onStarClick}
+                    isSelectable={true}
+                    starRatedColor="#E52538"
+                  />
+                </RatingModal>
               </div>
               <div className="block d-flex flex-row align-text-start align-items-center p-0 m-0">
                 <img
@@ -175,39 +194,8 @@ const SingleProduct = ({ product, onStarClick, star }) => {
               </div>
               <div className="block d-flex flex-column align-text-start p-0 m-0">
                 <div className="d-flex flex-row mt-3 mb-3 justify-content-between">
-                  <select
-                    style={{
-                      width: "70px",
-                      height: "48px",
-                      textAlign: "left",
-                      color: "#333",
-                      padding: "10px",
-                      marginRight: "7%",
-                      maxWidth: "70px",
-                      borderRadius: "4px",
-                      fontFamily: "Roboto",
-                      fontSize: "14px",
-                      border: "1px solid #8b8b8b",
-                    }}
-                    className="qty-box dropdown"
-                    name="qty"
-                  >
-                    {" "}
-                    <option value="1" selected="selected">
-                      1
-                    </option>{" "}
-                    <option value="2">2</option> <option value="3">3</option>{" "}
-                    <option value="4">4</option> <option value="5">5</option>{" "}
-                    <option value="6">6</option> <option value="7">7</option>{" "}
-                    <option value="8">8</option> <option value="9">9</option>{" "}
-                    <option value="10">10</option>{" "}
-                    <option value="11">11</option>{" "}
-                    <option value="12">12</option>{" "}
-                    <option value="13">13</option>{" "}
-                    <option value="14">14</option>{" "}
-                    <option value="15">15</option>
-                  </select>
                   {/* Add to card */}
+
                   <Tooltip title={tooltip}>
                     <a className="w-100 p-0 m-0" onClick={handleaddToCart}>
                       <button
@@ -246,7 +234,37 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                     alt="Add to Wish list"
                   />
                 </Link>
-                <RatingModal />
+                <div>
+                  <Row gutter={16} justify="end">
+                    <Col>
+                      <a
+                        href="https://twitter.com/home?status=https://www.acehardware.com/char-broil-patio-bistro-electric-grill-red/p/8269243"
+                        target="_blank"
+                        title="Ace Hardware Twitter"
+                      >
+                        <TwitterOutlined
+                          style={{ fontSize: "24px", color: "#1DA1F2" }}
+                        />
+                      </a>
+                    </Col>
+                    <Col>
+                      <a
+                        href="mailto:hardwareace439@gmail.com "
+                        target="_blank"
+                        title="Ace Hardware"
+                      >
+                        <MailOutlined
+                          style={{ fontSize: "24px", color: "#D44638" }}
+                        />
+                      </a>
+                    </Col>
+                    <Col>
+                      <PrinterOutlined
+                        style={{ fontSize: "24px", color: "#000000" }}
+                      />
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </div>
           </div>

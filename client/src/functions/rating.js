@@ -23,11 +23,11 @@ export const showAverage = (p) => {
 
     return (
       <div className="text-center d-flex flex-row pt-1 pb-3">
-        <span>
+        <span className="p-0 m-0">
           <StarRating
             rating={result}
-            starDimension="15px"
-            starSpacing="2px"
+            starDimension="16px"
+            starSpacing="0px"
             starRatedColor="#e52538"
             editing={false}
           />

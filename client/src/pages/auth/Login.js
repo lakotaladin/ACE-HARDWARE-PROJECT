@@ -26,7 +26,7 @@ const Login = ({ history }) => {
     if (intended) {
       return;
     } else {
-      if (user && user?.token) history.push("/");
+      if (user && user?.token) window.location.href = "/";
     }
   }, [user, history]);
 
@@ -35,7 +35,7 @@ const Login = ({ history }) => {
     // Check if intended
     let intended = history.location.state;
     if (intended) {
-      history.push(intended.from);
+      window.location.href = intended.from;
     } else {
       if (res.data.role === "admin") {
         window.location.href = "/admin/dashboard";

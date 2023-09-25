@@ -43,13 +43,21 @@ const ForgotPasswordModal = ({ history, visible, onClose }) => {
         <h1 className="text-danger text-align-center p-5">Loading...</h1>
       ) : (
         <Modal
+          className="resetmodal p-3"
           open={visible}
           centered
           onCancel={onClose}
-          title={<b>Reset Password</b>}
+          title={
+            <b
+              style={{ color: "#E51636", fontSize: "22px", fontWeight: "500" }}
+            >
+              Reset Password
+            </b>
+          }
           footer={[
             <Button
               key="send"
+              className="border-0 w-100 p-1"
               type="primary"
               disabled={!email}
               onClick={handleSendEmail}
@@ -74,6 +82,7 @@ const ForgotPasswordModal = ({ history, visible, onClose }) => {
               ]}
             >
               <Input
+                className="p-2 mt-4 mb-2"
                 type="email"
                 placeholder="Type your email"
                 value={email}

@@ -15,6 +15,7 @@ const ProductCard = ({ product }) => {
       {" "}
       <Card
         style={{
+          width: "350px",
           margin: "0%",
           border: "none",
           borderBottom: "1px solid #ccc",
@@ -62,7 +63,9 @@ const ProductCard = ({ product }) => {
           </Link>
         </div>
         <div className="title w-100 p-0 m-0">
-          <p className="w-100 p-0 m-0 ">{title}</p>
+          <p style={{ fontSize: "16px" }} className="w-100 p-0 m-0 ">
+            {title}
+          </p>
         </div>
         <div
           style={{ textAlign: "start" }}
@@ -75,7 +78,9 @@ const ProductCard = ({ product }) => {
               <i>No rating yet</i>{" "}
             </div>
           )}
-          <b className="w-100 p-0 m-0 ">&#x24; {price}</b>
+          <b style={{ fontSize: "18px" }} className="w-100 p-0 m-0 ">
+            &#x24; {price}
+          </b>
         </div>
       </Card>
     </Col>

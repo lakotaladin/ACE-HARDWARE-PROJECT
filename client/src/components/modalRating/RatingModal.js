@@ -12,7 +12,7 @@ const RatingModal = ({ children }) => {
   let history = useHistory();
 
   const handleModal = () => {
-    if (user && user.token) {
+    if (user && user?.token) {
       setModalVisible(true);
     } else {
       history.push("/login");
