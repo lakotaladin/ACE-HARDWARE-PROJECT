@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useSelector, useDispatch } from "react-redux";
+import "../stripe.css";
 import { createPaymentIntent } from "../functions/stripe";
 import { Link } from "react-router-dom";
 import { Card } from "antd";
@@ -97,7 +98,7 @@ const StripeCheckout = ({ history }) => {
           )}
         </div>
       )}
-      <div className="text-center pb-5">
+      <div className="headerstripe text-center pb-5">
         <Card
           actions={[
             <>

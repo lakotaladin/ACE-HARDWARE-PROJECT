@@ -66,8 +66,8 @@ const locations = [
     work: "Mon-Fri: 7:00am - 6:00pm",
     worksat: "Sat: 8:00am - 5:00pm",
     worksun: "Sun: 9:00am - 4:00pm",
-    latitude: 45.18336,
-    longitude: -69.22096,
+    latitude: 44.80489,
+    longitude: -68.90287,
   },
   {
     id: 6,
@@ -90,8 +90,8 @@ const locations = [
     work: "Mon-Fri: 7:00am - 6:00pm",
     worksat: "Sat: 8:00am - 5:00pm",
     worksun: "Sun: 9:00am - 4:00pm",
-    latitude: 1.152,
-    longitude: 59.171,
+    latitude: 43.65065,
+    longitude: -70.33893,
   },
 ];
 

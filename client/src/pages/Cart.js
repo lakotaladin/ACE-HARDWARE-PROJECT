@@ -5,6 +5,7 @@ import { userCart } from "../functions/user";
 import Header from "../components/nav/Header";
 import Footer from "../components/footer/Footer";
 import ProductCardInCheckout from "../components/cards/ProductCardInCheckout";
+import checkoutpayment from "../resources/payment.png";
 
 const Cart = ({ history }) => {
   const { cart, user } = useSelector((state) => ({ ...state }));
@@ -75,23 +76,25 @@ const Cart = ({ history }) => {
           </div>
         </div>
         {/* {JSON.stringify(cart)} */}
-        <div style={{ height: "100vh" }} className="cardsection w-100 m-0 p-1">
-          <div className="row">
-            <div className="col-md-8">
-              {!cart.length ? (
-                <p>
-                  No products in cart.{" "}
-                  <Link style={{ color: "black" }} to="/categories">
-                    Continue Shopping.
-                  </Link>
-                </p>
-              ) : (
-                showCartItems()
-              )}
-            </div>
+        <div
+          style={{ height: "100vh" }}
+          className="cardsection d-flex flex-column w-100 m-0 p-1"
+        >
+          <div className="row w-100">
             <div
-              style={{ position: "relative", overflowX: "hidden" }}
-              className="col-md-4"
+              style={{ borderBottom: "10px solid #EEEEEE" }}
+              className="col pl-0 pr-0"
+            >
+              {!cart.length ? <p>No products in cart. </p> : showCartItems()}
+            </div>
+          </div>
+          <div className="checkglobal w-100 d-flex flex-row justify-content-end">
+            <div
+              style={{
+                justifyContent: "end",
+                overflowX: "hidden",
+              }}
+              className="col-md-4 p-2 justify-content-end"
             >
               <div
                 style={{ borderBottom: "10px solid #EEEEEE" }}
@@ -115,17 +118,35 @@ const Cart = ({ history }) => {
               ))}
               <hr />
               <div
+                style={{ fontSize: "15px" }}
+                className="ordertotal w-100 p-0 m-0 d-flex flex-row justify-content-between"
+              >
+                <p>Store Pickup:</p> <p>Free</p>
+              </div>
+              <hr />
+              <div
                 style={{ fontSize: "22px" }}
                 className="ordertotal w-100 p-0 m-0 d-flex flex-row justify-content-between"
               >
                 <b>Order Total:</b> <b>&#x24;{getTotal().toFixed(2)}</b>
               </div>
               <hr />
+              <div
+                style={{ fontSize: "14px" }}
+                className="ordertotal w-100 p-0 m-0 d-flex flex-column justify-content-between"
+              >
+                <p>Avaible payament options in checkout:</p>
+                <img
+                  src={checkoutpayment}
+                  className="w-50 m-0 mb-3 p-0"
+                  alt="Payment options"
+                />
+              </div>
               {user ? (
                 <Link className="p-0 m-0 text-white" to="/checkout">
                   <button
                     style={{ backgroundColor: "#D7002A", width: "100%" }}
-                    className="rounded p-3 border-0 text-white"
+                    className="butoncheckout rounded p-3 border-0 text-white"
                     disabled={!cart.length}
                     onClick={saveOrderToDb}
                   >

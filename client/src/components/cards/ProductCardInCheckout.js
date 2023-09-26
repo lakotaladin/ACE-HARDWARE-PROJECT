@@ -84,6 +84,7 @@ const ProductCardInCheckout = ({ p }) => {
         <td>{p.color}</td>
         <td className="text-center">
           <input
+            style={{ width: "80px" }}
             type="number"
             value={p.count}
             onChange={handleQuantityChange}
