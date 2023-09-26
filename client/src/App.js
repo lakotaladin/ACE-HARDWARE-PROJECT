@@ -100,7 +100,7 @@ const App = () => {
         <Route exact path="/store-details" component={Storeinfo} />
         <Route exact path="/cart" component={Cart} />
         <UserRoute exact path="/checkout" component={Checkout} />
-        <UserRoute exact path="/checkout" component={Payment} />
+        <UserRoute exact path="/payment" component={Payment} />
       </Switch>
     </>
   );
