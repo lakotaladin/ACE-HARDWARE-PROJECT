@@ -1,9 +1,11 @@
 const User = require("../models/user");
 
 exports.registerUser = async (req, res) => {
-  const { name, lastName, streetAddress, phone, phoneType, month } = req.body;
+  const { email, name, lastName, streetAddress, phone, phoneType, month } =
+    req.body;
   // console.log(name);
   const user = new User({
+    email,
     name,
     lastName,
     streetAddress,

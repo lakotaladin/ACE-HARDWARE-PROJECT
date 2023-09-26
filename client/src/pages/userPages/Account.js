@@ -180,7 +180,7 @@ const Account = () => {
                   <p className="p-text p-0">
                     5811 Danbury Ln, Sarasota, FL 34233 Novi Pazar, FL 36300
                   </p>
-                  <p className="p-text">(064) 406-2670</p>
+                  <p className="p-text">{user.phone}</p>
                 </div>
               </div>
             </div>

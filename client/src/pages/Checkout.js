@@ -201,8 +201,11 @@ const Checkout = ({ history }) => {
     <>
       <Header />
       <div
-        style={{ backgroundColor: "#EEEE", height: "100vh" }}
-        className="checkoutdiv w-100 p-2 d-flex flex-column m-0 gap-3 justify-content-center"
+        style={{
+          backgroundColor: "#EEEE",
+          height: "auto",
+        }}
+        className="checkoutdiv w-100 p-2 pb-5 d-flex flex-column gap-3 justify-content-center"
       >
         <div
           style={{ width: "80%" }}
@@ -210,9 +213,10 @@ const Checkout = ({ history }) => {
         >
           <h3 style={{ color: "#D30029" }}>Delivery Address</h3>
           <hr className="w-25" />
+          <i>* required input</i>
           <br />
           <br />
-          <label className="m-0 mb-2">Type your Adress:</label>
+          <label className="m-0 mb-2">*Type your Adress:</label>
           <ReactQuill
             theme="snow"
             className="quill w-50 mb-3"
@@ -228,6 +232,7 @@ const Checkout = ({ history }) => {
                 display: "flex",
                 alignItems: "center",
                 textAlign: "center",
+                fontSize: "15px",
                 backgroundColor: "#D30029",
               }}
               className=" text-white rounded p-2 mt-2"
@@ -239,9 +244,11 @@ const Checkout = ({ history }) => {
               style={{
                 width: "20%",
                 border: "none",
+                letterSpacing: "2px",
+                fontSize: "15px",
                 backgroundColor: "#D30029",
               }}
-              className=" text-white rounded d-flex text-align-center justify-content-center p-2 mt-2"
+              className=" text-white btn rounded d-flex text-align-center justify-content-center p-3 mt-2"
               onClick={saveAddressToDb}
             >
               Save
@@ -298,12 +305,12 @@ const Checkout = ({ history }) => {
                     width: "30%",
                     border: "none",
                     display: "flex",
+                    letterSpacing: "1px",
                     justifyContent: "center",
                     alignItems: "center",
                     textAlign: "center",
-                    backgroundColor: "#D30029",
                   }}
-                  className="placeorder rounded border-0 text-white p-2"
+                  className="placeorder rounded border-0 bg-warning text-white p-3"
                 >
                   <ButttonLoader />
                 </button>
@@ -312,10 +319,11 @@ const Checkout = ({ history }) => {
                   style={{
                     width: "30%",
                     border: "none",
-                    backgroundColor: "#D30029",
+                    letterSpacing: "2px",
+                    fontSize: "16px",
                   }}
                   disabled={!addressSaved || !products.length}
-                  className="placeorder rounded border-0 text-white p-2"
+                  className="placeorder btn rounded border-0 bg-warning text-white p-3"
                   onClick={() => history.push("/payment")}
                 >
                   <CheckOutlined
@@ -326,7 +334,7 @@ const Checkout = ({ history }) => {
               )}
             </div>
 
-            <div className="col-md-6 mb-4 p-2">
+            <div className="col-md-6 mb-4 p-3">
               {loadingforempty ? (
                 <button
                   style={{
@@ -352,7 +360,7 @@ const Checkout = ({ history }) => {
                   }}
                   disabled={!products.length}
                   onClick={emptyCart}
-                  className="empty rounded border-0 text-white p-2"
+                  className="empty btn rounded border-0 text-white p-2"
                 >
                   <DeleteOutlined
                     style={{ transform: "scale(1.3)", paddingRight: "3px" }}

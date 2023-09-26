@@ -3,6 +3,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useSelector, useDispatch } from "react-redux";
 import "../stripe.css";
 import { createPaymentIntent } from "../functions/stripe";
+import { createOrder, emptyUserCart } from "../functions/user";
 import { Link } from "react-router-dom";
 import { Card } from "antd";
 import { DollarOutlined, CheckOutlined } from "@ant-design/icons";
@@ -54,6 +55,24 @@ const StripeCheckout = ({ history }) => {
     } else {
       // here you get result after successful payment
       // create order and save in database for admin to process
+      createOrder(payload, user?.token).then((res) => {
+        if (res.data.ok) {
+          // empty cart from local storage
+          if (typeof window !== "undefined") localStorage.removeItem("cart");
+          // empty cart from redux
+          dispatch({
+            type: "ADD_TO_CART",
+            payload: [],
+          });
+          // reset coupon to false
+          dispatch({
+            type: "COUPON_APPLIED",
+            payload: false,
+          });
+          // empty cart from database
+          emptyUserCart(user?.token);
+        }
+      });
       // empty user cart from redux store and local storage
       console.log(JSON.stringify(payload, null, 4));
       setError(null);
@@ -102,25 +121,31 @@ const StripeCheckout = ({ history }) => {
         <Card
           actions={[
             <>
-              <DollarOutlined className="text-info" /> <br /> Total: $
-              {cartTotal}
+              <DollarOutlined className="text-info" /> <br />{" "}
+              <p className="text-black">Total: ${cartTotal}</p>
             </>,
             <>
-              <CheckOutlined className="text-info" /> <br /> Total payable : $
-              {(payable / 100).toFixed(2)}
+              <CheckOutlined className="text-info" /> <br />{" "}
+              <p className="text-black">
+                Total payable : ${(payable / 100).toFixed(2)}
+              </p>
             </>,
           ]}
         />
       </div>
 
       <form id="payment-form" className="stripe-form" onSubmit={handleSubmit}>
+        <div className="w-100 text-align-start d-flex">
+          <p>*Payament info: </p>
+        </div>
         <CardElement
           id="card-element"
           options={cardStyle}
           onChange={handleChange}
         />
         <button
-          className="stripe-button"
+          style={{ backgroundColor: "#E51636" }}
+          className="stripe-button rounded mt-4"
           disabled={processing || disabled || succeeded}
         >
           <span id="button-text">
@@ -135,8 +160,8 @@ const StripeCheckout = ({ history }) => {
         )}
         <br />
         <p className={succeeded ? "result-message" : "result-message hidden"}>
-          Payment Successful.{" "}
-          <Link to="/history">See it in your purchase history.</Link>
+          <b className="p-0 m-0">Payment Successful.</b>{" "}
+          <Link to="/user/history">See it in your purchase history.</Link>
         </p>
       </form>
     </>

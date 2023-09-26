@@ -53,6 +53,7 @@ const App = () => {
                 lastName: res.data.lastName,
                 adress: res.data.streetAddress,
                 email: res.data.email,
+                phone: res.data.phone,
                 token: idTokenResult.token,
                 role: res.data.role,
                 _id: res.data._id,

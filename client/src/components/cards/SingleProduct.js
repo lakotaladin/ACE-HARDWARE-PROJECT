@@ -140,28 +140,6 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                   </a>
                 </p>
               </div>
-              {/* <div className="block d-flex flex-column align-text-start p-0 m-0"> */}
-              {/* <div className="d-flex flex-row">
-                  <b style={{ marginTop: "2%" }}>Add-on Service</b>
-                </div> */}
-              {/* <div className="d-flex flex-row align-items-center align-text-center">
-                  <Checkbox
-                    style={{
-                      transform: "scale(1.4)",
-                      borderRadius: "4px",
-                      padding: "0px 3px",
-                    }}
-                  />
-                  <img
-                    style={{ width: "20px", margin: "1%" }}
-                    src={service}
-                    alt="Service Logo"
-                  />
-                  <p style={{ marginTop: "3%" }}>
-                    Assembly avaible <b> &#x24;20.00</b>
-                  </p>
-                </div> */}
-              {/* </div> */}
               <div className="block d-flex flex-column align-text-start pt-3 pb-3 m-0">
                 <div className="d-flex flex-row p-0 m-0 justify-content-between">
                   <b>Get item from: </b>
@@ -201,7 +179,11 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                   {/* Add to card */}
                   {loading ? (
                     <Tooltip title={tooltip}>
-                      <a className="w-100 p-0 m-0" onClick={handleaddToCart}>
+                      <a
+                        className="w-100 p-0 m-0"
+                        onClick={handleaddToCart}
+                        disabled={!isQuantityAvailable}
+                      >
                         <button
                           style={{
                             height: "48px",
@@ -223,9 +205,8 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                             borderRadius: "4px",
                           }}
                           id="add-to-cart"
-                          className="show-loading-animation w-100 mz-button mz-animated-btn ace-add-to-cart-btn "
+                          className="btn w-100 mz-button mz-animated-btn ace-add-to-cart-btn "
                           data-mz-action="addToCart"
-                          disabled={!isQuantityAvailable}
                         >
                           <ButtonLoader />
                         </button>
@@ -233,7 +214,11 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                     </Tooltip>
                   ) : (
                     <Tooltip title={tooltip}>
-                      <a className="w-100 p-0 m-0" onClick={handleaddToCart}>
+                      <a
+                        className="w-100 p-0 m-0"
+                        onClick={handleaddToCart}
+                        disabled={product.quantity < 1}
+                      >
                         <button
                           style={{
                             height: "48px",
@@ -252,7 +237,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                             borderRadius: "4px",
                           }}
                           id="add-to-cart"
-                          className="show-loading-animation w-100 mz-button mz-animated-btn ace-add-to-cart-btn "
+                          className="show-loading-animation btn w-100 mz-button mz-animated-btn ace-add-to-cart-btn "
                           data-mz-action="addToCart"
                           disabled={!isQuantityAvailable}
                         >
@@ -297,6 +282,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                     <Col>
                       <PrinterOutlined
                         style={{ fontSize: "24px", color: "#000000" }}
+                        disabled={!isQuantityAvailable}
                       />
                     </Col>
                   </Row>

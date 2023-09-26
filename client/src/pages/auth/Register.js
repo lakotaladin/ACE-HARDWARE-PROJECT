@@ -38,6 +38,7 @@ const Register = ({ history }) => {
 
     try {
       let userData = {
+        email: email,
         name: name,
         lastName: lastName,
         streetAddress: Address,
