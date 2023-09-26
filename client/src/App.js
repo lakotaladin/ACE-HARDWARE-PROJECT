@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./firebase";
 import { currentUser } from "./functions/auth";
@@ -32,13 +32,16 @@ import Product from "./pages/Product";
 import Checkout from "./pages/Checkout";
 import CreateCouponPage from "./pages/admin/coupon/CreateCouponPage";
 import Payment from "./pages/Payment";
-import ButttonLoader from "./components/Spinners/ButttonLoader";
+import ScaleLoader from "./components/Spinners/GlobalSpinner";
+import GlobalSpinner from "./components/Spinners/GlobalSpinner";
 
 const App = () => {
   const dispatch = useDispatch();
+  const [loadingGlobal, setLoadingGlobal] = useState(false);
 
   // to check firebase auth state
   useEffect(() => {
+    setLoadingGlobal(true);
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const idTokenResult = await user?.getIdTokenResult();
@@ -62,6 +65,7 @@ const App = () => {
           })
           .catch((err) => console.log(err));
       }
+      setLoadingGlobal(false);
     });
     // cleanup
     return () => unsubscribe();
@@ -70,41 +74,49 @@ const App = () => {
     <>
       <SideDrawer />
       <ToastContainer />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        {/* <Route exact path="/spinner" component={ButttonLoader} /> */}
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/register/complete" component={RegisterComplete} />
-        <UserRoute exact path="/myaccount" component={Profile} />
-        <UserRoute exact path="/account" component={Account} />
-        <UserRoute exact path="/user/history" component={History} />
-        <UserRoute exact path="/user/wishlist" component={Wishlist} />
-        <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
-        <AdminRoute exact path="/admin/category" component={CategoryCreate} />
-        <AdminRoute exact path="/admin/sub" component={SubCreate} />
-        <AdminRoute
-          exact
-          path="/admin/category/:slug"
-          component={CategoryUpdate}
-        />
-        <AdminRoute exact path="/admin/sub/:slug" component={SubUpdate} />
-        <AdminRoute exact path="/admin/product" component={ProductCreate} />
-        <AdminRoute exact path="/admin/coupon" component={CreateCouponPage} />
-        <AdminRoute exact path="/admin/products" component={AllProducts} />
-        <AdminRoute
-          exact
-          path="/admin/product/:slug"
-          component={ProductUpdate}
-        />
-        <Route exact path="/product/:slug" component={Product} />
-        <Route exact path="/location" component={Location} />
-        <Route exact path="/layout" component={LayoutPage} />
-        <Route exact path="/store-details" component={Storeinfo} />
-        <Route exact path="/cart" component={Cart} />
-        <UserRoute exact path="/checkout" component={Checkout} />
-        <UserRoute exact path="/payment" component={Payment} />
-      </Switch>
+      {loadingGlobal ? (
+        <GlobalSpinner />
+      ) : (
+        <Switch>
+          <Route exact path="/" component={Home} />
+          {/* <Route exact path="/spinner" component={ButttonLoader} /> */}
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/register/complete" component={RegisterComplete} />
+          <UserRoute exact path="/myaccount" component={Profile} />
+          <UserRoute exact path="/account" component={Account} />
+          <UserRoute exact path="/user/history" component={History} />
+          <UserRoute exact path="/user/wishlist" component={Wishlist} />
+          <AdminRoute
+            exact
+            path="/admin/dashboard"
+            component={AdminDashboard}
+          />
+          <AdminRoute exact path="/admin/category" component={CategoryCreate} />
+          <AdminRoute exact path="/admin/sub" component={SubCreate} />
+          <AdminRoute
+            exact
+            path="/admin/category/:slug"
+            component={CategoryUpdate}
+          />
+          <AdminRoute exact path="/admin/sub/:slug" component={SubUpdate} />
+          <AdminRoute exact path="/admin/product" component={ProductCreate} />
+          <AdminRoute exact path="/admin/coupon" component={CreateCouponPage} />
+          <AdminRoute exact path="/admin/products" component={AllProducts} />
+          <AdminRoute
+            exact
+            path="/admin/product/:slug"
+            component={ProductUpdate}
+          />
+          <Route exact path="/product/:slug" component={Product} />
+          <Route exact path="/location" component={Location} />
+          <Route exact path="/layout" component={LayoutPage} />
+          <Route exact path="/store-details" component={Storeinfo} />
+          <Route exact path="/cart" component={Cart} />
+          <UserRoute exact path="/checkout" component={Checkout} />
+          <UserRoute exact path="/payment" component={Payment} />
+        </Switch>
+      )}
     </>
   );
 };

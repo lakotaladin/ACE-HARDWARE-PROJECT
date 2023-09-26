@@ -44,8 +44,10 @@ exports.createOrUpdateUser = async (req, res) => {
 
 exports.currentUser = async (req, res) => {
   // console.log("user", req.user.email);
-  User.findOne({ email: req.user.email }).exec((err, user) => {
-    if (err) throw new Error(err);
-    return res.status(200).json(user);
-  });
+  User.findOne({ email: req.user.email, name: req.user.name }).exec(
+    (err, user) => {
+      if (err) throw new Error(err);
+      return res.status(200).json(user);
+    }
+  );
 };
