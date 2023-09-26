@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { StarOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const RatingModal = ({ children }) => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -23,7 +24,17 @@ const RatingModal = ({ children }) => {
     <>
       <div onClick={handleModal}>
         <StarOutlined className="text-danger" /> <br />{" "}
-        {user ? "Leave rating" : "Login to leave rating"}
+        {user ? (
+          <p style={{ cursor: "pointer" }}>Leave rating</p>
+        ) : (
+          <Link
+            to="/login"
+            title="Login to leave rating, click here."
+            style={{ color: "black" }}
+          >
+            Login to leave rating
+          </Link>
+        )}
       </div>
       <Modal
         title="Leave your rating"

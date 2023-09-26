@@ -21,10 +21,12 @@ import RatingModal from "../modalRating/RatingModal";
 import { showAverage } from "../../functions/rating";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
+import ButtonLoader from "../Spinners/ButttonLoader";
 
 // This is children component of /page/Product.js page
 const SingleProduct = ({ product, onStarClick, star }) => {
   const { title, _id, price, images, quantity } = product;
+  const [loading, setLoading] = useState(false);
 
   // redux
   const { user, cart } = useSelector((state) => ({ ...state }));
@@ -38,6 +40,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
 
   // Handle add to card
   const handleaddToCart = () => {
+    setLoading(true);
     // cart array
     let cart = [];
     if (typeof window !== "undefined") {
@@ -66,6 +69,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
         payload: true,
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -195,36 +199,68 @@ const SingleProduct = ({ product, onStarClick, star }) => {
               <div className="block d-flex flex-column align-text-start p-0 m-0">
                 <div className="d-flex flex-row mt-3 mb-3 justify-content-between">
                   {/* Add to card */}
-
-                  <Tooltip title={tooltip}>
-                    <a className="w-100 p-0 m-0" onClick={handleaddToCart}>
-                      <button
-                        style={{
-                          height: "48px",
-                          fontWeight: "500",
-                          fontSize: "14px",
-                          backgroundColor: "#d40029",
-                          padding: "15px 20px",
-                          lineHeight: "normal",
-                          overflow: "hidden",
-                          display: "inline-block",
-                          color: "white",
-                          letterSpacing: "1.25px",
-                          boxShadow:
-                            "0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);",
-                          border: "none",
-                          borderRadius: "4px",
-                        }}
-                        id="add-to-cart"
-                        className="show-loading-animation w-100 mz-button mz-animated-btn ace-add-to-cart-btn "
-                        data-mz-action="addToCart"
-                        disabled={!isQuantityAvailable}
-                      >
-                        {" "}
-                        ADD TO CART{" "}
-                      </button>
-                    </a>
-                  </Tooltip>
+                  {loading ? (
+                    <Tooltip title={tooltip}>
+                      <a className="w-100 p-0 m-0" onClick={handleaddToCart}>
+                        <button
+                          style={{
+                            height: "48px",
+                            fontWeight: "500",
+                            fontSize: "14px",
+                            backgroundColor: "#d40029",
+                            padding: "15px 20px",
+                            lineHeight: "normal",
+                            overflow: "hidden",
+                            display: "inline-block",
+                            textAlign: "center",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "white",
+                            letterSpacing: "1.25px",
+                            boxShadow:
+                              "0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);",
+                            border: "none",
+                            borderRadius: "4px",
+                          }}
+                          id="add-to-cart"
+                          className="show-loading-animation w-100 mz-button mz-animated-btn ace-add-to-cart-btn "
+                          data-mz-action="addToCart"
+                          disabled={!isQuantityAvailable}
+                        >
+                          <ButtonLoader />
+                        </button>
+                      </a>
+                    </Tooltip>
+                  ) : (
+                    <Tooltip title={tooltip}>
+                      <a className="w-100 p-0 m-0" onClick={handleaddToCart}>
+                        <button
+                          style={{
+                            height: "48px",
+                            fontWeight: "500",
+                            fontSize: "14px",
+                            backgroundColor: "#d40029",
+                            padding: "15px 20px",
+                            lineHeight: "normal",
+                            overflow: "hidden",
+                            display: "inline-block",
+                            color: "white",
+                            letterSpacing: "1.25px",
+                            boxShadow:
+                              "0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);",
+                            border: "none",
+                            borderRadius: "4px",
+                          }}
+                          id="add-to-cart"
+                          className="show-loading-animation w-100 mz-button mz-animated-btn ace-add-to-cart-btn "
+                          data-mz-action="addToCart"
+                          disabled={!isQuantityAvailable}
+                        >
+                          ADD TO CART
+                        </button>
+                      </a>
+                    </Tooltip>
+                  )}
                 </div>
                 {/* Add to wish list */}
                 <Link to="#" style={{ margin: "1% auto " }}>

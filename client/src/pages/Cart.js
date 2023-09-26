@@ -77,8 +77,8 @@ const Cart = ({ history }) => {
         </div>
         {/* {JSON.stringify(cart)} */}
         <div
-          style={{ height: "100vh" }}
-          className="cardsection d-flex flex-column w-100 m-0 p-1"
+          style={{ height: "auto" }}
+          className="cardsection d-flex flex-column w-100 m-0 mb-5 p-1 pb-5"
         >
           <div className="row w-100">
             <div

@@ -32,6 +32,7 @@ import Product from "./pages/Product";
 import Checkout from "./pages/Checkout";
 import CreateCouponPage from "./pages/admin/coupon/CreateCouponPage";
 import Payment from "./pages/Payment";
+import ButttonLoader from "./components/Spinners/ButttonLoader";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const App = () => {
       <ToastContainer />
       <Switch>
         <Route exact path="/" component={Home} />
+        {/* <Route exact path="/spinner" component={ButttonLoader} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/register/complete" component={RegisterComplete} />
