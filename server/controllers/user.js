@@ -17,7 +17,7 @@ exports.userCart = async (req, res) => {
 
   if (cartExistByThisUser) {
     cartExistByThisUser.remove();
-    console.log("removed old cart");
+    // console.log("removed old cart");
   }
 
   for (let i = 0; i < cart.length; i++) {
@@ -50,7 +50,7 @@ exports.userCart = async (req, res) => {
     orderdBy: user._id,
   }).save();
 
-  console.log("new cart ----> ", newCart);
+  // console.log("new cart ----> ", newCart);
   res.json({ ok: true });
 };
 
@@ -59,7 +59,7 @@ exports.getUserCart = async (req, res) => {
     email: req.user?.email,
   }).exec();
 
-  let cart = await Cart.findOne({ orderdBy: user?._id })
+  let cart = await Cart.findOne({ orderdBy: user._id })
     .populate("products.product", "_id title price totalAfterDiscount")
     .exec();
 
@@ -75,7 +75,7 @@ exports.emptyCart = async (req, res) => {
   console.log("empty cart");
   const user = await User.findOne({ email: req.user.email }).exec();
 
-  const cart = await Cart.findOneAndRemove({ orderdBy: user?._id }).exec();
+  const cart = await Cart.findOneAndRemove({ orderdBy: user._id }).exec();
   res.json(cart);
 };
 
@@ -115,7 +115,7 @@ exports.applyCouponToUserCart = async (req, res) => {
   ).toFixed(2); // 99.99
 
   Cart.findOneAndUpdate(
-    { orderdBy: user?._id },
+    { orderdBy: user._id },
     { totalAfterDiscount },
     { new: true }
   ).exec();
@@ -130,14 +130,14 @@ exports.createOrder = async (req, res) => {
   // return;
   const { paymentIntent } = req.body.stripeResponse;
 
-  const user = await User.findOne({ email: req.user?.email }).exec();
+  const user = await User.findOne({ email: req.user.email }).exec();
 
-  let { products } = await Cart.findOne({ orderdBy: user?._id }).exec();
+  let { products } = await Cart.findOne({ orderdBy: user._id }).exec();
 
   let newOrder = await new Order({
     products,
     paymentIntent,
-    orderdBy: user?._id,
+    orderdBy: user._id,
   }).save();
 
   // decrement quantity, increment sold
@@ -158,9 +158,9 @@ exports.createOrder = async (req, res) => {
 };
 
 exports.orders = async (req, res) => {
-  let user = await User.findOne({ email: req.user?.email }).exec();
+  let user = await User.findOne({ email: req.user.email }).exec();
 
-  let userOrders = await Order.find({ orderdBy: user?._id })
+  let userOrders = await Order.find({ orderdBy: user._id })
     .populate("products.product")
     .exec();
 

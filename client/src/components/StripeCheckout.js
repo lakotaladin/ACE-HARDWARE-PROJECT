@@ -70,7 +70,7 @@ const StripeCheckout = ({ history }) => {
             payload: false,
           });
           // empty cart from database
-          emptyUserCart(user?.token);
+          emptyUserCart(user.token);
         }
       });
       // empty user cart from redux store and local storage

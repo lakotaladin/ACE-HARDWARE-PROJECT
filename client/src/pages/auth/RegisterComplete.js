@@ -41,34 +41,34 @@ const RegisterComplete = ({ history }) => {
         email,
         window.location.href
       );
+       console.log("Rezultat pri logov", result);
+       if (result.user?.emailVerified) {
+         // remove user email form local storage
+         window.localStorage.removeItem("emailForRegistration");
+         // get user id token
+         let user = auth.currentUser;
+         await user?.updatePassword(password);
+         const idTokenResult = await user?.getIdToken();
+         console.log("Token je ", idTokenResult);
+         createOrUpdateUser(idTokenResult.token)
+           .then((res) =>
+             dispatch({
+               type: "LOGGED_IN_USER",
+               payload: {
+                 email: res.data.email,
+                 token: idTokenResult.token,
+                 role: res.data.role,
+                 _id: res.data._id,
+               },
+             })
+           )
+           .catch();
 
-      if (result.user?.emailVerified) {
-        // remove user email form local storage
-        window.localStorage.removeItem("emailForRegistration");
-        // get user id token
-        let user = auth.currentUser;
-        await user?.updatePassword(password);
-        const idTokenResult = await user?.getIdToken();
-
-        createOrUpdateUser(idTokenResult.token)
-          .then((res) =>
-            dispatch({
-              type: "LOGGED_IN_USER",
-              payload: {
-                email: res.data.email,
-                token: idTokenResult.token,
-                role: res.data.role,
-                _id: res.data._id,
-              },
-            })
-          )
-          .catch();
-
-        // redux store
-        console.log("user", user, "idTokenResult", idTokenResult);
-        // redirect
-        history.push("/");
-      }
+         // redux store
+         console.log("user", user, "idTokenResult", idTokenResult);
+         // redirect
+         history.push("/");
+       }
 
       toast.success("Registration is Completed!");
       //   console.log("RESULT", result);

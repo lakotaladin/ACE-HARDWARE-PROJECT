@@ -27,19 +27,11 @@ exports.registerUser = async (req, res) => {
 };
 
 exports.createOrUpdateUser = async (req, res) => {
-  const {
-    email,
-    token,
-    name,
-    lastName,
-    streetAddress,
-    phone,
-    phoneType,
-    month,
-  } = req.user;
+  const { email, name, lastName, streetAddress, phone, phoneType, month } =
+    req.user;
 
   const user = await User.findOneAndUpdate(
-    { email, token, name, lastName, streetAddress, phone, phoneType, month },
+    { email, name, lastName, streetAddress, phone, phoneType, month },
     { new: true }
   );
   if (user) {
@@ -48,6 +40,12 @@ exports.createOrUpdateUser = async (req, res) => {
   } else {
     const newUser = await new User({
       email,
+      name,
+      lastName,
+      streetAddress,
+      phone,
+      phoneType,
+      month,
     }).save();
     // console.log("USER CREATED", newUser);
     res.json(newUser);

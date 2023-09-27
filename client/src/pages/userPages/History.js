@@ -7,15 +7,19 @@ import {
 } from "@ant-design/icons";
 import { getUserOrders } from "../../functions/user";
 import Header from "../../components/nav/Header";
+import ScrollOnTopButton from "../../components/ScrollOnTop/ScrollOnTopButton";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import Footer from "../../components/footer/Footer";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import firebase from "firebase/compat/app";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import ShowPaymentInfo from "../../components/cards/ShowPaymentInfo";
+import Invoice from "../../components/order/Invoice";
 
 const History = ({ history }) => {
-  const [activeLink, setActiveLink] = useState("History");
   const [orders, setOrders] = useState([]);
+  const [activeLink, setActiveLink] = useState("History");
   // Load all orders
   useEffect(() => {
     loadUserOrders();
@@ -27,7 +31,7 @@ const History = ({ history }) => {
   let { user } = useSelector((state) => ({ ...state }));
 
   // Orders
-
+  console.log("ORDERI SU ", orders);
   const loadUserOrders = () =>
     getUserOrders(user.token).then((res) => {
       console.log(JSON.stringify(res.data, null, 4));
@@ -50,7 +54,13 @@ const History = ({ history }) => {
   const showOrderInTable = (order) => (
     <table className="table table-bordered">
       <thead className="thead-light">
-        <tr>
+        <tr
+          style={{
+            backgroundColor: "#D40029",
+            color: "white",
+            letterSpacing: "1px",
+          }}
+        >
           <th scope="col">Title</th>
           <th scope="col">Price</th>
           <th scope="col">Brand</th>
@@ -72,7 +82,9 @@ const History = ({ history }) => {
             <td>{p.count}</td>
             <td>
               {p.product.shipping === "Yes" ? (
-                <CheckCircleOutlined style={{ color: "green" }} />
+                <CheckCircleOutlined
+                  style={{ color: "green", transform: "scale(1.3)" }}
+                />
               ) : (
                 <CloseCircleOutlined style={{ color: "red" }} />
               )}
@@ -82,15 +94,23 @@ const History = ({ history }) => {
       </tbody>
     </table>
   );
+
+  const showDownloadLink = (order) => (
+    <PDFDownloadLink
+      document={<Invoice order={order} />}
+      fileName="invoice.pdf"
+      className="btn btn-sm btn-block btn-outline-primary"
+    >
+      Download PDF
+    </PDFDownloadLink>
+  );
   const showEachOrders = () =>
     orders.map((order, i) => (
       <div key={i} className="m-5 p-3 card">
-        <p>show payment info</p>
+        <ShowPaymentInfo order={order} />
         {showOrderInTable(order)}
         <div className="row">
-          <div className="col">
-            <p>PDF download</p>
-          </div>
+          <div className="col">{showDownloadLink(order)}</div>
         </div>
       </div>
     ));
@@ -158,7 +178,7 @@ const History = ({ history }) => {
             User History Page
           </p>
         </div>
-        <div style={{ height: "1000px" }} className="ordersection text-center">
+        <div style={{ height: "auto" }} className="ordersection text-center">
           <h4>
             {orders.length > 0 ? "User purchase orders" : "No purchase orders"}
           </h4>
@@ -167,6 +187,7 @@ const History = ({ history }) => {
         </div>
       </div>
       <Footer />
+      <ScrollOnTopButton />
     </>
   );
 };
