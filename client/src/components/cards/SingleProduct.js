@@ -40,8 +40,8 @@ const SingleProduct = ({ product, onStarClick, star }) => {
   const isQuantityAvailable = quantity > 0;
 
   // Tooltip
-  const [tooltip, setTooltip] = useState("Click to add");
-  const [tooltipwish, setTooltipwish] = useState("Click to add Wishlist");
+  const [tooltip, setTooltip] = useState("Click to add in card");
+  const [tooltipwish, setTooltipwish] = useState("Click to add in Wishlist");
 
   // Handle add to card
   const handleaddToCart = () => {

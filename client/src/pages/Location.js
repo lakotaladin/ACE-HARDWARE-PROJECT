@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SearchInput from "../components/LocationCard/SearchInput";
 import LocationCard from "../components/LocationCard/LocationCard";
 import "../pages/location.css";
@@ -229,40 +229,6 @@ const Location = () => {
                 </Popup>
               </Marker>
             ))}
-            {/* {selectedLocation && (
-              <Marker
-                ref={markerRef}
-                cancelable={true}
-                draggable={false}
-                position={[
-                  selectedLocation.latitude,
-                  selectedLocation.longitude,
-                ]}
-              >
-                <Popup>
-                  <div className="w-100 p-0 m-0 d-flex flex-row">
-                    <div className="m-2">
-                      <img
-                        style={{ width: "80px", height: "60px" }}
-                        src={logo}
-                        alt="Ace Hardware logo"
-                      />
-                    </div>
-                    <div className="marker-text p-0 m-0">
-                      <b>{selectedLocation.name}</b>
-                      <p>{selectedLocation.description}</p>
-                      <p>{selectedLocation.adress}</p>
-                      <p>{selectedLocation.phone}</p>
-                      <div className="w-100 mt-2">
-                        <p>{selectedLocation.work}</p>
-                        <p>{selectedLocation.worksat}</p>
-                        <p>{selectedLocation.worksun}</p>
-                      </div>
-                    </div>
-                  </div>
-                </Popup>
-              </Marker>
-            )} */}
           </MapContainer>
         </div>
       </div>

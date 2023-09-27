@@ -70,9 +70,7 @@ const LayoutPage = () => {
               <Breadcrumb.Item>Product</Breadcrumb.Item>
             </Breadcrumb>
             <div className="page-title d-flex flex-row  justify-content-between p-0 m-0">
-              <h2 className="mt-3">
-                On this Category ({products.length} items Found)
-              </h2>
+              <h2 className="mt-3">Items ({products.length} Found)</h2>
               <div className="recommended d-flex flex-row align-items-center p-0 m-0">
                 <p style={{ fontSize: "14px" }} className="p-0 m-0">
                   Sort by
@@ -135,15 +133,15 @@ const LayoutPage = () => {
           </div>
           <Layout
             style={{
-              height: "100vh",
+              height: "auto",
               width: "80%",
               margin: "auto",
               backgroundColor: "white",
               overflowX: "hidden",
             }}
           >
-            <Layout hasSider>
-              <Sider width="17%" style={siderStyle}>
+            <Layout style={{ marginBottom: "5%" }} hasSider>
+              <Sider width="20%" style={siderStyle}>
                 <Collapsediv title="Naslov Div-a" links={links} />
               </Sider>
               <Content style={contentStyle}>
@@ -159,8 +157,8 @@ const LayoutPage = () => {
               </Content>
             </Layout>
           </Layout>
+          <Footer />
         </Space>
-        <Footer />
         <ScrollToTopButton />
       </div>
     </>

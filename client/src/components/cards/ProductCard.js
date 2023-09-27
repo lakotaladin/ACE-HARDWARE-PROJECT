@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Col } from "antd"; // Dodali smo Col komponentu za Bootstrap grid
+import { Card, Col, Tooltip } from "antd"; // Dodali smo Col komponentu za Bootstrap grid
 import defaultImage from "../../resources/default.jpg";
 import { Link } from "react-router-dom";
 import { HeartOutlined } from "@ant-design/icons";
@@ -13,6 +13,7 @@ const ProductCard = ({ product }) => {
   // destructure
   const { title, price, images, slug } = product;
   const [hovered, setHovered] = useState(false);
+  const [tooltipwish, setTooltipwish] = useState("Click to add in Wishlist");
 
   // redux
   const { user } = useSelector((state) => ({ ...state }));
@@ -23,9 +24,10 @@ const ProductCard = ({ product }) => {
     e.preventDefault();
     addToWishlist(product._id, user.token).then((res) => {
       console.log("ADDED TO WISHLIST", res.data);
+      setTooltipwish("Added");
       toast.success("Added to wishlist");
-      history.push("/user/wishlist");
     });
+    history.push("/user/wishlist");
   };
 
   return (
@@ -44,41 +46,42 @@ const ProductCard = ({ product }) => {
       >
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center"></div>
+
           <div style={{ position: "relative" }}>
             <a onClick={handleAddToWishlist}>
-              <HeartOutlined
-                style={{
-                  position: "absolute",
-                  fontSize: "22px",
-                  color: "#ACACAC",
-                  borderRadius: "50%",
-                  padding: "5px 0px",
-                }}
-              />
+              <Tooltip title={tooltipwish}>
+                <HeartOutlined
+                  style={{
+                    position: "absolute",
+                    fontSize: "22px",
+                    color: "#ACACAC",
+                    borderRadius: "50%",
+                    padding: "5px 0px",
+                  }}
+                />
+              </Tooltip>
             </a>
           </div>
         </div>
-        <div className="w-100 p-0 m-0 ">
+        <div className="productdiv w-100 p-0 m-0 ">
           <Link to={`/product/${slug}`}>
             <img
               alt="Product"
               src={
-                hovered
-                  ? images && images.length
+                images && images.length
+                  ? hovered
                     ? images[1].url
-                    : ""
-                  : images && images.length
-                  ? images[0].url
+                    : images[0].url
                   : defaultImage
               }
               style={{
                 width: "100%",
-                height: "300px", // Prilagodili smo visinu slike
+                height: "300px",
                 objectFit: "scale-down",
                 transition: "transform 0.1s ease-in-out",
               }}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
+              onMouseEnter={() => defaultImage && setHovered(true)}
+              onMouseLeave={() => defaultImage && setHovered(false)}
             />
           </Link>
         </div>
