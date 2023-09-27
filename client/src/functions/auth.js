@@ -12,16 +12,12 @@ export const createOrUpdateUser = async (authtoken) => {
   );
 };
 
-export const registerUser = async (authtoken) => {
-  return await axios.post(
-    `${process.env.REACT_APP_API}`,
-    {},
-    {
-      headers: {
-        authtoken,
-      },
-    }
-  );
+export const registerUser = async (authtoken, userData) => {
+  return await axios.post(`${process.env.REACT_APP_API}`, userData, {
+    headers: {
+      authtoken,
+    },
+  });
 };
 
 export const currentUser = async (authtoken) => {

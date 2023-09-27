@@ -39,9 +39,9 @@ const Checkout = ({ history }) => {
     setLoadingcoupon(true);
     setLoadingplace(true);
     setLoadingempty(true);
-    getUserCart(user?.token).then((res) => {
+    getUserCart(user.token).then((res) => {
       console.log("user cart res", JSON.stringify(res.data, null, 4));
-      setProducts(res.data.products);
+      setProducts(res.data?.products);
       setTotal(res.data.cartTotal);
       setLoading(false);
       setLoadingcoupon(false);

@@ -55,9 +55,11 @@ exports.userCart = async (req, res) => {
 };
 
 exports.getUserCart = async (req, res) => {
-  const user = await User.findOne({ email: req.user.email }).exec();
+  const user = await User.findOne({
+    email: req.user?.email,
+  }).exec();
 
-  let cart = await Cart.findOne({ orderdBy: user._id })
+  let cart = await Cart.findOne({ orderdBy: user?._id })
     .populate("products.product", "_id title price totalAfterDiscount")
     .exec();
 
@@ -153,4 +155,14 @@ exports.createOrder = async (req, res) => {
 
   // console.log("NEW ORDER SAVED", newOrder);
   res.json({ ok: true });
+};
+
+exports.orders = async (req, res) => {
+  let user = await User.findOne({ email: req.user?.email }).exec();
+
+  let userOrders = await Order.find({ orderdBy: user?._id })
+    .populate("products.product")
+    .exec();
+
+  res.json(userOrders);
 };

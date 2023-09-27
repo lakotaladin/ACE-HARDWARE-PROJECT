@@ -1,22 +1,38 @@
 import React, { useEffect, useState } from "react";
 import "./account.css";
-import { RightOutlined } from "@ant-design/icons";
+import {
+  RightOutlined,
+  CheckCircleOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
+import { getUserOrders } from "../../functions/user";
 import Header from "../../components/nav/Header";
 import Footer from "../../components/footer/Footer";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import firebase from "firebase/compat/app";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-const History = () => {
+const History = ({ history }) => {
   const [activeLink, setActiveLink] = useState("History");
+  const [orders, setOrders] = useState([]);
+  // Load all orders
+  useEffect(() => {
+    loadUserOrders();
+  }, []);
 
   //  Fetch user from firebase
 
   let dispatch = useDispatch();
   let { user } = useSelector((state) => ({ ...state }));
-  let history = useHistory();
+
+  // Orders
+
+  const loadUserOrders = () =>
+    getUserOrders(user.token).then((res) => {
+      console.log(JSON.stringify(res.data, null, 4));
+      setOrders(res.data);
+    });
 
   const handleNavLinkClick = (linkName) => {
     setActiveLink(linkName);
@@ -31,6 +47,53 @@ const History = () => {
     toast.success("Succesfully Log Out!");
     history.push("/login");
   };
+  const showOrderInTable = (order) => (
+    <table className="table table-bordered">
+      <thead className="thead-light">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Color</th>
+          <th scope="col">Count</th>
+          <th scope="col">Shipping</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {order.products.map((p, i) => (
+          <tr key={i}>
+            <td>
+              <b>{p.product.title}</b>
+            </td>
+            <td>{p.product.price}</td>
+            <td>{p.product.brand}</td>
+            <td>{p.color}</td>
+            <td>{p.count}</td>
+            <td>
+              {p.product.shipping === "Yes" ? (
+                <CheckCircleOutlined style={{ color: "green" }} />
+              ) : (
+                <CloseCircleOutlined style={{ color: "red" }} />
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+  const showEachOrders = () =>
+    orders.map((order, i) => (
+      <div key={i} className="m-5 p-3 card">
+        <p>show payment info</p>
+        {showOrderInTable(order)}
+        <div className="row">
+          <div className="col">
+            <p>PDF download</p>
+          </div>
+        </div>
+      </div>
+    ));
 
   return (
     <>
@@ -94,6 +157,13 @@ const History = () => {
           <p style={{ fontWeight: "400", fontSize: "18px", color: "#D91F43" }}>
             User History Page
           </p>
+        </div>
+        <div style={{ height: "1000px" }} className="ordersection text-center">
+          <h4>
+            {orders.length > 0 ? "User purchase orders" : "No purchase orders"}
+          </h4>
+
+          {showEachOrders()}
         </div>
       </div>
       <Footer />

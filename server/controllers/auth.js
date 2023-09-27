@@ -15,8 +15,8 @@ exports.registerUser = async (req, res) => {
   });
 
   user.role = "subscriber";
-  user.verified = false;
-  user.cart = [];
+  // user.verified = false;
+  // user.cart = [];
   try {
     await user.save();
     res.status(201).json(user);
@@ -27,9 +27,21 @@ exports.registerUser = async (req, res) => {
 };
 
 exports.createOrUpdateUser = async (req, res) => {
-  const { email } = req.user;
+  const {
+    email,
+    token,
+    name,
+    lastName,
+    streetAddress,
+    phone,
+    phoneType,
+    month,
+  } = req.user;
 
-  const user = await User.findOneAndUpdate({ email }, { new: true });
+  const user = await User.findOneAndUpdate(
+    { email, token, name, lastName, streetAddress, phone, phoneType, month },
+    { new: true }
+  );
   if (user) {
     // console.log("USER UPDATED", user);
     res.json(user);
@@ -44,10 +56,8 @@ exports.createOrUpdateUser = async (req, res) => {
 
 exports.currentUser = async (req, res) => {
   // console.log("user", req.user.email);
-  User.findOne({ email: req.user.email, name: req.user.name }).exec(
-    (err, user) => {
-      if (err) throw new Error(err);
-      return res.status(200).json(user);
-    }
-  );
+  User.findOne({ email: req.user.email }).exec((err, user) => {
+    if (err) throw new Error(err);
+    return res.status(200).json(user);
+  });
 };

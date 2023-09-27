@@ -60,6 +60,12 @@ const Register = ({ history }) => {
       );
       window.localStorage.setItem("emailForRegistration", email);
       setEmail("");
+      setLastName("");
+      setphoneNumber("");
+      setAddress("");
+      setName("");
+      setPhoneType("");
+      setMonth("");
     } catch (error) {
       console.error("Greška prilikom slanja podataka na bekend:", error);
     }
@@ -278,7 +284,7 @@ const Register = ({ history }) => {
                   label: "Home",
                 },
                 {
-                  value: "business",
+                  value: "bussiness",
                   label: "Business",
                 },
               ]}
