@@ -6,11 +6,11 @@ import instock from "../../resources/instock.png";
 import addtowish from "../../resources/addtowish.png";
 import defaultimg from "../../resources/default.jpg";
 import { Card, Col, Row, Tooltip } from "antd";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import {
   ExclamationCircleFilled,
   MailOutlined,
-  PrinterOutlined,
   RightOutlined,
   TwitterOutlined,
 } from "@ant-design/icons";
@@ -19,9 +19,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ProductListItems from "./ProductListItems";
 import RatingModal from "../modalRating/RatingModal";
 import { showAverage } from "../../functions/rating";
+import { addToWishlist } from "../../functions/user";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import ButtonLoader from "../Spinners/ButttonLoader";
+import { useHistory } from "react-router-dom";
 
 // This is children component of /page/Product.js page
 const SingleProduct = ({ product, onStarClick, star }) => {
@@ -31,12 +33,15 @@ const SingleProduct = ({ product, onStarClick, star }) => {
   // redux
   const { user, cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
+  // router
+  let history = useHistory();
 
   // Check product quantity
-  const isQuantityAvailable = product.quantity > 0;
+  const isQuantityAvailable = quantity > 0;
 
   // Tooltip
   const [tooltip, setTooltip] = useState("Click to add");
+  const [tooltipwish, setTooltipwish] = useState("Click to add Wishlist");
 
   // Handle add to card
   const handleaddToCart = () => {
@@ -70,6 +75,15 @@ const SingleProduct = ({ product, onStarClick, star }) => {
       });
     }
     setLoading(false);
+  };
+
+  const handleAddToWishlist = (e) => {
+    e.preventDefault();
+    addToWishlist(product._id, user.token).then((res) => {
+      // console.log("ADDED TO WISHLIST", res.data);
+      setTooltipwish("Added in your Wishlist!");
+      toast.success("Added to wishlist");
+    });
   };
 
   return (
@@ -179,11 +193,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                   {/* Add to card */}
                   {loading ? (
                     <Tooltip title={tooltip}>
-                      <a
-                        className="w-100 p-0 m-0"
-                        onClick={handleaddToCart}
-                        disabled={!isQuantityAvailable}
-                      >
+                      <a className="w-100 p-0 m-0">
                         <button
                           style={{
                             height: "48px",
@@ -248,13 +258,18 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                   )}
                 </div>
                 {/* Add to wish list */}
-                <Link to="#" style={{ margin: "1% auto " }}>
-                  <img
-                    style={{ width: "120px", margin: "3% auto " }}
-                    src={addtowish}
-                    alt="Add to Wish list"
-                  />
-                </Link>
+                <Tooltip title={tooltipwish}>
+                  <a
+                    onClick={handleAddToWishlist}
+                    style={{ margin: "1% auto " }}
+                  >
+                    <img
+                      style={{ width: "120px", margin: "3% auto " }}
+                      src={addtowish}
+                      alt="Add to Wish list"
+                    />
+                  </a>
+                </Tooltip>
                 <div>
                   <Row gutter={16} justify="end">
                     <Col>
@@ -278,12 +293,6 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                           style={{ fontSize: "24px", color: "#D44638" }}
                         />
                       </a>
-                    </Col>
-                    <Col>
-                      <PrinterOutlined
-                        style={{ fontSize: "24px", color: "#000000" }}
-                        disabled={!isQuantityAvailable}
-                      />
                     </Col>
                   </Row>
                 </div>

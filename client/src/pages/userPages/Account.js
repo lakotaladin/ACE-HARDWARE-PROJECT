@@ -177,9 +177,7 @@ const Account = () => {
                 </p>
                 <div className="info-containerr w-100 d-flex flex-column m-0">
                   <p className="p-text">{userName}</p>
-                  <p className="p-text p-0">
-                    5811 Danbury Ln, Sarasota, FL 34233 Novi Pazar, FL 36300
-                  </p>
+                  <p className="p-text p-0">{user.adress}</p>
                   <p className="p-text">{user.phone}</p>
                 </div>
               </div>

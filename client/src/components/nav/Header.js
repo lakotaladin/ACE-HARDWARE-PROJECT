@@ -28,6 +28,7 @@ import {
 } from "@ant-design/icons";
 import logo from "../../resources/ace_logo.png";
 import location from "../../resources/location_icon.svg";
+import Storetime from "../Storeworktime/Storetime";
 
 const { SubMenu } = Menu;
 
@@ -239,10 +240,15 @@ const Header = () => {
                   <div className="header-login-register-section">
                     <img src={starLogo} alt="Login/Register" />
                     <p className="p-2 m-0">
-                      <b style={{ fontWeight: "500", fontSize: "14px" }}>
-                        Ace Rewards
-                      </b>
-                      <br /> <Link to="/">Learn more</Link>
+                      <a
+                        href="https://www.acehardware.com/ace-rewards"
+                        target="_blank"
+                      >
+                        <b style={{ fontWeight: "500", fontSize: "14px" }}>
+                          Ace Rewards
+                        </b>
+                        <br /> Learn more
+                      </a>
                     </p>
                   </div>
                   <div className="header-login-register-section">
@@ -257,13 +263,16 @@ const Header = () => {
                           Cart
                         </b>
                         <br />
-                        <p>0 Items</p>
+                        <p style={{ fontSize: "14px" }}>
+                          <b style={{ fontSize: "14px" }}>0</b> Items
+                        </p>
                       </p>
                     </Link>
                   </div>
                 </div>
               </div>
               <Menu
+                style={{ cursor: "pointer" }}
                 className="custom-menu-items"
                 onClick={handleClick}
                 selectedKeys={[currnet]}
@@ -313,6 +322,7 @@ const Header = () => {
               </Menu>
             </div>
           ) : (
+            // Search and user register header user - logged
             <div className="Logo-search-global">
               <div className="Logo-search-div d-flex w-100">
                 <Link to="/">
@@ -345,10 +355,13 @@ const Header = () => {
                     />
                     <p className="p-0 m-0">
                       <b style={{ fontWeight: "500", fontSize: "14px" }}>
-                        Hi, {user?.name}
+                        Hi, {user.name}
                       </b>
                       <br />
-                      <div className="dropdown-container">
+                      <div
+                        style={{ cursor: "pointer" }}
+                        className="dropdown-container"
+                      >
                         <b
                           style={{ fontWeight: "500", fontSize: "14px" }}
                           onClick={toggleMenu}
@@ -380,15 +393,21 @@ const Header = () => {
                   </div>
                   <div className="header-login-register-section-logged">
                     <img src={starLogo} alt="Login/Register" />
-                    <p className="p-2 m-0">
-                      <b style={{ fontWeight: "500", fontSize: "14px" }}>
-                        Ace Rewards
-                      </b>
-                      <br />
-                      <span style={{ fontSize: "14px" }}>
-                        1,000/2,500 Points
-                      </span>
-                    </p>
+                    <a
+                      style={{ textDecoration: "none" }}
+                      href="https://www.acehardware.com/ace-rewards"
+                      target="_blank"
+                    >
+                      <p className="p-2 m-0">
+                        <b style={{ fontWeight: "500", fontSize: "14px" }}>
+                          Ace Rewards
+                        </b>
+                        <br />
+                        <span style={{ fontSize: "14px" }}>
+                          1,000/2,500 Points
+                        </span>
+                      </p>
+                    </a>
                   </div>
                   <div className="header-login-register-section">
                     <Link
@@ -405,7 +424,13 @@ const Header = () => {
                           Cart
                         </b>
                         <br />
-                        <p className="p-0 m-0"> {cart.length} Item</p>
+                        <b
+                          style={{ fontSize: "14px" }}
+                          className="text-success"
+                        >
+                          {cart.length}
+                        </b>{" "}
+                        Items
                       </p>
                     </Link>
                   </div>
@@ -462,6 +487,7 @@ const Header = () => {
             </div>
           )}
         </div>
+        {/* Loaction header user - logged */}
         <div className="location-header-section w-100 p-1 m-0">
           <img
             src={location}
@@ -487,19 +513,12 @@ const Header = () => {
                 </div>
                 <div className="p-0 m-0">
                   <p>
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      to="/store-details"
+                    <Storetime /> |{" "}
+                    <div
+                      style={{ cursor: "pointer" }}
+                      title="Store info & Directions"
+                      className="dropdown-containerr"
                     >
-                      {" "}
-                      <b>Calais Ace Home Center</b> - Calais, ME {"  "}
-                      <b>
-                        <span className="text-success">Open</span>
-                      </b>{" "}
-                      until 6 PM
-                    </Link>{" "}
-                    |{" "}
-                    <div className="dropdown-containerr">
                       <b onClick={toggleMenu2}>Store Info & Directions</b>{" "}
                       {openMenu2 ? <CaretUpOutlined /> : <CaretDownOutlined />}
                       {openMenu2 && (
@@ -593,7 +612,11 @@ const Header = () => {
                       )}
                     </div>{" "}
                     | {"  "}
-                    <div className="dropdown-container">
+                    <div
+                      style={{ cursor: "pointer" }}
+                      className="dropdown-container"
+                      title="Services & Brands"
+                    >
                       <b onClick={toggleMenu3}>Services & Brands</b>{" "}
                       {openMenu3 ? <CaretUpOutlined /> : <CaretDownOutlined />}
                       {openMenu3 && (
@@ -732,7 +755,13 @@ const Header = () => {
                     </div>{" "}
                     |{" "}
                     <Link to="/location">
-                      <u style={{ fontSize: "14px", marginLeft: "5px" }}>
+                      <u
+                        style={{
+                          fontSize: "14px",
+                          marginLeft: "5px",
+                          cursor: "pointer",
+                        }}
+                      >
                         Change store
                       </u>
                     </Link>

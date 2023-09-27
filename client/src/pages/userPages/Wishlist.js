@@ -1,22 +1,38 @@
 import React, { useEffect, useState } from "react";
 import "./account.css";
-import { RightOutlined } from "@ant-design/icons";
+import { DeleteOutlined, RightOutlined } from "@ant-design/icons";
 import Header from "../../components/nav/Header";
 import Footer from "../../components/footer/Footer";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import firebase from "firebase/compat/app";
+import { getWishlist, removeWishlist } from "../../functions/user";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 const Wishlist = () => {
   const [activeLink, setActiveLink] = useState("Wishlist");
+  const [wishlist, setWishlist] = useState([]);
 
   //  Fetch user from firebase
 
   let dispatch = useDispatch();
   let { user } = useSelector((state) => ({ ...state }));
+  useEffect(() => {
+    loadWishlist();
+  }, []);
   let history = useHistory();
+
+  const loadWishlist = () =>
+    getWishlist(user.token).then((res) => {
+      // console.log(res);
+      setWishlist(res.data.wishlist);
+    });
+
+  const handleRemove = (productId) =>
+    removeWishlist(productId, user.token).then((res) => {
+      loadWishlist();
+    });
 
   const handleNavLinkClick = (linkName) => {
     setActiveLink(linkName);
@@ -89,11 +105,26 @@ const Wishlist = () => {
         </div>
       </div>
       {/* Section */}
-      <div className="global-profile w-100 d-flex flex-column mb-3 p-0">
-        <div className="col">
-          <p style={{ fontWeight: "400", fontSize: "18px", color: "#D91F43" }}>
-            User Wishlist Page
-          </p>
+      <div
+        style={{ height: "auto", overflowX: "none" }}
+        className="global-profile w-100 d-flex flex-column mb-3 p-0"
+      >
+        <div
+          style={{ height: "auto", overflowX: "none" }}
+          className="wishdiv col"
+        >
+          <h4>Wishlist</h4>
+          {wishlist.map((p) => (
+            <div key={p._id} className="alert alert-secondary">
+              <Link to={`/product/${p.slug}`}>{p.title}</Link>
+              <span
+                onClick={() => handleRemove(p._id)}
+                className="btn btn-sm float-right"
+              >
+                <DeleteOutlined className="text-danger" />
+              </span>
+            </div>
+          ))}
         </div>
       </div>
       <Footer />

@@ -6,17 +6,20 @@ const userSchema = new mongoose.Schema(
     name: String,
     email: {
       type: String,
+      trim: true,
       required: true,
       index: true,
     },
     lastName: {
       type: String,
       required: true,
+      trim: true,
       min: 2,
       max: 16,
     },
     phone: {
       type: String,
+      trim: true,
       min: 7,
       max: 12,
     },
@@ -32,6 +35,7 @@ const userSchema = new mongoose.Schema(
     },
     month: {
       type: String,
+      trim: true,
       enum: [
         "january",
         "february",

@@ -3,12 +3,30 @@ import { Card, Col } from "antd"; // Dodali smo Col komponentu za Bootstrap grid
 import defaultImage from "../../resources/default.jpg";
 import { Link } from "react-router-dom";
 import { HeartOutlined } from "@ant-design/icons";
+import { useSelector } from "react-redux";
 import { showAverage } from "../../functions/rating";
+import { addToWishlist } from "../../functions/user";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   // destructure
   const { title, price, images, slug } = product;
   const [hovered, setHovered] = useState(false);
+
+  // redux
+  const { user } = useSelector((state) => ({ ...state }));
+  // router
+  let history = useHistory();
+
+  const handleAddToWishlist = (e) => {
+    e.preventDefault();
+    addToWishlist(product._id, user.token).then((res) => {
+      console.log("ADDED TO WISHLIST", res.data);
+      toast.success("Added to wishlist");
+      history.push("/user/wishlist");
+    });
+  };
 
   return (
     <Col className="p-0" xs={24} sm={12} md={8} lg={8} xl={8}>
@@ -27,15 +45,17 @@ const ProductCard = ({ product }) => {
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center"></div>
           <div style={{ position: "relative" }}>
-            <HeartOutlined
-              style={{
-                position: "absolute",
-                fontSize: "22px",
-                color: "#ACACAC",
-                borderRadius: "50%",
-                padding: "5px 0px",
-              }}
-            />
+            <a onClick={handleAddToWishlist}>
+              <HeartOutlined
+                style={{
+                  position: "absolute",
+                  fontSize: "22px",
+                  color: "#ACACAC",
+                  borderRadius: "50%",
+                  padding: "5px 0px",
+                }}
+              />
+            </a>
           </div>
         </div>
         <div className="w-100 p-0 m-0 ">
