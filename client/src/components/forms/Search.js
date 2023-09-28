@@ -31,10 +31,31 @@ const Search = () => {
         onChange={handleChange}
         type="search"
         value={text}
+        style={{ borderRight: "none", height: "45px", borderRadius: "0px" }}
         className="form-control mr-sm-2"
-        placeholder="Search"
+        placeholder="What can we help you find?"
       />
-      <SearchOutlined onClick={handleSubmit} style={{ cursor: "pointer" }} />
+      <div
+        style={{
+          width: "10%",
+          justifyContent: "center",
+          backgroundColor: "#EEEEEE",
+          borderTop: "1px solid #ccc",
+          borderRight: "1px solid #ccc",
+          borderBottom: "1px solid #ccc",
+          borderLeft: "none",
+        }}
+        className="buttonsearch p-1 align-items-center d-flex"
+      >
+        <SearchOutlined
+          onClick={handleSubmit}
+          style={{
+            cursor: "pointer",
+            color: "#E52538",
+            transform: "scale(1.6)",
+          }}
+        />
+      </div>
     </form>
   );
 };

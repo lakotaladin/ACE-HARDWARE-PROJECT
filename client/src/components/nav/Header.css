@@ -105,12 +105,14 @@
     padding: 0.5%;
 }
 
-#buttonSearch {
+/* #buttonSearch {
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     border: 1px solid lightgrey !important;
     background-color: #EEEEEE !important;
 }
+
+*/
 .Logo-search-global {
     margin: auto;
     max-width: 82%;

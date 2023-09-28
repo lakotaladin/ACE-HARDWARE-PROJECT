@@ -64,46 +64,57 @@ const Home = () => {
       {loading ? (
         <LoadingCard count={10} />
       ) : (
-        <div className="homeglobal p-0 m-0 w-100 d-flex flex-column">
-          <div className="homecontainer p-0 d-flex flex-column">
-            <div className="rowcontainer d-flex flex-row gap-1 p-0 m-0">
-              <div className="col-md-3 border-0">
-                <Link to="/stranica1" className="text-decoration-none">
-                  <div className="card mb-4 h-100">
+        <div className="homeglobal mt-1 p-0 m-0 w-100 d-flex flex-column">
+          <div className="homecontainer bg-white mt-1 p-0 d-flex flex-column">
+            <div
+              className="globalcontainer d-flex  mt-1 bg-white"
+              style={{
+                width: "100%",
+                justifyContent: "center",
+                backgroundColor: "white",
+              }}
+            >
+              <div
+                style={{ width: "100%" }}
+                className="topcardrow row bg-white"
+              >
+                <div className="p-0 col-lg-3 col-md-6 col-sm-12 mb-4">
+                  <div
+                    style={{ height: "100%", width: "80%" }}
+                    className="card m-auto col-sm-5"
+                  >
                     <img
                       src={kids}
                       alt="Image 1"
-                      className="card-img-top border-0"
+                      className="border-0 rounded-none card-img-top"
                     />
-                    <div className="card-body pb-0 h-100 border-0">
-                      <h3
-                        style={{ color: "#D40029", fontWeight: "bold" }}
-                        className="card-text"
-                      >
+                    <div className="card-body">
+                      <h3 style={{ color: "#D40029", fontWeight: "bold" }}>
                         A New Season of Savings
                       </h3>
                       <p style={{ color: "black" }}>
-                        Explore Fall deals for you home and garden
+                        Explore Fall deals for your home and garden
                       </p>
                     </div>
-                    <div className="card-footer m-0">
+                    <div className="card-footer">
                       <Link className="linkcard" to="#">
                         <u style={{ color: "#D40029" }}>Shop Fall now</u>
                       </Link>
                     </div>
                   </div>
-                </Link>
-              </div>
-              <div className="col-md-3 border-0">
-                <Link to="/stranica2" className="text-decoration-none">
-                  <div className="card mb-4  h-100 border-0">
+                </div>
+                <div className="p-0 col-lg-3 col-md-6 col-sm-12 mb-4">
+                  <div
+                    style={{ height: "100%", width: "80%" }}
+                    className="card  m-auto"
+                  >
                     <img
                       src={cardhuman}
-                      alt="Slika 2"
-                      className="card-img-top imgcard border-0"
+                      alt="Image"
+                      style={{ height: "35%" }}
+                      className="card-img-top"
                     />
-
-                    <div className="card-body pb-0 bodycard border-0">
+                    <div className="card-body">
                       <img
                         src={saveyeti}
                         alt="Slika 2.1"
@@ -117,23 +128,20 @@ const Home = () => {
                         On select YETI Roadie 48 Roller Coolers
                       </p>
                     </div>
-                    <div className="card-footer m-0">
+                    <div className="card-footer">
                       <Link className="linkcard" to="#">
                         <u style={{ color: "#D40029" }}>Shop YETI</u>
                       </Link>
                     </div>
                   </div>
-                </Link>
-              </div>
-              <div className="col-md-3 border-0">
-                <Link to="/stranica3" className="text-decoration-none">
-                  <div className="card h-100 mb-4">
-                    <img
-                      src={grill}
-                      alt="Slika 3"
-                      className="card-img-top border-0"
-                    />
-                    <div className="card-body pb-0 border-0">
+                </div>
+                <div className="p-0 col-lg-3 col-md-6 col-sm-12 mb-4">
+                  <div
+                    style={{ height: "100%", width: "80%" }}
+                    className="card m-auto"
+                  >
+                    <img src={grill} alt="Slika 3" className="card-img-top" />
+                    <div className="card-body">
                       <img
                         src={traeger}
                         alt="Slika 3.1"
@@ -143,35 +151,33 @@ const Home = () => {
                           padding: "0px",
                         }}
                       />
-                      <h6
-                        style={{ color: "#D40029" }}
-                        className="card-text"
-                      ></h6>
+                      <h6 style={{ color: "#D40029" }}></h6>
                       <p className="card-text">
                         Save up to $700 on select Traeger Timberline Pellet
                         Grills.
                       </p>
                     </div>
-                    <div className="card-footer m-0">
+                    <div className="card-footer">
                       <Link className="linkcard" to="#">
                         <u style={{ color: "#D40029" }}>Shop now</u>
                       </Link>
                     </div>
                   </div>
-                </Link>
-              </div>
-              <div className="col-md-3 border-0">
-                <Link to="/stranica4" className="text-decoration-none">
-                  <div className="card h-100 mb-4">
+                </div>
+                <div className="p-0 col-lg-3 col-md-6 col-sm-12 mb-4">
+                  <div
+                    style={{ height: "100%", width: "80%" }}
+                    className="card m-auto"
+                  >
                     <img
                       src={peoplecard}
-                      alt="Slika 4"
-                      className="card-img-top border-0"
+                      alt="People"
+                      className="card-img-top"
                     />
-                    <div className="card-body pb-0 border-0">
+                    <div className="card-body">
                       <img
                         src={solostove}
-                        alt="Slika 3.1"
+                        alt="logo"
                         style={{
                           width: "auto",
                           margin: "0px 0px 5px 0px",
@@ -185,15 +191,16 @@ const Home = () => {
                         19.5 in. W Stainless Steel Round Wood&nbsp;Fire&nbsp;Pit
                       </p>
                     </div>
-                    <div className="card-footer m-0">
+                    <div className="card-footer">
                       <Link className="linkcard" to="#">
                         <u style={{ color: "#D40029" }}>Shop Outdoor Heating</u>
                       </Link>
                     </div>
                   </div>
-                </Link>
+                </div>
               </div>
             </div>
+
             <div className="details p-0 m-0">
               <Link to="#">
                 <img className="w-100" src={details} alt="delivery" />
@@ -576,15 +583,19 @@ const Home = () => {
             </div>
             {/* YEYI Collection */}
             <div className="container-fluid p-0 m-0">
-              <Link to="#">
-                <img className="mt-4 mb-5" src={yeti} alt="YETI Collection" />
+              <Link className="w-100 p-0 m-0" to="#">
+                <img
+                  className="w-100 p-0 m-0 mt-4 mb-5"
+                  src={yeti}
+                  alt="YETI Collection"
+                />
               </Link>
             </div>
             {/* Colors ad */}
             <div className="container-fluid p-0 m-0">
               <Link to="#">
                 <img
-                  className="mt-4 mb-5"
+                  className="w-100 p-0 m-0 mt-4 mb-5"
                   src={colorad}
                   alt="YETI Collection"
                 />
@@ -595,7 +606,7 @@ const Home = () => {
           <div className="container-fluid p-0 m-0">
             <Link to="#">
               <img
-                className="mt-4 mb-5"
+                className="w-100 p-0 m-0 mt-4 mb-5"
                 src={waystoshop}
                 alt="YETI Collection"
               />
@@ -605,13 +616,21 @@ const Home = () => {
           <div className="homecontainer p-0 d-flex flex-column">
             <div className="container-fluid p-0 m-0">
               <Link to="#">
-                <img className="mt-4 mb-5" src={loveace} alt="Love Ace" />
+                <img
+                  className="w-100 p-0 m-0 mt-4 mb-5"
+                  src={loveace}
+                  alt="Love Ace"
+                />
               </Link>
             </div>
             {/* Brands */}
             <div className="container-fluid p-0 mt-1">
               <Link to="#">
-                <img className="mt-4 mb-5" src={allbrands} alt="All brands" />
+                <img
+                  className="w-100 p-0 m-0 mt-4 mb-5"
+                  src={allbrands}
+                  alt="All brands"
+                />
               </Link>
             </div>
             {/* Videos */}

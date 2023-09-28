@@ -201,32 +201,15 @@ const Header = () => {
         <div className="Header-global-center-div w-100">
           {!user ? (
             <div className="Logo-search-global">
-              <div className="Logo-search-div d-flex w-100">
+              <div className="Logo-search-div gap-4 d-flex w-100">
                 <Link to="/">
                   <img id="ace_logo" src={logo} alt="Ace Hardware logo" />
                 </Link>
-                <span className="searchbar float-left p-0 m-0">
+                <span className="searchbar w-100  p-0 m-0">
                   <Search />
                 </span>
 
-                {/* <input
-                  type="search"
-                  style={inputStyle}
-                  placeholder="What can we help you find?"
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                />
-                <button
-                  type="button"
-                  id="buttonSearch"
-                  style={buttonStyle}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                >
-                  <SearchOutlined id="search-icon" />
-                </button> */}
-
-                <div className="login-and-register-section gap-2">
+                <div className="login-and-register-section">
                   <div className="header-login-register-section gap-2 w-50">
                     <img
                       className="headerLogo"
@@ -328,29 +311,16 @@ const Header = () => {
           ) : (
             // Search and user register header user - logged
             <div className="Logo-search-global">
-              <div className="Logo-search-div d-flex w-100">
+              <div className="Logo-search-div gap-4 d-flex w-100">
                 <Link to="/">
                   <img id="ace_logo" src={logo} alt="Ace Hardware logo" />
                 </Link>
 
-                <input
-                  type="text"
-                  style={inputStyle}
-                  placeholder="What can we help you find?"
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                />
-                <button
-                  type="button"
-                  id="buttonSearch"
-                  style={buttonStyle}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                >
-                  <SearchOutlined id="search-icon" />
-                </button>
+                <span className="searchbar w-100  p-0 m-0">
+                  <Search />
+                </span>
 
-                <div className="login-and-register-section gap-2">
+                <div className="login-and-register-section">
                   <div className="header-login-register-section d-flex gap-2 w-50">
                     <img
                       className="headerLogo"
@@ -367,7 +337,11 @@ const Header = () => {
                         className="dropdown-container"
                       >
                         <b
-                          style={{ fontWeight: "500", fontSize: "14px" }}
+                          style={{
+                            fontWeight: "500",
+                            fontSize: "14px",
+                            width: "100%",
+                          }}
                           onClick={toggleMenu}
                         >
                           Your Account
@@ -387,9 +361,7 @@ const Header = () => {
                             <Link to="/user/wishlist">Wishlist</Link>
                             <Link to="/user/history">History</Link>
 
-                            <Link to="#" onClick={logout}>
-                              Sign Out
-                            </Link>
+                            <a onClick={logout}>Sign Out</a>
                           </div>
                         )}
                       </div>

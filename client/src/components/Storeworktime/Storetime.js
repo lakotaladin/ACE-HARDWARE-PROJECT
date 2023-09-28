@@ -8,7 +8,10 @@ const Storetime = () => {
   const isOpen = currentHour >= 7 && currentHour < 18;
 
   return (
-    <Link style={{ textDecoration: "none" }} to="/store-details">
+    <Link
+      style={{ textDecoration: "none", color: "black" }}
+      to="/store-details"
+    >
       <b>Calais Ace Home Center</b> - Calais, ME {"  "}
       <b>
         <span

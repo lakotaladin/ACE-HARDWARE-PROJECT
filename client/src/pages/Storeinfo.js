@@ -12,6 +12,7 @@ import img6 from "../resources/img6.png";
 // import img7 from "../resources/img7.png";
 import check from "../resources/ace_check.png";
 import { LeftOutlined } from "@ant-design/icons";
+import Storetime from "../components/Storeworktime/Storetime";
 
 const Storeinfo = () => {
   return (
@@ -36,12 +37,11 @@ const Storeinfo = () => {
               <div className="store-text  d-flex flex-column p-4 m-0">
                 <h4>Calais Ace Home Center</h4>
                 <h6>Calais, ME 04619</h6>
-                <p style={{ fontSize: "14px" }}>
-                  <span style={{ fontWeight: "500" }} className="text-success">
-                    Open
-                  </span>{" "}
-                  until 6:00 PM
-                </p>
+                <span
+                  style={{ width: "100%", fontSize: "14px", color: "black" }}
+                >
+                  <Storetime style={{ color: "black" }} />
+                </span>
               </div>
               <div className="store-right text-center align-items-center d-flex flex-column p-4 m-0">
                 <div className="check w-100 d-flex flex-row p-0 m-0">
