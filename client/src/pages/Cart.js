@@ -29,6 +29,20 @@ const Cart = ({ history }) => {
       .catch((err) => console.log("cart save err", err));
   };
 
+  const saveCashOrderToDb = () => {
+    // console.log("cart", JSON.stringify(cart, null, 4));
+    dispatch({
+      type: "COD",
+      payload: true,
+    });
+    userCart(cart, user.token)
+      .then((res) => {
+        console.log("CART POST RES", res);
+        if (res.data.ok) history.push("/checkout");
+      })
+      .catch((err) => console.log("cart save err", err));
+  };
+
   const showCartItems = () => (
     <table className="table table-bordered">
       <thead className="thead-light">
@@ -143,16 +157,28 @@ const Cart = ({ history }) => {
                 />
               </div>
               {user ? (
-                <Link className="p-0 m-0 text-white" to="/checkout">
-                  <button
-                    style={{ backgroundColor: "#D7002A", width: "100%" }}
-                    className="butoncheckout rounded p-3 border-0 text-white"
-                    disabled={!cart.length}
-                    onClick={saveOrderToDb}
-                  >
-                    Checkout
-                  </button>
-                </Link>
+                <>
+                  <Link className="p-0 m-0 text-white" to="/checkout">
+                    <button
+                      style={{ backgroundColor: "#D7002A", width: "100%" }}
+                      className="butoncheckout rounded p-3 border-0 text-white"
+                      disabled={!cart.length}
+                      onClick={saveOrderToDb}
+                    >
+                      Checkout
+                    </button>
+                  </Link>
+                  <Link className="p-0 m-0 text-white" to="/checkout">
+                    <button
+                      style={{ backgroundColor: "#D70", width: "100%" }}
+                      className="butoncheckout rounded p-3 border-0 text-white"
+                      disabled={!cart.length}
+                      onClick={saveCashOrderToDb}
+                    >
+                      Checkout
+                    </button>
+                  </Link>
+                </>
               ) : (
                 <Link
                   style={{ color: "white" }}

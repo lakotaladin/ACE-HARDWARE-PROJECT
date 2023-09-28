@@ -5,6 +5,7 @@ import {
   emptyUserCart,
   saveUserAddress,
   applyCoupon,
+  createCashOrderForUser,
 } from "../functions/user";
 import { toast } from "react-toastify";
 import Header from "../components/nav/Header";
@@ -20,7 +21,6 @@ const Checkout = ({ history }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingforcoupon, setLoadingcoupon] = useState(false);
-  const [loadingforplace, setLoadingplace] = useState(false);
   const [loadingforempty, setLoadingempty] = useState(false);
   const [total, setTotal] = useState(0);
   const [address, setAdress] = useState("");
@@ -32,12 +32,12 @@ const Checkout = ({ history }) => {
   const [expandIconPosition, setExpandIconPosition] = useState("end");
 
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => ({ ...state }));
+  const { user, COD } = useSelector((state) => ({ ...state }));
+  const couponTrueOrFalse = useSelector((state) => state.coupon);
 
   useEffect(() => {
     setLoading(true);
     setLoadingcoupon(true);
-    setLoadingplace(true);
     setLoadingempty(true);
     getUserCart(user.token).then((res) => {
       console.log("user cart res", JSON.stringify(res.data, null, 4));
@@ -45,7 +45,6 @@ const Checkout = ({ history }) => {
       setTotal(res.data.cartTotal);
       setLoading(false);
       setLoadingcoupon(false);
-      setLoadingplace(false);
       setLoadingempty(false);
     });
   }, []);
@@ -54,7 +53,6 @@ const Checkout = ({ history }) => {
   const emptyCart = () => {
     setLoading(true);
     setLoadingcoupon(true);
-    setLoadingplace(true);
     setLoadingempty(true);
     // remove from local storage
     if (typeof window !== "undefined") {
@@ -75,14 +73,12 @@ const Checkout = ({ history }) => {
     });
     setLoading(false);
     setLoadingcoupon(false);
-    setLoadingplace(false);
     setLoadingempty(false);
   };
 
   const saveAddressToDb = () => {
     setLoading(true);
     setLoadingcoupon(true);
-    setLoadingplace(true);
     setLoadingempty(true);
     saveUserAddress(user?.token, address).then((res) => {
       if (res.data.ok) {
@@ -92,14 +88,12 @@ const Checkout = ({ history }) => {
     });
     setLoading(false);
     setLoadingcoupon(false);
-    setLoadingplace(false);
     setLoadingempty(false);
   };
 
   const applyDiscountCoupon = () => {
     setLoading(true);
     setLoadingcoupon(true);
-    setLoadingplace(true);
     setLoadingempty(true);
     // console.log("send coupon to backend", coupon);
     applyCoupon(user?.token, coupon).then((res) => {
@@ -124,7 +118,6 @@ const Checkout = ({ history }) => {
     });
     setLoading(false);
     setLoadingcoupon(false);
-    setLoadingplace(false);
     setLoadingempty(false);
   };
 
@@ -196,6 +189,41 @@ const Checkout = ({ history }) => {
       </Collapse>
     </>
   );
+
+  const createCashOrder = () => {
+    createCashOrderForUser(user.token, COD, couponTrueOrFalse).then((res) => {
+      console.log("USER CASH ORDER CREATED RES ", res);
+      // empty cart form redux, local Storage, reset coupon, reset COD, redirect
+      if (res.data.ok) {
+        // emptu local storage
+        if (typeof window != "undefined") localStorage.removeItem("cart");
+        // empty redux cart
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: [],
+        });
+        // empty redux coupon
+        dispatch({
+          type: "COUPON_APPLIED",
+          payload: false,
+        });
+
+        // empty redux COD
+        dispatch({
+          type: "COD",
+          payload: false,
+        });
+
+        // empty cart from database
+        emptyUserCart(user.token);
+
+        // redirect
+        setTimeout(() => {
+          history.push("/user/history");
+        }, 1000);
+      }
+    });
+  };
 
   return (
     <>
@@ -299,7 +327,7 @@ const Checkout = ({ history }) => {
 
           <div className="row">
             <div className="col-md-6 p-2">
-              {loadingforplace ? (
+              {COD ? (
                 <button
                   style={{
                     width: "30%",
@@ -310,6 +338,8 @@ const Checkout = ({ history }) => {
                     alignItems: "center",
                     textAlign: "center",
                   }}
+                  disabled={!addressSaved || !products.length}
+                  onClick={createCashOrder}
                   className="placeorder rounded border-0 bg-warning text-white p-3"
                 >
                   <ButttonLoader />
