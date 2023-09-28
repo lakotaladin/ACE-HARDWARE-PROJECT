@@ -29,6 +29,7 @@ import {
 import logo from "../../resources/ace_logo.png";
 import location from "../../resources/location_icon.svg";
 import Storetime from "../Storeworktime/Storetime";
+import Search from "../forms/Search";
 
 const { SubMenu } = Menu;
 
@@ -149,7 +150,7 @@ const Header = () => {
     width: "100%",
     height: "50px",
     fontSize: "16px",
-    border: isFocused ? "2px solid red" : "1px solid lightgrey",
+    border: isFocused ? "1px solid lightgrey" : "1px solid lightgrey",
     padding: "4px",
     margin: "0px 0px 0px 35px",
   };
@@ -204,9 +205,12 @@ const Header = () => {
                 <Link to="/">
                   <img id="ace_logo" src={logo} alt="Ace Hardware logo" />
                 </Link>
+                <span className="searchbar float-left p-0 m-0">
+                  <Search />
+                </span>
 
-                <input
-                  type="text"
+                {/* <input
+                  type="search"
                   style={inputStyle}
                   placeholder="What can we help you find?"
                   onFocus={handleFocus}
@@ -220,7 +224,7 @@ const Header = () => {
                   onBlur={handleBlur}
                 >
                   <SearchOutlined id="search-icon" />
-                </button>
+                </button> */}
 
                 <div className="login-and-register-section gap-2">
                   <div className="header-login-register-section gap-2 w-50">

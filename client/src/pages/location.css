@@ -1,7 +1,6 @@
-.global {
+.globallocation {
     height: 100vh;
     overflow: hidden;
-    background-color: #D1D1D1;
 }
 
 .side-location-div {

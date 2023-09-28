@@ -32,8 +32,8 @@ import Product from "./pages/Product";
 import Checkout from "./pages/Checkout";
 import CreateCouponPage from "./pages/admin/coupon/CreateCouponPage";
 import Payment from "./pages/Payment";
-import ScaleLoader from "./components/Spinners/GlobalSpinner";
 import GlobalSpinner from "./components/Spinners/GlobalSpinner";
+import Shop from "./pages/shop/Shop";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -79,12 +79,19 @@ const App = () => {
       ) : (
         <Switch>
           <Route exact path="/" component={Home} />
-          {/* <Route exact path="/spinner" component={ButttonLoader} /> */}
+          <Route exact path="/shop" component={Shop} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/product/:slug" component={Product} />
+          <Route exact path="/location" component={Location} />
+          <Route exact path="/categories" component={LayoutPage} />
+          <Route exact path="/store-details" component={Storeinfo} />
+          <Route exact path="/cart" component={Cart} />
           <Route exact path="/register/complete" component={RegisterComplete} />
           <UserRoute exact path="/myaccount" component={Profile} />
           <UserRoute exact path="/account" component={Account} />
+          <UserRoute exact path="/checkout" component={Checkout} />
+          <UserRoute exact path="/payment" component={Payment} />
           <UserRoute exact path="/user/history" component={History} />
           <UserRoute exact path="/user/wishlist" component={Wishlist} />
           <AdminRoute
@@ -108,13 +115,6 @@ const App = () => {
             path="/admin/product/:slug"
             component={ProductUpdate}
           />
-          <Route exact path="/product/:slug" component={Product} />
-          <Route exact path="/location" component={Location} />
-          <Route exact path="/layout" component={LayoutPage} />
-          <Route exact path="/store-details" component={Storeinfo} />
-          <Route exact path="/cart" component={Cart} />
-          <UserRoute exact path="/checkout" component={Checkout} />
-          <UserRoute exact path="/payment" component={Payment} />
         </Switch>
       )}
     </>

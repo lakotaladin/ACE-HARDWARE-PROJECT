@@ -208,6 +208,7 @@ const productSchema = new mongoose.Schema(
     brand: {
       type: String,
       trim: true,
+      text: true,
       enum: [
         "Weber",
         "Treager",

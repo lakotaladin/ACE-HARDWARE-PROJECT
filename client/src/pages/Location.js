@@ -160,7 +160,7 @@ const Location = () => {
   return (
     <>
       <Header />
-      <div className="global w-100 d-flex flex-row p-0 m-0">
+      <div className="globallocation w-100 d-flex flex-row p-0 m-0">
         <div className="side-div p-0" style={{ flex: "20%" }}>
           <div className="search-div w-100 p-3 m-0">
             <b style={{ fontSize: "20px" }}>

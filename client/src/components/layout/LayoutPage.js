@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../layout/layoutPage.css";
+import "./layoutPage.css";
 import { Breadcrumb, Layout, Space } from "antd";
 import Header from "../nav/Header";
 import Footer from "../footer/Footer";
