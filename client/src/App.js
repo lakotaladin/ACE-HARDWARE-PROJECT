@@ -54,7 +54,7 @@ const App = () => {
               payload: {
                 name: res.data.name,
                 lastName: res.data.lastName,
-                adress: res.data.streetAddress,
+                address: res.data.streetAddress,
                 email: res.data.email,
                 phone: res.data.phone,
                 token: idTokenResult.token,

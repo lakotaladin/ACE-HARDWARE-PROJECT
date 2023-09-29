@@ -213,7 +213,7 @@ const Register = ({ history }) => {
               message: "Please enter your address!",
             },
             {
-              pattern: /^[A-Za-z0-9\s,.-]+$/,
+              pattern: /^[A-Za-z0-9\s,.\-\u0100-\u017F]+$/,
               message:
                 "Please enter a valid address with letters, numbers, spaces, and common punctuation!",
             },
@@ -233,7 +233,7 @@ const Register = ({ history }) => {
             autoFocus
             required
             onChange={(e) => setAddress(e.target.value)}
-          ></Input>
+          />
         </Form.Item>
         <div className="selectInputs w-100 d-flex flex-row p-0 m-0 gap-1">
           <Form.Item

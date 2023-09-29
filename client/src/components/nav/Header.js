@@ -48,7 +48,7 @@ const Header = () => {
     {
       key: "1",
       label: (
-        <Link to="/layout">
+        <Link to="#">
           <span style={{ fontWeight: "bold" }}>Shop by Brand</span>
         </Link>
       ),
@@ -56,21 +56,17 @@ const Header = () => {
         {
           key: "2-1",
           label: (
-            <div className="brandscascader w-100 d-flex flex-row gap-4 p-1 m-0">
-              <div className="brand-1" style={{ width: "100%" }}>
-                <h5 style={{ borderBottom: "1px solid lightgrey" }}>
-                  Featured brands
-                </h5>
+            <div className="w-100 bg-white d-flex flex-row gap-4 p-1 m-0">
+              <div>
+                <h5 className="bg-white">Featured brands</h5>
                 <img
                   style={{ width: "100%" }}
                   src={brands}
                   alt="Brands images"
                 />
               </div>
-              <div className="brand-2" style={{ width: "100%" }}>
-                <h5 style={{ borderBottom: "1px solid lightgrey" }}>
-                  Brands A-Z
-                </h5>
+              <div className="bg-white">
+                <h5 className="bg-white">Brands A-Z</h5>
                 <img style={{ width: "100%" }} src={brands2} alt="Brands" />
               </div>
             </div>
@@ -80,44 +76,93 @@ const Header = () => {
     },
     {
       key: "2",
-      label: <span style={{ fontWeight: "bold" }}>Ace Gift Card</span>,
+      label: (
+        <a href="https://www.acehardware.com/gift-cards">
+          <span style={{ fontWeight: "bold" }}>Ace Gift Card</span>
+        </a>
+      ),
       children: [],
     },
     {
       key: "3",
-      label: "Grills & Smokers",
+      label: (
+        <Link to="/shop">
+          <span>Grills & Smokers</span>
+        </Link>
+      ),
+      children: [],
     },
     {
       key: "4",
-      label: "Outdoor Living and Patio",
+      label: (
+        <Link to="/shop">
+          <span>Outdoor Living and Patio</span>
+        </Link>
+      ),
+      children: [],
     },
     {
       key: "5",
-      label: "Lawn and Garden",
+      label: (
+        <Link to="/shop">
+          <span>Lawn and Garden</span>
+        </Link>
+      ),
+      children: [],
     },
     {
       key: "6",
-      label: "Tools",
+      label: (
+        <Link to="/shop">
+          <span>Tools</span>
+        </Link>
+      ),
+      children: [],
     },
     {
       key: "7",
-      label: "Paint and Supplies",
+      label: (
+        <Link to="/shop">
+          <span>Paint and Supplies</span>
+        </Link>
+      ),
+      children: [],
     },
     {
       key: "8",
-      label: "Heating and Cooling",
+      label: (
+        <Link to="/shop">
+          <span>Heating and Cooling</span>
+        </Link>
+      ),
+      children: [],
     },
     {
       key: "9",
-      label: "Home and Decor",
+      label: (
+        <Link to="/shop">
+          <span>Home and Decor</span>
+        </Link>
+      ),
+      children: [],
     },
     {
       key: "10",
-      label: "Building Supplies",
+      label: (
+        <Link to="/shop">
+          <span>Building Supplies</span>
+        </Link>
+      ),
+      children: [],
     },
     {
       key: "11",
-      label: "Hardware",
+      label: (
+        <Link to="/shop">
+          <span>Hardware</span>
+        </Link>
+      ),
+      children: [],
     },
   ];
 
@@ -136,33 +181,6 @@ const Header = () => {
   };
   const toggleMenu3 = () => {
     setOpenMenu3(!openMenu3);
-  };
-
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
-
-  const inputStyle = {
-    width: "100%",
-    height: "50px",
-    fontSize: "16px",
-    border: isFocused ? "1px solid lightgrey" : "1px solid lightgrey",
-    padding: "4px",
-    margin: "0px 0px 0px 35px",
-  };
-
-  const buttonStyle = {
-    border: "none",
-    width: "150px",
-    height: "50px",
-    backgroundColor: "lightgrey",
-    color: isFocused ? "red" : "black",
-    padding: "4px",
-    margin: "0px 20px 0px 0px",
   };
 
   const handleClick = () => {
@@ -278,16 +296,12 @@ const Header = () => {
                   </Link>
                 </Dropdown>
 
-                <Link href="#" className="cascader">
-                  <Space>Sales & Specials</Space>
-                </Link>
-
-                <Link
+                <a
                   className="cascader"
                   href="https://www.acehardware.com/local-ad"
                 >
                   <Space>Local Ad</Space>
-                </Link>
+                </a>
                 <Link
                   className="cascader"
                   href="https://www.acehardware.com/thepaintstudio"
@@ -431,22 +445,18 @@ const Header = () => {
                   </Link>
                 </Dropdown>
 
-                <Link href="#" className="cascader">
-                  <Space>Sales & Specials</Space>
-                </Link>
-
-                <Link
+                <a
                   className="cascader"
                   href="https://www.acehardware.com/local-ad"
                 >
                   <Space>Local Ad</Space>
-                </Link>
-                <Link
+                </a>
+                <a
                   className="cascader"
                   href="https://www.acehardware.com/thepaintstudio"
                 >
                   <Space>The Paint Studio</Space>
-                </Link>
+                </a>
                 <Link
                   className="cascader"
                   href="https://www.acehardware.com/aceprojectplace"

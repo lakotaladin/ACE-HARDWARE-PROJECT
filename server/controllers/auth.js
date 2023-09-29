@@ -27,9 +27,11 @@ exports.registerUser = async (req, res) => {
 
 exports.createOrUpdateUser = async (req, res) => {
   const { email, name, lastName, streetAddress, phone, phoneType, month } =
-    req.user;
+    req.body || req.user;
 
+  console.log("new user", req.user);
   const user = await User.findOneAndUpdate(
+    { email },
     { email, name, lastName, streetAddress, phone, phoneType, month },
     { new: true }
   );
@@ -37,19 +39,22 @@ exports.createOrUpdateUser = async (req, res) => {
     // console.log("USER UPDATED", user);
     res.json(user);
   } else {
-    const newUser = await new User({
-      email,
-      name,
-      lastName,
-      streetAddress,
-      phone,
-      phoneType,
-      month,
-      picture,
-    }).save();
-    // console.log("USER CREATED", newUser);
-    res.json(newUser);
+    res.status(500).end();
   }
+  // else {
+  //   const newUser = await new User({
+  //     email,
+  //     name,
+  //     lastName,
+  //     streetAddress,
+  //     phone,
+  //     phoneType,
+  //     month,
+  //     picture,
+  //   }).save();
+  //   // console.log("USER CREATED", newUser);
+  //   res.json(newUser);
+  // }
 };
 
 exports.currentUser = async (req, res) => {

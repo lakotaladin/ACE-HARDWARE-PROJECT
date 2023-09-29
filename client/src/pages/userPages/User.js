@@ -12,19 +12,15 @@ import { auth } from "../../firebase";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { currentUser } from "../../functions/auth";
+import { createOrUpdateUser, currentUser } from "../../functions/auth";
 
 const Profile = () => {
   const [activeLink, setActiveLink] = useState("Profile");
-  const [userData, setUserData] = useState({
-    name: "",
-    lastName: "",
-    streetAddress: "",
-    phone: "",
-  });
+
   const [newEmail, setNewEmail] = useState("");
   const [currentEmail, setCurrentEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
 
@@ -46,25 +42,46 @@ const Profile = () => {
   let { user } = useSelector((state) => ({ ...state }));
   let history = useHistory();
 
+  const [userData, setUserData] = useState({
+    ...user,
+    streetAddress: user.address,
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true);
-    await auth.currentUser
-      .updatePassword()
-      .then(() => {
-        // setLoadin(false);
-        setPassword("");
-        toast.success("Password updated!");
-      })
-      .catch((err) => {
-        // setLoadin(true);
-        toast.error(err.message);
-      });
+
+    try {
+      await createOrUpdateUser(user.token, userData);
+      toast.success("Account updated");
+    } catch (e) {
+      toast.error(e.message);
+    }
+  };
+  const handlePasswordSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!password) {
+      toast.error("Empty password");
+      return;
+    }
+
+    if (password !== password2) {
+      toast.error("Passwords don't match");
+      return;
+    }
+
+    try {
+      await auth.currentUser.updatePassword(password);
+      setPassword("");
+      toast.success("Password updated!");
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const passwordUpdateForm = () => (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handlePasswordSubmit}
       className="form-account d-flex flex-column w-100 p-0 m-0"
     >
       <label>New Password</label>
@@ -84,6 +101,8 @@ const Profile = () => {
       <Input.Password
         className="input-password"
         placeholder="Repeat new password"
+        value={password2}
+        onChange={(e) => setPassword2(e.target.value)}
         visibilityToggle={{
           visible: passwordVisible2,
           onVisibleChange: setPasswordVisible2,
@@ -92,7 +111,8 @@ const Profile = () => {
       />
 
       <button
-        className="button-save"
+        className="btn button-save"
+        type="submit"
         disabled={!password || password.length < 6}
       >
         SAVE
@@ -101,6 +121,8 @@ const Profile = () => {
   );
 
   const updateEmail = async () => {
+    console.log("update email");
+    return;
     try {
       await firebase.auth().currentUser.updateEmail(newEmail);
       toast.success("Email is succesffuly updated!");
