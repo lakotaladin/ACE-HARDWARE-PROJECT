@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./home.css";
+import { useHistory } from "react-router-dom";
 import Header from "../components/nav/Header";
 import ScrollToTopButton from "../components/ScrollOnTop/ScrollOnTopButton";
 import Footer from "../components/footer/Footer";
@@ -44,6 +45,8 @@ import LoadingCard from "../components/cards/LoadingCard";
 const Home = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  let history = useHistory();
 
   // Za modal
   const showModal = () => {

@@ -3,7 +3,7 @@ const User = require("../models/user");
 exports.registerUser = async (req, res) => {
   const { email, name, lastName, streetAddress, phone, phoneType, month } =
     req.body;
-  // console.log(name);
+
   const user = new User({
     email,
     name,
@@ -15,8 +15,7 @@ exports.registerUser = async (req, res) => {
   });
 
   user.role = "subscriber";
-  // user.verified = false;
-  // user.cart = [];
+
   try {
     await user.save();
     res.status(201).json(user);
@@ -46,6 +45,7 @@ exports.createOrUpdateUser = async (req, res) => {
       phone,
       phoneType,
       month,
+      picture,
     }).save();
     // console.log("USER CREATED", newUser);
     res.json(newUser);

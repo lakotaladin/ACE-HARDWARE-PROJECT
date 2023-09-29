@@ -30,7 +30,7 @@ const Register = ({ history }) => {
 
   const { user } = useSelector((state) => ({ ...state }));
   useEffect(() => {
-    if (user && user?.token) history.push("/");
+    if (user && user.token) history.push("/");
   }, [user, history]);
 
   const handleSubmit = async () => {
@@ -46,7 +46,7 @@ const Register = ({ history }) => {
         phoneType: phoneType,
         month: month,
       };
-      console.log({ userData });
+      // console.log({ userData });
 
       const config = {
         url: process.env.REACT_APP_REGISTER_REDIRECT_URL,
@@ -67,7 +67,8 @@ const Register = ({ history }) => {
       setPhoneType("");
       setMonth("");
     } catch (error) {
-      console.error("Greška prilikom slanja podataka na bekend:", error);
+      console.error("Error sending data to backend:", error);
+      toast.error("Error sending data to backend:", error);
     }
   };
 

@@ -48,14 +48,18 @@ const RegisterComplete = ({ history }) => {
         // get user id token
         let user = auth.currentUser;
         await user.updatePassword(password);
-        const idTokenResult = await user.getIdToken();
+        const idTokenResult = await user.getIdTokenResult();
         // console.log("Token je ", idTokenResult);
         createOrUpdateUser(idTokenResult.token)
           .then((res) =>
             dispatch({
               type: "LOGGED_IN_USER",
               payload: {
+                name: res.data.name,
+                lastName: res.data.lastName,
+                adress: res.data.streetAddress,
                 email: res.data.email,
+                phone: res.data.phone,
                 token: idTokenResult.token,
                 role: res.data.role,
                 _id: res.data._id,
