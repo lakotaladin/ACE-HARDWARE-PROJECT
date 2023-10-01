@@ -63,8 +63,11 @@ const ProductCard = ({ product }) => {
             </a>
           </div>
         </div>
-        <div className="productdiv w-100 p-0 m-0 ">
-          <Link to={`/product/${slug}`}>
+        <div className="productdiv w-100 m-auto p-0 m-0 ">
+          <Link
+            className="p-0 m-0 d-flex justify-content-center"
+            to={`/product/${slug}`}
+          >
             <img
               alt="Product"
               src={
@@ -75,8 +78,8 @@ const ProductCard = ({ product }) => {
                   : defaultImage
               }
               style={{
-                width: "100%",
-                height: "300px",
+                width: "90%",
+                height: "200px",
                 objectFit: "scale-down",
                 transition: "transform 0.1s ease-in-out",
               }}

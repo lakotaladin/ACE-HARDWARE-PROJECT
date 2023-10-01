@@ -37,12 +37,12 @@ const RegisterComplete = ({ history }) => {
           window.location.href
         );
 
-        if (result.user.emailVerified) {
+        if (result.user?.emailVerified) {
           window.localStorage.removeItem("emailForRegistration");
-          let user = auth.currentUser;
+          let user = auth?.currentUser;
           await user.updatePassword(password);
-          const idTokenResult = await user.getIdTokenResult();
-          createOrUpdateUser(idTokenResult.token)
+          const idTokenResult = await user?.getIdTokenResult();
+          createOrUpdateUser(idTokenResult?.token)
             .then((res) =>
               dispatch({
                 type: "LOGGED_IN_USER",
@@ -58,10 +58,11 @@ const RegisterComplete = ({ history }) => {
                 },
               })
             )
-            .catch();
-
-          history.push("/");
-          toast.success("Registration is completed!");
+            .catch((err) => console.log(err));
+          setTimeout(() => {
+            history.push("/");
+            toast.success("Registration is completed!");
+          }, 2000);
         }
       } catch (error) {
         console.log(error);
@@ -138,7 +139,7 @@ const RegisterComplete = ({ history }) => {
               <button
                 type="submit"
                 style={{ fontSize: "18px", letterSpacing: "1px" }}
-                className="button-account mt-4 mb-4 w-100"
+                className="button-account btn mt-4 mb-4 w-100"
               >
                 Submit
               </button>
@@ -198,10 +199,16 @@ const RegisterComplete = ({ history }) => {
         </div>
 
         <div className="d-flex flex-row gap-3 w-100 m-0 p-1 justify-content-center">
-          <a style={{ color: "white", fontSize: "14px" }} href="#">
+          <a
+            style={{ color: "white", fontSize: "14px" }}
+            href="https://www.acehardware.com/customer-service?page=terms-of-use"
+          >
             Terms of Use
           </a>
-          <a style={{ color: "white", fontSize: "14px" }} href="#">
+          <a
+            style={{ color: "white", fontSize: "14px" }}
+            href="https://www.acehardware.com/customer-service?page=privacy-policy"
+          >
             Privacy policy
           </a>
         </div>

@@ -19,7 +19,7 @@ import ace_services from "../../resources/services.png";
 import ace_services2 from "../../resources/services2.png";
 import brands from "../../resources/brandsheader.png";
 import brands2 from "../../resources/brandsheader2.png";
-
+import egopower from "../../resources/egopower.png";
 
 import {
   CaretDownOutlined,
@@ -48,7 +48,7 @@ const Header = () => {
     {
       key: "1",
       label: (
-        <Link to="#">
+        <Link title="Shop by brands" to="/shop">
           <span style={{ fontWeight: "bold" }}>Shop by Brand</span>
         </Link>
       ),
@@ -56,7 +56,7 @@ const Header = () => {
         {
           key: "2-1",
           label: (
-            <div className="w-100 bg-white d-flex flex-row gap-4 p-1 m-0">
+            <div className="w-100 bg-white d-flex flex-row gap-4 p-0 m-0">
               <div>
                 <h5 className="bg-white">Featured brands</h5>
                 <img
@@ -77,7 +77,10 @@ const Header = () => {
     {
       key: "2",
       label: (
-        <a href="https://www.acehardware.com/gift-cards">
+        <a
+          title="Learn about Ace Gift Cards"
+          href="https://www.acehardware.com/gift-cards"
+        >
           <span style={{ fontWeight: "bold" }}>Ace Gift Card</span>
         </a>
       ),
@@ -86,34 +89,265 @@ const Header = () => {
     {
       key: "3",
       label: (
-        <Link to="/shop">
+        <Link title="Grills and Smokers" to="/category/grills-and-smokers">
           <span>Grills & Smokers</span>
         </Link>
       ),
-      children: [],
+      children: [
+        {
+          key: "3-2",
+          label: (
+            <>
+              <div className="navcategory w-100 m-0 p-0 d-flex flex-row">
+                <div
+                  style={{ width: "130px", height: "275px" }}
+                  className="navdiv d-flex  gap-2 flex-column p-0 m-0"
+                >
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/gas-grills"
+                  >
+                    <span>Gas Grills</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/pellet-grills"
+                  >
+                    <span>Pellet Grills</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/charcoal-grills"
+                  >
+                    <span>Charcoal Grills</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/kamado-grills"
+                  >
+                    <span>Kamado Grills</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/smokers"
+                  >
+                    <span>Smokers</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/charcoal"
+                  >
+                    <span>Charcoal</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/electric-grills"
+                  >
+                    <span>Electric Grills</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/pizza-ovens"
+                  >
+                    <span>Pizza Ovens</span>
+                  </Link>
+                </div>
+                <div
+                  style={{ width: "150px" }}
+                  className="navdiv d-flex text-align-center p-0 m-0"
+                >
+                  <img style={{ width: "100%" }} src={egopower} alt="Brand" />
+                </div>
+              </div>
+            </>
+          ),
+        },
+      ],
     },
     {
       key: "4",
       label: (
-        <Link to="/shop">
-          <span>Outdoor Living and Patio</span>
+        <Link title="Outdoor Power Equipment" to="/shop">
+          <span>Lawn and Garden</span>
         </Link>
       ),
-      children: [],
+      children: [
+        {
+          key: "4-3",
+          label: (
+            <>
+              <div className="navcategory w-100 m-0 p-0 d-flex flex-row">
+                <div
+                  style={{ width: "140px", height: "245px" }}
+                  className="navdiv d-flex flex-column gap-2 p-0 m-0"
+                >
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/lawn-mowers"
+                  >
+                    <span>Lawn Mowers</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/riding-mowers"
+                  >
+                    <span>Riding Mowers</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/snow-blowers"
+                  >
+                    <span>Snow Blowers</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/generators"
+                  >
+                    <span>Generators</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/pressure-washers"
+                  >
+                    <span>Pressure Washers</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/tillers-&-cultivators"
+                  >
+                    <span>Tillers & Cultivators</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/log-splitters"
+                  >
+                    <span>Log Splitters</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/chippers"
+                  >
+                    <span>Pizza Ovens</span>
+                  </Link>
+                </div>
+                <div
+                  style={{ width: "150px" }}
+                  className="navdiv d-flex text-align-center p-0 m-0"
+                >
+                  <img style={{ width: "100%" }} src={egopower} alt="Brand" />
+                </div>
+              </div>
+            </>
+          ),
+        },
+      ],
     },
     {
       key: "5",
       label: (
-        <Link to="/shop">
-          <span>Lawn and Garden</span>
+        <Link title="Lawn and Garden" to="/shop">
+          <span>Lawn Care</span>
         </Link>
       ),
-      children: [],
+      children: [
+        {
+          key: "4-3",
+          label: (
+            <>
+              <div className="navcategory w-100 m-0 p-0 d-flex flex-row">
+                <div
+                  style={{ width: "120px", height: "245px" }}
+                  className="navdiv d-flex flex-column gap-2 p-0 m-0"
+                >
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/weed-killers"
+                  >
+                    <span>Weed Killers</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/spreaders"
+                  >
+                    <span>Spreaders</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/sprayers"
+                  >
+                    <span>Sprayers</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/soil-conditioners"
+                  >
+                    <span>Soil Conditioners</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/fungicides"
+                  >
+                    <span>Fungicides</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/garden-tools"
+                  >
+                    <span>Garden Tools</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/soil"
+                  >
+                    <span>Soil</span>
+                  </Link>
+                  <Link
+                    className="grillsandsmokerslink"
+                    style={{ color: "black" }}
+                    to="/sub/mulch"
+                  >
+                    <span>Mulch</span>
+                  </Link>
+                </div>
+                <div
+                  style={{ width: "150px" }}
+                  className="navdiv d-flex text-align-center p-0 m-0"
+                >
+                  <img style={{ width: "100%" }} src={egopower} alt="Brand" />
+                </div>
+              </div>
+            </>
+          ),
+        },
+      ],
     },
     {
       key: "6",
       label: (
-        <Link to="/shop">
+        <Link title="Tools" to="/shop">
           <span>Tools</span>
         </Link>
       ),
@@ -122,7 +356,7 @@ const Header = () => {
     {
       key: "7",
       label: (
-        <Link to="/shop">
+        <Link title="Paint and Supplies" to="/shop">
           <span>Paint and Supplies</span>
         </Link>
       ),
@@ -131,7 +365,7 @@ const Header = () => {
     {
       key: "8",
       label: (
-        <Link to="/shop">
+        <Link title="Heating and Cooling" to="/shop">
           <span>Heating and Cooling</span>
         </Link>
       ),
@@ -140,7 +374,7 @@ const Header = () => {
     {
       key: "9",
       label: (
-        <Link to="/shop">
+        <Link title="Home and Decor" to="/shop">
           <span>Home and Decor</span>
         </Link>
       ),
@@ -149,7 +383,7 @@ const Header = () => {
     {
       key: "10",
       label: (
-        <Link to="/shop">
+        <Link title="Building Supplies" to="/shop">
           <span>Building Supplies</span>
         </Link>
       ),
@@ -158,7 +392,7 @@ const Header = () => {
     {
       key: "11",
       label: (
-        <Link to="/shop">
+        <Link title="Hardware" to="/shop">
           <span>Hardware</span>
         </Link>
       ),
@@ -297,29 +531,33 @@ const Header = () => {
                 </Dropdown>
 
                 <a
+                  title="Local Ad"
                   className="cascader"
                   href="https://www.acehardware.com/local-ad"
                 >
                   <Space>Local Ad</Space>
                 </a>
-                <Link
+                <a
+                  title="The Paint Studio"
                   className="cascader"
                   href="https://www.acehardware.com/thepaintstudio"
                 >
                   <Space>The Paint Studio</Space>
-                </Link>
-                <Link
+                </a>
+                <a
+                  title="Ace Project Place"
                   className="cascader"
                   href="https://www.acehardware.com/aceprojectplace"
                 >
                   <Space>Ace Project Place</Space>
-                </Link>
-                <Link
+                </a>
+                <a
+                  title="Ace Handyman Services"
                   className="cascader"
                   href="https://www.acehandymanservices.com/?utm_source=acehardware.com&utm_medium=referral&utm_campaign=header_link&source=ace_site"
                 >
                   <Space>Ace Handyman Services</Space>
-                </Link>
+                </a>
               </Menu>
             </div>
           ) : (
@@ -351,6 +589,7 @@ const Header = () => {
                         className="dropdown-container"
                       >
                         <b
+                          title="Your Account"
                           style={{
                             fontWeight: "500",
                             fontSize: "14px",
@@ -446,6 +685,7 @@ const Header = () => {
                 </Dropdown>
 
                 <a
+                  title="Local Ad"
                   className="cascader"
                   href="https://www.acehardware.com/local-ad"
                 >
@@ -457,18 +697,20 @@ const Header = () => {
                 >
                   <Space>The Paint Studio</Space>
                 </a>
-                <Link
+                <a
+                  title="Ace Project Place"
                   className="cascader"
                   href="https://www.acehardware.com/aceprojectplace"
                 >
                   <Space>Ace Project Place</Space>
-                </Link>
-                <Link
+                </a>
+                <a
+                  title="Ace Handyman Services"
                   className="cascader"
                   href="https://www.acehandymanservices.com/?utm_source=acehardware.com&utm_medium=referral&utm_campaign=header_link&source=ace_site"
                 >
                   <Space>Ace Handyman Services</Space>
-                </Link>
+                </a>
               </Menu>
             </div>
           )}

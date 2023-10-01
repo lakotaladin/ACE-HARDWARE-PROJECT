@@ -1,4 +1,5 @@
 const Category = require("../models/category");
+const Product = require("../models/product");
 const Sub = require("../models/sub");
 const slugify = require("slugify");
 
@@ -19,7 +20,13 @@ exports.list = async (req, res) =>
 
 exports.read = async (req, res) => {
   let category = await Category.findOne({ slug: req.params.slug }).exec();
-  res.json(category);
+  // res.json(category);
+  const products = await Product.find({ category }).populate("category").exec();
+
+  res.json({
+    category,
+    products,
+  });
 };
 
 exports.update = async (req, res) => {
@@ -32,7 +39,7 @@ exports.update = async (req, res) => {
     );
     res.json(updated);
   } catch (err) {
-    res.status(400).send("Create update failed");
+    res.status(400).send("Category update failed");
   }
 };
 
@@ -41,7 +48,7 @@ exports.remove = async (req, res) => {
     const deleted = await Category.findOneAndDelete({ slug: req.params.slug });
     res.json(deleted);
   } catch (err) {
-    res.status(400).send("Create delete failed");
+    res.status(400).send("Category delete failed");
   }
 };
 

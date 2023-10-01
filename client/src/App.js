@@ -1,39 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./firebase";
 import { currentUser } from "./functions/auth";
 import { useDispatch } from "react-redux";
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
-import SideDrawer from "./components/drawer/SideDrawer";
-import Cart from "./pages/Cart";
-import Home from "./pages/Home";
-import Location from "./pages/Location";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import RegisterComplete from "./pages/auth/RegisterComplete";
-import Storeinfo from "./pages/Storeinfo";
-import Profile from "./pages/userPages/User";
-import Account from "./pages/userPages/Account";
-import UserRoute from "./components/routes/UserRoute";
-import AdminRoute from "./components/routes/AdminRoute";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import History from "./pages/userPages/History";
-import Wishlist from "./pages/userPages/Wishlist";
-import CategoryCreate from "./pages/admin/category/CategoryCreate";
-import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
-import SubCreate from "./pages/admin/sub/SubCreate";
-import SubUpdate from "./pages/admin/sub/SubUpdate";
-import ProductCreate from "./pages/admin/product/ProductCreate";
-import ProductUpdate from "./pages/admin/product/ProductUpdate";
-import AllProducts from "./pages/admin/product/AllProducts";
-import LayoutPage from "./components/layout/LayoutPage";
-import Product from "./pages/Product";
-import Checkout from "./pages/Checkout";
-import CreateCouponPage from "./pages/admin/coupon/CreateCouponPage";
-import Payment from "./pages/Payment";
-import GlobalSpinner from "./components/Spinners/GlobalSpinner";
-import Shop from "./pages/shop/Shop";
+
+const Login = lazy(() => import("./pages/auth/Login"));
+const Register = lazy(() => import("./pages/auth/Register"));
+const SideDrawer = lazy(() => import("./components/drawer/SideDrawer"));
+const Cart = lazy(() => import("./pages/Cart"));
+const Home = lazy(() => import("./pages/Home"));
+const Location = lazy(() => import("./pages/Location"));
+const RegisterComplete = lazy(() => import("./pages/auth/RegisterComplete"));
+const Storeinfo = lazy(() => import("./pages/Storeinfo"));
+const Profile = lazy(() => import("./pages/userPages/User"));
+const Account = lazy(() => import("./pages/userPages/Account"));
+const UserRoute = lazy(() => import("./components/routes/UserRoute"));
+const AdminRoute = lazy(() => import("./components/routes/AdminRoute"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const History = lazy(() => import("./pages/userPages/History"));
+const Wishlist = lazy(() => import("./pages/userPages/Wishlist"));
+const CategoryCreate = lazy(() =>
+  import("./pages/admin/category/CategoryCreate")
+);
+const CategoryUpdate = lazy(() =>
+  import("./pages/admin/category/CategoryUpdate")
+);
+const SubCreate = lazy(() => import("./pages/admin/sub/SubCreate"));
+const SubUpdate = lazy(() => import("./pages/admin/sub/SubUpdate"));
+const ProductCreate = lazy(() => import("./pages/admin/product/ProductCreate"));
+const ProductUpdate = lazy(() => import("./pages/admin/product/ProductUpdate"));
+const AllProducts = lazy(() => import("./pages/admin/product/AllProducts"));
+const LayoutPage = lazy(() => import("./components/layout/LayoutPage"));
+const Product = lazy(() => import("./pages/Product"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const CreateCouponPage = lazy(() =>
+  import("./pages/admin/coupon/CreateCouponPage")
+);
+const Payment = lazy(() => import("./pages/Payment"));
+const GlobalSpinner = lazy(() => import("./components/Spinners/GlobalSpinner"));
+const Shop = lazy(() => import("./pages/shop/Shop"));
+const CategoryHome = lazy(() => import("./pages/category/CategoryHome"));
+const SubHome = lazy(() => import("./pages/sub/SubHome"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -71,7 +80,7 @@ const App = () => {
     return () => unsubscribe();
   }, [dispatch]);
   return (
-    <>
+    <Suspense>
       <SideDrawer />
       <ToastContainer />
       {loadingGlobal ? (
@@ -87,6 +96,8 @@ const App = () => {
           <Route exact path="/categories" component={LayoutPage} />
           <Route exact path="/store-details" component={Storeinfo} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/category/:slug" component={CategoryHome} />
+          <Route exact path="/sub/:slug" component={SubHome} />
           <Route exact path="/register/complete" component={RegisterComplete} />
           <UserRoute exact path="/myaccount" component={Profile} />
           <UserRoute exact path="/account" component={Account} />
@@ -117,7 +128,7 @@ const App = () => {
           />
         </Switch>
       )}
-    </>
+    </Suspense>
   );
 };
 

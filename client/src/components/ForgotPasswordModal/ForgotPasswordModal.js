@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useSelector, userSelector } from "react-redux";
 import { Modal, Input, Button, Form } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
+import LoadingCardText from "../cards/LoadingCardText";
 
 const ForgotPasswordModal = ({ history, visible, onClose }) => {
   const [email, setEmail] = useState("");
@@ -40,7 +41,7 @@ const ForgotPasswordModal = ({ history, visible, onClose }) => {
   return (
     <>
       {loading ? (
-        <h1 className="text-danger text-align-center p-5">Loading...</h1>
+        <LoadingCardText />
       ) : (
         <Modal
           className="resetmodal p-3"

@@ -340,9 +340,9 @@ const Checkout = ({ history }) => {
                   }}
                   disabled={!addressSaved || !products.length}
                   onClick={createCashOrder}
-                  className="placeorder rounded border-0 bg-warning text-white p-3"
+                  className="placeorder rounded btn border-0 bg-warning text-white p-3"
                 >
-                  <ButttonLoader />
+                  Place order
                 </button>
               ) : (
                 <button

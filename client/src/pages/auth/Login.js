@@ -163,7 +163,7 @@ const Login = ({ history }) => {
                 Forgot Password
               </span>
 
-              <div className="button-form m-0 p-0 w-100 d-flex justify-content-center align-items-center">
+              <div className="button-form btn m-0 p-0 w-100 d-flex justify-content-center align-items-center">
                 <button
                   type="submit"
                   className="button w-100 mt-4"

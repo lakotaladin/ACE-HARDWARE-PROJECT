@@ -21,18 +21,45 @@ const ProductUpdateForm = ({
     price,
     category,
     subs,
-    shipping,
+    shippings,
     quantity,
     fueltypes,
     thermometers,
     ignitiontypes,
     numberOfMainBurners,
     technologyes,
+    frontSideShelfs,
+    frontSideShelf,
+    primaryOutputBurners,
+    primaryOutputBurner,
+    assemblys,
+    assembly,
+    gateSurfaceMaterials,
+    gateSurfaceMaterial,
+    isFreePickups,
+    isFreePickup,
+    recommendeds,
+    recommended,
     images,
     colors,
     brands,
     color,
     brand,
+    shipping,
+    watts,
+    watt,
+    numberofblades,
+    numberofblade,
+    yardsizes,
+    yardsize,
+    maxforwardspeeds,
+    maxforwardspeed,
+    poweredbys,
+    poweredby,
+    primarycookingareas,
+    primarycookingarea,
+    warrantys,
+    warranty,
   } = values;
 
   return (
@@ -110,6 +137,171 @@ const ProductUpdateForm = ({
         </select>
       </div>
       <div className="form-group">
+        <label>Number of blade</label>
+        <select
+          value={numberofblade}
+          name="numberofblade"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {numberofblades.map((f) => (
+            <option key={f} value={f}>
+              {f}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Front Side Shelfs</label>
+        <select
+          value={frontSideShelf}
+          name="frontSideShelf"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {frontSideShelfs.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Gate Surface Materials</label>
+        <select
+          value={gateSurfaceMaterial}
+          name="gateSurfaceMaterial"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {gateSurfaceMaterials.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Primary Output Burners</label>
+        <select
+          value={primaryOutputBurner}
+          name="primaryOutputBurner"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {primaryOutputBurners.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Watt</label>
+        <select
+          value={watt}
+          name="watt"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {watts.map((watt) => (
+            <option key={watt} value={watt}>
+              {watt}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Yard Size</label>
+        <select
+          value={yardsize}
+          name="yardsize"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {yardsizes.map((f) => (
+            <option key={f} value={f}>
+              {f}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Max Forward Speed</label>
+        <select
+          value={maxforwardspeed}
+          name="maxforwardspeed"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {maxforwardspeeds.map((numspeed) => (
+            <option key={numspeed} value={numspeed}>
+              {numspeed}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Warranty</label>
+        <select
+          value={warranty}
+          name="warranty"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {warrantys.map((f) => (
+            <option key={f} value={f}>
+              {f}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Primary cooking area</label>
+        <select
+          value={primarycookingarea}
+          name="primarycookingarea"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {primarycookingareas.map((f) => (
+            <option key={f} value={f}>
+              {f}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Free Pickup</label>
+        <select
+          value={isFreePickup}
+          name="isFreePickup"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {isFreePickups.map((f) => (
+            <option key={f} value={f}>
+              {f}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Powered by</label>
+        <select
+          value={poweredby}
+          name="poweredby"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {poweredbys.map((f) => (
+            <option key={f} value={f}>
+              {f}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
         <label>Thermometer</label>
         <select
           value={thermometers}
@@ -150,6 +342,36 @@ const ProductUpdateForm = ({
           {ignitiontypes.map((i) => (
             <option key={i} value={i}>
               {i}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Assembly</label>
+        <select
+          value={assembly}
+          name="assembly"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {assemblys.map((i) => (
+            <option key={i} value={i}>
+              {i}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Recommended</label>
+        <select
+          value={recommended}
+          name="recommended"
+          className="form-control"
+          onChange={handleChange}
+        >
+          {recommendeds.map((r) => (
+            <option key={r} value={r}>
+              {r}
             </option>
           ))}
         </select>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { userCart } from "../functions/user";
@@ -6,6 +6,7 @@ import Header from "../components/nav/Header";
 import Footer from "../components/footer/Footer";
 import ProductCardInCheckout from "../components/cards/ProductCardInCheckout";
 import checkoutpayment from "../resources/payment.png";
+import ScrollOnTopButton from "../components/ScrollOnTop/ScrollOnTopButton";
 
 const Cart = ({ history }) => {
   const { cart, user } = useSelector((state) => ({ ...state }));
@@ -14,14 +15,14 @@ const Cart = ({ history }) => {
 
   // Get Total price
   const getTotal = () => {
-    return cart?.reduce((currentValue, nextValue) => {
+    return cart.reduce((currentValue, nextValue) => {
       return currentValue + nextValue.count * nextValue.price;
     }, 0);
   };
 
   const saveOrderToDb = () => {
     // console.log("cart", JSON.stringify(cart, null, 4));
-    userCart(cart, user?.token)
+    userCart(cart, user.token)
       .then((res) => {
         console.log("CART POST RES", res);
         if (res.data.ok) history.push("/checkout");
@@ -35,7 +36,7 @@ const Cart = ({ history }) => {
       type: "COD",
       payload: true,
     });
-    userCart(cart, user.token)
+    userCart(cart, user?.token)
       .then((res) => {
         console.log("CART POST RES", res);
         if (res.data.ok) history.push("/checkout");
@@ -96,7 +97,10 @@ const Cart = ({ history }) => {
         >
           <div className="row w-100">
             <div
-              style={{ borderBottom: "10px solid #EEEEEE" }}
+              style={{
+                borderBottom: "10px solid #EEEEEE",
+                overflowX: "scroll",
+              }}
               className="col pl-0 pr-0"
             >
               {!cart.length ? <p>No products in cart. </p> : showCartItems()}
@@ -168,14 +172,14 @@ const Cart = ({ history }) => {
                       Checkout
                     </button>
                   </Link>
-                  <Link className="p-0 m-0 text-white" to="/checkout">
+                  <Link className="p-0 mt-1 text-white" to="/checkout">
                     <button
                       style={{ backgroundColor: "#D70", width: "100%" }}
-                      className="butoncheckout rounded p-3 border-0 text-white"
+                      className="butoncheckout btn rounded p-3 mt-2 border-0 text-white"
                       disabled={!cart.length}
                       onClick={saveCashOrderToDb}
                     >
-                      Checkout
+                      PAY CASH ON DELIVERY
                     </button>
                   </Link>
                 </>
@@ -203,6 +207,7 @@ const Cart = ({ history }) => {
         </div>
       </div>
       <Footer />
+      <ScrollOnTopButton />
     </>
   );
 };

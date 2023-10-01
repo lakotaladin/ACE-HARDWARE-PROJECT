@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./home.css";
 import { useHistory } from "react-router-dom";
 import Header from "../components/nav/Header";
+import NewArrivals from "../components/layout/productsort/NewArrivals";
 import ScrollToTopButton from "../components/ScrollOnTop/ScrollOnTopButton";
 import Footer from "../components/footer/Footer";
 import kids from "../homeassets/kids.jpg";
@@ -41,6 +42,7 @@ import pellet from "../homeassets/pellet.jpg";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Modal } from "antd";
 import LoadingCard from "../components/cards/LoadingCard";
+import ProductCarousel from "../components/layout/productsort/ProductCarousel";
 
 const Home = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -88,7 +90,7 @@ const Home = () => {
                   >
                     <img
                       src={kids}
-                      alt="Image 1"
+                      alt="Image1"
                       className="border-0 rounded-none card-img-top"
                     />
                     <div className="card-body">
@@ -100,7 +102,7 @@ const Home = () => {
                       </p>
                     </div>
                     <div className="card-footer">
-                      <Link className="linkcard" to="#">
+                      <Link className="linkcard" to="/shop">
                         <u style={{ color: "#D40029" }}>Shop Fall now</u>
                       </Link>
                     </div>
@@ -113,7 +115,7 @@ const Home = () => {
                   >
                     <img
                       src={cardhuman}
-                      alt="Image"
+                      alt="cardhuman"
                       style={{ height: "35%" }}
                       className="card-img-top"
                     />
@@ -132,7 +134,7 @@ const Home = () => {
                       </p>
                     </div>
                     <div className="card-footer">
-                      <Link className="linkcard" to="#">
+                      <Link className="linkcard" to="/shop">
                         <u style={{ color: "#D40029" }}>Shop YETI</u>
                       </Link>
                     </div>
@@ -154,14 +156,14 @@ const Home = () => {
                           padding: "0px",
                         }}
                       />
-                      <h6 style={{ color: "#D40029" }}></h6>
+                      {/* <h6 style={{ color: "#D40029" }}>Timber</h6> */}
                       <p className="card-text">
                         Save up to $700 on select Traeger Timberline Pellet
                         Grills.
                       </p>
                     </div>
                     <div className="card-footer">
-                      <Link className="linkcard" to="#">
+                      <Link className="linkcard" to="/shop">
                         <u style={{ color: "#D40029" }}>Shop now</u>
                       </Link>
                     </div>
@@ -195,7 +197,7 @@ const Home = () => {
                       </p>
                     </div>
                     <div className="card-footer">
-                      <Link className="linkcard" to="#">
+                      <Link className="linkcard" to="/shop">
                         <u style={{ color: "#D40029" }}>Shop Outdoor Heating</u>
                       </Link>
                     </div>
@@ -205,7 +207,7 @@ const Home = () => {
             </div>
 
             <div className="details p-0 m-0">
-              <Link to="#">
+              <Link to="/shop">
                 <img className="w-100" src={details} alt="delivery" />
               </Link>
               <div className="detailsdiv d-flex p-0 m-0 justify-content-end">
@@ -234,6 +236,7 @@ const Home = () => {
                 </Modal>
               </div>
             </div>
+            <ProductCarousel />
             {/* Our best deals */}
             <div className="container-fluid p-0 m-0">
               <div className="row">
@@ -245,7 +248,7 @@ const Home = () => {
               </div>
               <div className="row mt-4 text-center">
                 <div className="col-md-3">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         src={grill1}
@@ -265,7 +268,7 @@ const Home = () => {
                   </Link>
                 </div>
                 <div className="col-md-3">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         src={grill2}
@@ -284,7 +287,7 @@ const Home = () => {
                   </Link>
                 </div>
                 <div className="col-md-3">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         src={grill3}
@@ -303,7 +306,7 @@ const Home = () => {
                   </Link>
                 </div>
                 <div className="col-md-3">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         src={grill4}
@@ -323,9 +326,11 @@ const Home = () => {
                 </div>
               </div>
             </div>
+            {/* New Arrivals */}
+            <NewArrivals />
             {/* Generac banner  */}
             <div className="container-fluid p-0 m-0">
-              <Link to="#">
+              <Link to="/shop">
                 <img
                   style={{ width: "100%", marginTop: "2%", marginBottom: "2%" }}
                   src={generac}
@@ -352,7 +357,7 @@ const Home = () => {
               <div className="row mt-4 text-center">
                 {/* Kolona 1 */}
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/category/grills-and-smokers" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -371,7 +376,7 @@ const Home = () => {
                 </div>
                 {/* Dodajte još 6 kartica u kolonu 1 */}
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/category/lawn-mowers" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -391,7 +396,7 @@ const Home = () => {
                   </Link>
                 </div>
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/category/lawn-care" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -411,7 +416,7 @@ const Home = () => {
                   </Link>
                 </div>
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -432,7 +437,10 @@ const Home = () => {
                 </div>
                 {/* Dodajte još 3 kartice u kolonu 1 */}
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link
+                    to="/category/outdoor-power-equipment"
+                    className="textlink"
+                  >
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -452,7 +460,7 @@ const Home = () => {
                   </Link>
                 </div>
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -474,7 +482,7 @@ const Home = () => {
               <div className="row mt-4 text-center">
                 {/* Kolona 2 */}
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -493,7 +501,7 @@ const Home = () => {
                 </div>
                 {/* Dodajte još 6 kartica u kolonu 2 */}
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -513,7 +521,7 @@ const Home = () => {
                   </Link>
                 </div>
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -533,7 +541,7 @@ const Home = () => {
                   </Link>
                 </div>
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -552,7 +560,7 @@ const Home = () => {
                 </div>
                 {/* Dodajte još 3 kartice u kolonu 2 */}
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         style={{
@@ -572,7 +580,7 @@ const Home = () => {
                   </Link>
                 </div>
                 <div className="col-md-2 col-4 p-0">
-                  <Link to="#" className="textlink">
+                  <Link to="/shop" className="textlink">
                     <div className="card bg-white border-0">
                       <img
                         src={cat14}
@@ -586,7 +594,7 @@ const Home = () => {
             </div>
             {/* YEYI Collection */}
             <div className="container-fluid p-0 m-0">
-              <Link className="w-100 p-0 m-0" to="#">
+              <Link className="w-100 p-0 m-0" to="/shop">
                 <img
                   className="w-100 p-0 m-0 mt-4 mb-5"
                   src={yeti}
@@ -596,7 +604,7 @@ const Home = () => {
             </div>
             {/* Colors ad */}
             <div className="container-fluid p-0 m-0">
-              <Link to="#">
+              <Link to="/shop">
                 <img
                   className="w-100 p-0 m-0 mt-4 mb-5"
                   src={colorad}
@@ -607,7 +615,7 @@ const Home = () => {
           </div>
           {/* Convenient Ways to Shop Ace */}
           <div className="container-fluid p-0 m-0">
-            <Link to="#">
+            <Link to="/shop">
               <img
                 className="w-100 p-0 m-0 mt-4 mb-5"
                 src={waystoshop}
@@ -618,7 +626,7 @@ const Home = () => {
           {/* Paypal and Resons To Love Ace */}
           <div className="homecontainer p-0 d-flex flex-column">
             <div className="container-fluid p-0 m-0">
-              <Link to="#">
+              <Link to="/shop">
                 <img
                   className="w-100 p-0 m-0 mt-4 mb-5"
                   src={loveace}
@@ -628,7 +636,7 @@ const Home = () => {
             </div>
             {/* Brands */}
             <div className="container-fluid p-0 mt-1">
-              <Link to="#">
+              <Link to="/shop">
                 <img
                   className="w-100 p-0 m-0 mt-4 mb-5"
                   src={allbrands}
@@ -638,7 +646,10 @@ const Home = () => {
             </div>
             {/* Videos */}
             <div className="container-fluid p-0 m-0">
-              <div className="row mt-5 text-center">
+              <div
+                style={{ display: "flex", flexWrap: "wrap" }}
+                className="row mt-5 text-center"
+              >
                 <h1>Tips & Advice</h1>
                 <br />
                 <a

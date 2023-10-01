@@ -71,6 +71,11 @@
    color: black !important;
    font-weight: bold;
 }
+.textlink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .textlink:hover {
     text-decoration: underline !important;
     color: black !important;

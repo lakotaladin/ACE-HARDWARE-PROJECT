@@ -5,6 +5,7 @@ import AdminProductCard from "../../../components/cards/AdminProductCard";
 import { removeProduct } from "../../../functions/product";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import AdminHeader from "../../../components/nav/AdminHeader";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -47,28 +48,31 @@ const AllProducts = () => {
   };
 
   return (
-    <div className="w-100 container-fluid d-flex flex-row">
-      <AdminNav />
-      <div className="row w-100">
-        <div className="col">
-          {loading ? (
-            <h4 className="text-danger">Loading...</h4>
-          ) : (
-            <h4>All Products</h4>
-          )}
-          <div className="row w-100">
-            {products.map((product) => (
-              <div key={product._id} className="col-md-4 pb-3">
-                <AdminProductCard
-                  product={product}
-                  handleRemove={handleRemove}
-                />
-              </div>
-            ))}
+    <>
+      <AdminHeader />
+      <div className=" p-0 m-0 w-100 container-fluid d-flex flex-row">
+        <AdminNav />
+        <div className="row w-100">
+          <div className="col">
+            {loading ? (
+              <h4 className="text-danger">Loading...</h4>
+            ) : (
+              <h4>All Products</h4>
+            )}
+            <div className="row w-100">
+              {products.map((product) => (
+                <div key={product._id} className="col-md-4 pb-3">
+                  <AdminProductCard
+                    product={product}
+                    handleRemove={handleRemove}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

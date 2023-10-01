@@ -8,6 +8,7 @@ import ProductCreateForm from "../../../components/forms/ProductCreateForm";
 import { getCategories, getCategorySubs } from "../../../functions/category";
 import FileUpload from "../../../components/forms/FileUpload";
 import LoadingIutlined from "@ant-design/icons";
+import AdminHeader from "../../../components/nav/AdminHeader";
 
 const initialState = {
   title: "",
@@ -62,32 +63,76 @@ const initialState = {
     "5 Burner",
     "6 Burner",
   ],
+  watts: ["1560 Watt", "1750 Watt", "1760 Watt", "250 Watt", "450 Watt"],
+  numberofblades: ["1 Blade", "2 Blade", "3 Blade"],
+  yardsizes: ["< 1 Acre", "1-2 Acre", "2-4 Acre"],
+  maxforwardspeeds: [
+    "4 Mile Per Hour",
+    "5.5 Mile Per Hour",
+    "7 Mile Per Hour",
+    "8 Mile Per Hour",
+  ],
+  poweredbys: ["Battery", "Gas"],
+  primarycookingareas: ["524 square inch", "535 square inch"],
+  warrantys: ["1 Year", "2 Year", "3 Year", "4 Year", "5 Year", "10 Year"],
   images: [],
   colors: [
     "Black",
     "Black/Silver",
     "Blue",
-    "Copper",
-    "Deep Ocean Blue",
     "Fireman Red",
     "GRAY",
-    "Green",
-    "Indigo",
-    "Orange",
-    "RED",
     "Silver",
     "Stainless Steel",
     "Titanium",
+    "Red",
+    "Green",
+    "Titanium",
+    "Purple",
+    "Navy",
+    "White",
+    "Charcoal",
+    "Indigo",
+    "Orange",
+    "Stainless Steel",
+    "Deep Ocean Blue",
   ],
   brands: [
     "Weber",
     "Treager",
     "Big Green Egg",
     "Blackstone",
+    "Pit Boss",
+    "Loco",
     "Ooni",
     "Gozney",
     "Char-Broil",
     "Meat Chunch BBQ",
+    "Ace",
+    "Cadet",
+    "Comfort Zone",
+    "Crown",
+    "Dial",
+    "Ghp",
+    "American Wick",
+    "Dewalt",
+    "Mr. Heater",
+    "Tru Aire",
+    "Easy Heat",
+    "Perfect Aire",
+    "2000 Flushes",
+    "30 Secounds",
+    "Alogma",
+    "Ball",
+    "Benjamin Moore",
+    "Beyound Bright",
+    "American Lawn Mower Company",
+    "Arnold",
+    "Craftsman",
+    "Agri-Fab",
+    "Black + Decker",
+    "Briggs & Stratton",
+    "Ego",
   ],
   color: "",
   brand: "",
@@ -101,8 +146,15 @@ const initialState = {
   recommended: "",
   frontSideShelf: "",
   assembly: "",
+  watt: "",
   gateSurfaceMaterial: "",
   primaryOutputBurner: "",
+  numberofblade: "",
+  yardsize: "",
+  maxforwardspeed: "",
+  poweredby: "",
+  primarycookingarea: "",
+  warranty: "",
 };
 
 const ProductCreate = () => {
@@ -147,25 +199,23 @@ const ProductCreate = () => {
     setShowSub(true);
   };
   return (
-    <div className="container-fluid">
-      <div className="header-admin justify-content-center d-flex align-items-center w-100 m-0 p-0">
-        <h1>Admin Dashboard</h1>
-      </div>
+    <div className="productcreate container-fluid p-0 m-0">
+      <AdminHeader />
       <div className="row">
         <div className="col-md-2">
           <AdminNav />
         </div>
 
-        <div className="col-md-10">
+        <div className="productcontainer col-md-10">
           {loading ? (
             <LoadingIutlined className="text-danger h1" />
           ) : (
-            <h4>Product create</h4>
+            <h2 style={{ marginTop: "2%" }}>Product create</h2>
           )}
-          <hr />
+
           {/* {JSON.stringify(values)} */}
           {/* Image upload input */}
-          <div className="imgdiv w-100 m-0">
+          <div style={{ width: "250px" }} className="imgdiv m-0">
             <FileUpload
               values={values}
               setValues={setValues}

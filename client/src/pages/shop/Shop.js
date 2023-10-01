@@ -13,16 +13,12 @@ import {
 } from "../../functions/product";
 import { getCategories } from "../../functions/category";
 import { getSubs } from "../../functions/sub";
-import {
-  DollarOutlined,
-  DownSquareOutlined,
-  StarOutlined,
-} from "@ant-design/icons";
 import Star from "../../components/forms/Star";
 import ProductCard from "../../components/cards/ProductCard";
 import LoadingCard from "../../components/cards/LoadingCard";
 import { useDispatch, useSelector } from "react-redux";
 import Storetime from "../../components/Storeworktime/Storetime";
+import noproduct from "../../resources/noproduct.jpg";
 
 const { SubMenu } = Menu;
 
@@ -99,6 +95,7 @@ const Shop = () => {
   const [shipping, setShipping] = useState("");
   const [brandSearch, setBrandSearch] = useState("");
   const [originalBrands, setOriginalBrands] = useState([...brands]);
+  const [categoryChecked, setCategoryChecked] = useState({});
 
   let dispatch = useDispatch();
   let { search } = useSelector((state) => ({ ...state }));
@@ -411,7 +408,7 @@ const Shop = () => {
           </div>
         </div>
         <div
-          style={{ width: "80%" }}
+          style={{ width: "80%", backgroundColor: "white" }}
           className="shopsection m-auto p-1 m-0 mb-5 row"
         >
           <div
@@ -435,11 +432,11 @@ const Shop = () => {
                 key="1"
                 title={
                   <span className="h6">
-                    <DollarOutlined /> Price
+                    <b>Price</b>
                   </span>
                 }
               >
-                <div>
+                <div className="bg-white" style={{ backgroundColor: "white" }}>
                   <Slider
                     className="ml-4 mr-4"
                     tooltipFormatter={(v) => `$${v}`}
@@ -455,12 +452,14 @@ const Shop = () => {
               <SubMenu
                 key="2"
                 title={
-                  <span className="h6">
-                    <DownSquareOutlined /> Categories
+                  <span className="h6 p-0 m-0">
+                    <b>Categories</b>
                   </span>
                 }
               >
-                <div style={{ maringTop: "-10px" }}>{showCategories()}</div>
+                <div style={{ maringTop: "-10px", backgroundColor: "white" }}>
+                  {showCategories()}
+                </div>
               </SubMenu>
 
               {/* stars */}
@@ -468,11 +467,13 @@ const Shop = () => {
                 key="3"
                 title={
                   <span className="h6">
-                    <StarOutlined /> Rating
+                    <b>Rating</b>
                   </span>
                 }
               >
-                <div style={{ maringTop: "-10px" }}>{showStars()}</div>
+                <div style={{ maringTop: "-10px", backgroundColor: "white" }}>
+                  {showStars()}
+                </div>
               </SubMenu>
 
               {/* sub category */}
@@ -480,11 +481,14 @@ const Shop = () => {
                 key="4"
                 title={
                   <span className="h6">
-                    <DownSquareOutlined /> Sub Categories
+                    <b>Sub Categories</b>
                   </span>
                 }
               >
-                <div style={{ maringTop: "-10px" }} className="pl-4 pr-4">
+                <div
+                  style={{ maringTop: "-10px", backgroundColor: "white" }}
+                  className="pl-4 pr-4"
+                >
                   {showSubs()}
                 </div>
               </SubMenu>
@@ -511,11 +515,14 @@ const Shop = () => {
                 key="5"
                 title={
                   <span className="h6">
-                    <DownSquareOutlined /> Brands
+                    <b>Brands</b>
                   </span>
                 }
               >
-                <div style={{ maringTop: "-10px" }} className="pr-5">
+                <div
+                  style={{ maringTop: "-10px", backgroundColor: "white" }}
+                  className="pr-5"
+                >
                   {showBrands()}
                 </div>
               </SubMenu>
@@ -525,11 +532,14 @@ const Shop = () => {
                 key="6"
                 title={
                   <span className="h6">
-                    <DownSquareOutlined /> Colors
+                    <b>Colors</b>
                   </span>
                 }
               >
-                <div style={{ maringTop: "-10px" }} className="pr-5">
+                <div
+                  style={{ maringTop: "-10px", backgroundColor: "white" }}
+                  className="pr-5"
+                >
                   {showColors()}
                 </div>
               </SubMenu>
@@ -539,11 +549,14 @@ const Shop = () => {
                 key="7"
                 title={
                   <span className="h6">
-                    <DownSquareOutlined /> Shipping
+                    <b>Shipping</b>
                   </span>
                 }
               >
-                <div style={{ maringTop: "-10px" }} className="pr-5">
+                <div
+                  style={{ maringTop: "-10px", backgroundColor: "white" }}
+                  className="pr-5"
+                >
                   {showShipping()}
                 </div>
               </SubMenu>
@@ -572,6 +585,7 @@ const Shop = () => {
 
             {products.length < 1 && (
               <div className="noitems d-flex w-100 flex-column align-items-center align-text-center">
+                <img src={noproduct} style={{ width: "50%" }} alt="noproduct" />
                 <p className="m-auto p-0 d-flex">No products found</p>
               </div>
             )}

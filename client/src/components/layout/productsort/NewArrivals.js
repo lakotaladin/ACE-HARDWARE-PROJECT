@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "../layout/layoutPage.css";
-import { Layout } from "antd";
-import { getProducts, getProductsCount } from "../../functions/product";
-import ProductCard from "../cards/ProductCard";
-import LoadingCard from "../cards/LoadingCard";
+import { getProducts, getProductsCount } from "../../../functions/product";
+import ProductCard from "../../cards/ProductCard";
+import LoadingCard from "../../cards/LoadingCard";
 import { Pagination } from "antd";
-
-const { Content } = Layout;
-const contentStyle = {
-  textAlign: "center",
-  minHeight: 120,
-  backgroundColor: "white",
-};
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
@@ -29,32 +20,34 @@ const NewArrivals = () => {
 
   const loadAllProducts = () => {
     setLoading(true);
-    // sort, order, limit function. CreatedAt have in database we need to fetch this
+    // sort, order, limit
     getProducts("createdAt", "desc", page).then((res) => {
       setProducts(res.data);
       setLoading(false);
     });
   };
+
   return (
     <>
-      <Content style={contentStyle}>
+      <div className="container">
         {loading ? (
           <LoadingCard count={3} />
         ) : (
-          <>
-            <div className="row">
-              {products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-            </div>
-          </>
+          <div className="row">
+            {products.map((product) => (
+              <div key={product._id} className="col-md-4">
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
         )}
-      </Content>
-      <div className="row">
-        <nav className="col-md-4 offset-md-4 text-center pt-5 p-3">
+      </div>
+
+      <div className="newwarrivalrow row p-0 m-0">
+        <nav className="col-md-4 offset-md-4 text-center pt-5 p-0">
           <Pagination
             current={page}
-            total={(productsCount / 3) * 10} // 3 products in pagination
+            total={(productsCount / 3) * 10}
             onChange={(value) => setPage(value)}
           />
         </nav>

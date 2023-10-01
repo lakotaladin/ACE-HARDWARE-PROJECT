@@ -10,6 +10,7 @@ import {
   createCoupon,
 } from "../../../functions/coupon";
 import { DeleteOutlined } from "@ant-design/icons";
+import AdminHeader from "../../../components/nav/AdminHeader";
 
 const CreateCouponPage = () => {
   const [name, setName] = useState("");
@@ -56,6 +57,7 @@ const CreateCouponPage = () => {
   };
   return (
     <>
+      <AdminHeader />
       <div className="couponglobaldiv w-100 p-0 m-0">
         <div className="containercoupon container-fluid">
           <div className="couponrow row">

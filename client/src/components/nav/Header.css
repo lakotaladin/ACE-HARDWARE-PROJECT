@@ -68,7 +68,7 @@
     height: 30px;
     display: flex;
     justify-content: center;
-    background-color: #EEEEEE !important;
+    background-color: #EEEEEE;
     justify-content: space-between;
 }
 
@@ -105,14 +105,7 @@
     padding: 0.5%;
 }
 
-/* #buttonSearch {
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-    border: 1px solid lightgrey !important;
-    background-color: #EEEEEE !important;
-}
 
-*/
 .Logo-search-global {
     margin: auto;
     max-width: 82%;
@@ -184,6 +177,10 @@
     width: 30px;
 }
 
+.grillsandsmokerslink:hover {
+  color: black;
+  font-weight: 700;
+}
 
 /* Location section */
 
@@ -310,7 +307,7 @@
   }
 
   .details:hover {
-    background-color: #EEEEEE !important;
+    background-color: #EEEEEE;
   }
   
   /* Dropdown for Services & Brands */

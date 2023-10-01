@@ -202,13 +202,14 @@ exports.removeFromWishlist = async (req, res) => {
 exports.createCashOrder = async (req, res) => {
   const { COD, couponApplied } = req.body;
   // if COD is true, create order with status of Cash On Delivery
-  let finalAmount = 0;
 
   if (!COD) return res.status(400).send("Create cash order failed");
 
   const user = await User.findOne({ email: req.user.email }).exec();
 
   let userCart = await Cart.findOne({ orderdBy: user._id }).exec();
+
+  let finalAmount = 0;
 
   if (couponApplied && userCart.totalAfterDiscount) {
     finalAmount = userCart.totalAfterDiscount * 100;

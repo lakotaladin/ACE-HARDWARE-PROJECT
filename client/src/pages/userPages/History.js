@@ -4,6 +4,7 @@ import {
   RightOutlined,
   CheckCircleOutlined,
   CloseCircleOutlined,
+  PrinterOutlined,
 } from "@ant-design/icons";
 import { getUserOrders } from "../../functions/user";
 import Header from "../../components/nav/Header";
@@ -99,14 +100,18 @@ const History = ({ history }) => {
     <PDFDownloadLink
       document={<Invoice order={order} />}
       fileName="invoice.pdf"
-      className="btn w-25 m-auto btn-sm btn-block btn-outline-primary"
+      style={{ backgroundColor: "#D40029", color: "white", width: "200px" }}
+      className="printbutton btn m-auto btn-sm m-2 p-1 btn-block"
     >
+      <PrinterOutlined
+        style={{ transform: "scale(1.5)", marginRight: "15px" }}
+      />
       Download PDF
     </PDFDownloadLink>
   );
   const showEachOrders = () =>
     orders.reverse().map((order, i) => (
-      <div key={i} className="m-5 p-3 card">
+      <div key={i} className="w-100 m-5 p-3 card">
         <ShowPaymentInfo order={order} />
         {showOrderInTable(order)}
         <div className="row">
@@ -123,9 +128,9 @@ const History = ({ history }) => {
         <div className="navigation-container d-flex flex-row">
           <p className="p-0 m-0" style={{ color: "grey", fontSize: "12px" }}>
             <Link style={{ textDecoration: "none" }} to="/">
-              Home
+              Ace Hardware
             </Link>{" "}
-            <RightOutlined className="arrow-left" /> Account
+            <RightOutlined className="arrow-left" /> History page
           </p>
         </div>
         <div className="container-h1-link d-flex flex-row w-100 p-0 m-0">
@@ -172,15 +177,26 @@ const History = ({ history }) => {
         </div>
       </div>
       {/* Section */}
-      <div className="global-profile w-100 d-flex flex-column mb-3 p-0">
-        <div className="col">
-          <p style={{ fontWeight: "400", fontSize: "18px", color: "#D91F43" }}>
-            User History Page
-          </p>
-        </div>
-        <div style={{ height: "auto" }} className="ordersection text-center">
+      <div
+        style={{ overflowX: "scroll" }}
+        className="global-profile w-100 m-auto d-flex flex-column mb-3 p-0"
+      >
+        <div
+          style={{
+            height: "auto",
+            width: "1200px",
+            position: "relative",
+          }}
+          className="ordersection text-center m-auto"
+        >
           <h4>
-            {orders.length > 0 ? "User purchase orders" : "No purchase orders"}
+            {orders.length > 0 ? (
+              <p style={{ fontSize: "30px", marginTop: "2%" }}>
+                {user.name} {user.lastName}'s purchase orders
+              </p>
+            ) : (
+              "No purchase orders"
+            )}
           </h4>
 
           {showEachOrders()}
