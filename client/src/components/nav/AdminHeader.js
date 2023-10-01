@@ -21,7 +21,7 @@ const AdminHeader = () => {
               style={{ fontSize: "20px" }}
               className="adminnavarrow p-0 m-0"
             />
-            <p className="p-0 m-0 d-flex">Back to home</p>
+            <p className="p-0 m-0 d-flex">Back to home page</p>
           </Link>
         </div>
         <img

@@ -1,3 +1,5 @@
+import { Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 import React from "react";
 
 const LocalSearch = ({ keyword, setKeyword }) => {
@@ -6,13 +8,16 @@ const LocalSearch = ({ keyword, setKeyword }) => {
     setKeyword(e.target.value.toLowerCase());
   };
 
+  const { Search } = Input;
   return (
-    <input
+    <Search
       type="search"
-      placeholder="Filter"
+      placeholder="Search sub categories"
       value={keyword}
       onChange={handleSearchChange}
-      className="form-control mb-4 mt-4"
+      className="searchsub w-50 mb-4 mt-4"
+      autoFocus
+      allowClear
     />
   );
 };

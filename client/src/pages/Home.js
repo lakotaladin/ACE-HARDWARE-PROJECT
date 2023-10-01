@@ -67,7 +67,7 @@ const Home = () => {
     <>
       <Header />
       {loading ? (
-        <LoadingCard count={10} />
+        <LoadingCard count={3} />
       ) : (
         <div className="homeglobal mt-1 p-0 m-0 w-100 d-flex flex-column">
           <div className="homecontainer bg-white mt-1 p-0 d-flex flex-column">

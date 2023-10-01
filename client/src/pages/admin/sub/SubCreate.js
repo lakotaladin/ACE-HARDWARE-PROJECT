@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
+import AdminHeader from "../../../components/nav/AdminHeader";
+import LoadingCardText from "../../../components/cards/LoadingCardText";
 
 const SubCreate = () => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -71,73 +73,92 @@ const SubCreate = () => {
   const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
 
   return (
-    <div className="container-fluid">
-      <div className="header-admin justify-content-center d-flex align-items-center w-100 m-0 p-0">
-        <h1>Admin Dashboard</h1>
-      </div>
-      <div className="row">
-        <div className="col-md-2">
-          <AdminNav />
-        </div>
-        <div className="col">
-          {loading ? (
-            <h4 className="text-danger">Loading..</h4>
-          ) : (
-            <h4>Create sub category</h4>
-          )}
-
-          <div className="form-group">
-            <label>Parent category</label>
-            <select
-              name="category"
-              className="form-control"
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option>Please select</option>
-              {categories.length > 0 &&
-                categories.map((c) => (
-                  <option key={c._id} value={c._id}>
-                    {c.name}
-                  </option>
-                ))}
-            </select>
+    <>
+      <AdminHeader />
+      <div className="container-fluid">
+        <div style={{ display: "flex", flex: "wrap" }} className="row">
+          <div className="col-md-2">
+            <AdminNav />
           </div>
+          <div className="col">
+            {loading ? (
+              <LoadingCardText count={3} />
+            ) : (
+              <h4>Create sub category</h4>
+            )}
 
-          {/* {JSON.stringify(category)} */}
-
-          <CategoryForm
-            handleSubmit={handleSubmit}
-            name={name}
-            setName={setName}
-          />
-
-          {/* step 2 and step 3 */}
-          <LocalSearch keyword={keyword} setKeyword={setKeyword} />
-
-          {/* Filter subs */}
-          <div className="fluid d-flex flex-row p-1 mb-2 justify-content-between">
-            <p className="m-0 p-0">Name of sub category:</p>
-            <p className="m-0 p-0">Action</p>
-          </div>
-          {subs.filter(searched(keyword)).map((s) => (
-            <div className="alert alert-secondary" key={s._id}>
-              {s.name}
-              <span
-                onClick={() => handleRemove(s.slug)}
-                className="btn btn-sm float-right"
+            <div className="form-group">
+              <label>Parent category</label>
+              <select
+                name="category"
+                className="form-control w-25"
+                onChange={(e) => setCategory(e.target.value)}
               >
-                <DeleteOutlined className="text-danger" />
-              </span>
-              <Link to={`/admin/sub/${s.slug}`}>
-                <span className="btn btn-sm float-right">
-                  <EditOutlined className="text-warning" />
-                </span>
-              </Link>
+                <option>Please select</option>
+                {categories.length > 0 &&
+                  categories.map((c) => (
+                    <option key={c._id} value={c._id}>
+                      {c.name}
+                    </option>
+                  ))}
+              </select>
             </div>
-          ))}
+
+            {/* {JSON.stringify(category)} */}
+
+            <CategoryForm
+              handleSubmit={handleSubmit}
+              name={name}
+              setName={setName}
+            />
+
+            {/* step 2 and step 3 */}
+            <LocalSearch keyword={keyword} setKeyword={setKeyword} />
+
+            {/* Filter subs */}
+            <div className="fluid d-flex flex-row p-1 mb-2 justify-content-between">
+              <p className="m-0 p-0">Name of sub category:</p>
+              <p className="m-0 p-0">Action</p>
+            </div>
+            {subs.filter(searched(keyword)).map((s) => (
+              <div
+                style={{
+                  borderRadius: "0px",
+                  backgroundColor: "white",
+                  borderLeft: "1px dashed black",
+                  borderTop: "1px dashed black",
+                  borderRight: "1px dashed black",
+                  borderBottom: "4px solid #E52538",
+                }}
+                className="alert justify-content-between d-flex flex-row alert-secondary"
+                key={s._id}
+              >
+                {s.name}
+                <div className="gap-1 d-flex flex-row">
+                  <Link to={`/admin/sub/${s.slug}`}>
+                    <span className="btn bg-white btn-sm float-right">
+                      <EditOutlined
+                        style={{ transform: "scale(1.5)" }}
+                        className="text-warning"
+                      />
+                    </span>
+                  </Link>
+                  <span
+                    onClick={() => handleRemove(s.slug)}
+                    className="btn btn-sm bg-white float-right"
+                  >
+                    <DeleteOutlined
+                      style={{ transform: "scale(1.5)" }}
+                      className="text-danger"
+                    />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -26,7 +26,7 @@ const AdminProductCard = ({ product, handleRemove }) => {
               : defaultImage
           }
           style={{
-            height: "300px",
+            height: "200px",
             objectFit: "scale-down",
             transition: "transform 0.1s ease-in-out",
           }}
@@ -37,9 +37,15 @@ const AdminProductCard = ({ product, handleRemove }) => {
       }
       actions={[
         <Link to={`/admin/product/${slug}`}>
-          <EditOutlined className="text-warning" />
+          <EditOutlined
+            title="Edit this product"
+            style={{ transform: "scale(1.5)" }}
+            className="text-warning"
+          />
         </Link>,
         <DeleteOutlined
+          title="Delete this product"
+          style={{ transform: "scale(1.5)" }}
           className="text-danger"
           onClick={() => handleRemove(slug)}
         />,

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import AdminNav from "../../../components/nav/AdminNav";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import LadingCardText from "../../../components/cards/LoadingCardText";
 import {
   getCoupons,
   removeCoupon,
@@ -58,24 +59,21 @@ const CreateCouponPage = () => {
   return (
     <>
       <AdminHeader />
-      <div className="couponglobaldiv w-100 p-0 m-0">
+      <div className="couponglobaldiv w-100 p-0 mt-2 m-0">
         <div className="containercoupon container-fluid">
           <div className="couponrow row">
             <div className="adminsider col-md-2">
               <AdminNav />
             </div>
             <div className="col-md-10">
-              {loading ? (
-                <h4 className="text-danger">Loading...</h4>
-              ) : (
-                <h4>Coupon</h4>
-              )}
+              {loading ? <LadingCardText count={3} /> : <h4>Coupon create</h4>}
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label className="text-muted">Name</label>
+                  <label className="text-muted mt-3">Name of coupon:</label>
                   <input
                     type="text"
-                    className="form-control"
+                    placeholder="Type name..."
+                    className="form-control w-25 mt-1"
                     onChange={(e) => setName(e.target.value)}
                     value={name}
                     autoFocus
@@ -83,22 +81,23 @@ const CreateCouponPage = () => {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group mt-3">
                   <label className="text-muted">Discount %</label>
                   <input
                     type="text"
-                    className="form-control"
+                    placeholder="%"
+                    className="form-control w-25"
                     onChange={(e) => setDiscount(e.target.value)}
                     value={discount}
                     required
                   />
                 </div>
 
-                <div className="form-group">
-                  <label className="text-muted">Expiry</label>
+                <div className="form-group mt-3">
+                  <label className="text-muted">Expiry:</label>
                   <br />
                   <DatePicker
-                    className="form-control"
+                    className="form-control mt-2 mb-3 w-100"
                     selected={new Date()}
                     value={expiry}
                     onChange={(date) => setExpiry(date)}
@@ -106,9 +105,18 @@ const CreateCouponPage = () => {
                   />
                 </div>
 
-                <button className="btn btn-outline-primary">Save</button>
+                <button
+                  style={{
+                    width: "150px",
+                    backgroundColor: "#E52538",
+                    border: "none",
+                  }}
+                  className="btn btn-outline-primary text-white mb-3"
+                >
+                  Save
+                </button>
               </form>
-              <h4>{coupons.length} Coupons</h4>
+              <h2 className="mb-4">{coupons.length} Coupons</h2>
 
               <table className="table table-bordered">
                 <thead className="thead-light">
@@ -126,7 +134,7 @@ const CreateCouponPage = () => {
                       <td>{c.name}</td>
                       <td>{new Date(c.expiry).toLocaleDateString()}</td>
                       <td>{c.discount}%</td>
-                      <td>
+                      <td style={{ width: "100px" }}>
                         <DeleteOutlined
                           onClick={() => handleRemove(c._id)}
                           className="text-danger pointer"
