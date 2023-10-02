@@ -3,9 +3,10 @@ import React from "react";
 const CategoryForm = ({ handleSubmit, name, setName }) => (
   <form onSubmit={handleSubmit}>
     <div className="form-group pt-3">
-      <label>Name of sub category:</label>
+      <label>Name of category:</label>
       <input
         type="text"
+        placeholder="Type here..."
         className="form-control w-25"
         onChange={(e) => setName(e.target.value)}
         value={name}

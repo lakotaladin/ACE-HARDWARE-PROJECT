@@ -4,7 +4,7 @@
   "description": "Ace Hardware Project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",

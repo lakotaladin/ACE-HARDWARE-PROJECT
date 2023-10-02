@@ -119,7 +119,10 @@ const CreateCouponPage = () => {
               <h2 className="mb-4">{coupons.length} Coupons</h2>
 
               <table className="table table-bordered">
-                <thead className="thead-light">
+                <thead
+                  style={{ backgroundColor: "#E52538" }}
+                  className="thead-light text-white"
+                >
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Expiry</th>
@@ -134,9 +137,16 @@ const CreateCouponPage = () => {
                       <td>{c.name}</td>
                       <td>{new Date(c.expiry).toLocaleDateString()}</td>
                       <td>{c.discount}%</td>
-                      <td style={{ width: "100px" }}>
+                      <td
+                        style={{
+                          width: "100px",
+                          alignItems: "center",
+                          textAlign: "center",
+                        }}
+                      >
                         <DeleteOutlined
                           onClick={() => handleRemove(c._id)}
+                          style={{ transform: "scale(1.5)" }}
                           className="text-danger pointer"
                         />
                       </td>

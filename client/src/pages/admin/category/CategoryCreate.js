@@ -11,6 +11,9 @@ import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
+import AdminHeader from "../../../components/nav/AdminHeader";
+import LoadingCardText from "../../../components/cards/LoadingCardText";
+import ScrollOnTopButton from "../../../components/ScrollOnTop/ScrollOnTopButton";
 
 const CategoryCreate = () => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -68,20 +71,16 @@ const CategoryCreate = () => {
 
   const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
   return (
-    <div className="container-fluid">
+    <div className="container-fluid p-0 m-0">
       <div className="header-admin justify-content-center d-flex align-items-center w-100 m-0 p-0">
-        <h1>Admin Dashboard</h1>
+        <AdminHeader />
       </div>
       <div className="row">
         <div className="col-md-2">
           <AdminNav />
         </div>
         <div className="col">
-          {loading ? (
-            <h4 className="text-danger">Loading..</h4>
-          ) : (
-            <h4>Create category</h4>
-          )}
+          {loading ? <LoadingCardText count={3} /> : <h4>Create category</h4>}
           <CategoryForm
             handleSubmit={handleSubmit}
             name={name}
@@ -118,6 +117,7 @@ const CategoryCreate = () => {
           ))}
         </div>
       </div>
+      <ScrollOnTopButton />
     </div>
   );
 };
