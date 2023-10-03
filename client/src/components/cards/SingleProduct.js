@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./singleProductStyle.css";
+import ReactImageMagnify from "react-image-magnify";
 import pplogo from "../../resources/pp-logo.png";
 import StarRating from "react-star-ratings";
 import instock from "../../resources/instock.png";
@@ -13,6 +14,7 @@ import {
   MailOutlined,
   RightOutlined,
   TwitterOutlined,
+  ZoomInOutlined,
 } from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -92,18 +94,38 @@ const SingleProduct = ({ product, onStarClick, star }) => {
         <div className="w-100 d-flex flex-column p-0 m-0">
           <div
             style={{ margin: "auto" }}
-            className="row w-100 d-flex flex-row p-1"
+            className="row w-100 gap-2 d-flex justify-content-between flex-row p-1"
           >
-            <div className="col-md-7">
+            <div className="col-md-5">
               {images && images.length ? (
                 <Carousel showArrows={true} autoPlay infiniteLoop>
                   {images &&
                     images.map((i) => (
-                      <img
-                        style={{ objectFit: "scale-down" }}
-                        src={i.url}
-                        key={i.public_id}
-                      />
+                      <>
+                        <div key={i.public_id}>
+                          <ReactImageMagnify
+                            {...{
+                              smallImage: {
+                                alt: "Product",
+                                isFluidWidth: true,
+                                src: i.url,
+                              },
+                              largeImage: {
+                                src: i.url,
+                                width: 1200,
+                                height: 1000,
+                              },
+                              lensStyle: {
+                                backgroundColor: "rgba(0,0,0,.6)",
+                              },
+                              enlargedImagePosition: "over",
+                              enlargedImageContainerStyle: {
+                                zIndex: "1",
+                              },
+                            }}
+                          />
+                        </div>
+                      </>
                     ))}
                 </Carousel>
               ) : (
@@ -117,6 +139,10 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                   }
                 ></Card>
               )}
+              <p style={{ fontSize: "14px" }} className="m-auto text-center">
+                Roll over image to Zoom{" "}
+                <ZoomInOutlined style={{ color: "black" }} />
+              </p>
             </div>
             <div className="col-md-5 d-flex flex-column product-info">
               <div className="block d-flex flex-column align-text-start p-0 m-0">

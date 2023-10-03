@@ -8,6 +8,7 @@ const ProductListItems = ({ product }) => {
     description,
     category,
     subs,
+    warranty,
     shipping,
     thermometer,
     burnerOutputRange,
@@ -53,7 +54,7 @@ const ProductListItems = ({ product }) => {
 
             {subs && (
               <li className="list-group-item border-0 p-0">
-                Sub Category{" "}
+                Sub Category:{" "}
                 {subs.map((s) => (
                   <Link
                     key={s._id}
@@ -75,6 +76,10 @@ const ProductListItems = ({ product }) => {
               <span className="label label-default label-pill">{shipping}</span>
             </li>
             <li className="list-group-item border-0 p-0">
+              Warranty:{" "}
+              <span className="label label-default label-pill">{warranty}</span>
+            </li>
+            <li className="list-group-item border-0 p-0">
               Fuel Type:{" "}
               <span className="label label-default label-pill">{fueltype}</span>
             </li>
@@ -88,6 +93,12 @@ const ProductListItems = ({ product }) => {
               Burner Output Range:{" "}
               <span className="label label-default label-pill">
                 {burnerOutputRange}
+              </span>
+            </li>
+            <li className="list-group-item border-0 p-0">
+              Front Side Shelf:{" "}
+              <span className="label label-default label-pill">
+                {frontSideShelf}
               </span>
             </li>
             <li className="list-group-item border-0 p-0">
@@ -124,14 +135,6 @@ const ProductListItems = ({ product }) => {
               Assembly:{" "}
               <span className="label label-default label-pill">{assembly}</span>
             </li>
-            {/* <li className="list-group-item border-0 p-0">
-              Quantity:{" "}
-              <span className="label label-default label-pill">{quantity}</span>
-            </li>
-            <li className="list-group-item border-0 p-0">
-              Sold:{" "}
-              <span className="label label-default label-pill">{sold}</span>
-            </li> */}
             <li className="list-group-item border-0 p-0">
               Front Side Shelf:{" "}
               <span className="label label-default label-pill">

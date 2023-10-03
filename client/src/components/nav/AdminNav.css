@@ -8,3 +8,24 @@
 ul {
     width: 100%;
 }
+/* CSS fajl */
+.nav-link {
+    position: relative;
+}
+
+.nav-link:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: #E52538;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.nav-link:hover:after {
+    transform: scaleX(1);
+}

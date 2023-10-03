@@ -3,8 +3,8 @@ import "../nav/AdminNav.css";
 import { Link } from "react-router-dom";
 
 const AdminNav = () => (
-  <nav className="adminnavigation m-0 d-flex">
-    <ul style={{ fontSize: "18px" }} className="nav d-flex flex-column">
+  <nav className="adminnavigation m-0 d-flex justify-content-center">
+    <ul style={{ fontSize: "18px" }} className="nav flex-column text-center">
       <li className="nav-item">
         <Link
           to="/admin/dashboard"

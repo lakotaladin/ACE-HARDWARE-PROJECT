@@ -94,22 +94,41 @@ const CategoryCreate = () => {
           </div>
           {categories.filter(searched(keyword)).map((c) => (
             <div
+              style={{
+                backgroundColor: "white",
+                borderBottom: "4px solid #E52538",
+                borderRadius: "0px",
+                borderTop: "1px dashed black",
+                borderRight: "1px dashed black",
+                borderLeft: "1px dashed black",
+                marginRight: "5px",
+              }}
               className="alert alert-secondary d-flex justify-content-between"
               key={c._id}
             >
               <p style={{ fontWeight: "bold" }} className="m-0 p-0">
                 {c.name}
               </p>
-              <div className="d-flex alert-secondary flex-row p-o m-0">
+              <div className="d-flex alert-secondary gap-2 bg-white flex-row p-o m-0">
                 <span
+                  style={{ border: "1px dashed black", boxShadow: "none" }}
                   onClick={() => handleRemove(c.slug)}
                   className="btn btn-md"
                 >
-                  <DeleteOutlined className="text-danger" />
+                  <DeleteOutlined
+                    style={{ transform: "scale(1.5)" }}
+                    className="text-danger bg-white"
+                  />
                 </span>
                 <Link to={`/admin/category/${c.slug}`}>
-                  <span className="btn btn-md">
-                    <EditOutlined className="text-warning" />
+                  <span
+                    style={{ border: "1px dashed black", boxShadow: "none" }}
+                    className="btn btn-md"
+                  >
+                    <EditOutlined
+                      style={{ transform: "scale(1.5)" }}
+                      className="text-warning"
+                    />
                   </span>
                 </Link>
               </div>

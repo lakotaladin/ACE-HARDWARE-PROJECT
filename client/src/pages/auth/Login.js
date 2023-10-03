@@ -125,7 +125,7 @@ const Login = ({ history }) => {
               <h6
                 style={{
                   color: "#D40029",
-                  fontSize: "18px",
+                  fontSize: "22px",
                   fontWeight: "400",
                 }}
               >
@@ -147,18 +147,18 @@ const Login = ({ history }) => {
                 required
               ></input>
               <input
-                className="input-form"
+                className="input-form mt-3"
                 placeholder="Password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoFocus
                 required
-              ></input>
+              />
               <span
                 onClick={openModal}
                 // to="/forgotten-password"
-                className="fogotten-password-link p-0 m-0"
+                className="fogotten-password-link p-0 m-0 mt-2 mb-4"
               >
                 Forgot Password
               </span>
@@ -166,7 +166,7 @@ const Login = ({ history }) => {
               <div className="button-form btn m-0 p-0 w-100 d-flex justify-content-center align-items-center">
                 <button
                   type="submit"
-                  className="button w-100 mt-4"
+                  className="button w-100"
                   disabled={!email || password.length < 6}
                 >
                   Sign In

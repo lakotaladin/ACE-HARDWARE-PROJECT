@@ -38,7 +38,6 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openMenu2, setOpenMenu2] = useState(false);
   const [openMenu3, setOpenMenu3] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
 
   let dispatch = useDispatch();
   let { user, cart } = useSelector((state) => ({ ...state }));

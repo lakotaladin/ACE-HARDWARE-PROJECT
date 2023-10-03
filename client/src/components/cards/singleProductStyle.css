@@ -16,10 +16,47 @@
 .block {
     border-bottom: 1px solid #cccc;
 }
-/* Carousel style */
-
-.slider img,
-.card-omage {
-    height: 450px;
-    object-fit: cover;
+.image-magnifier {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    border: 1px solid #ccc;
+    background-size: 800px 800px;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 9999;
 }
+
+
+/* Dodajte ove stilove u vaš CSS fajl */
+.custom-carousel-arrows {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.custom-carousel-arrow {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-carousel-arrow:hover {
+    background-color: gray;
+    /* Promenite boju za hover efekat */
+}
+  .custom-carousel-arrow svg {
+      width: 20px;
+      height: 20px;
+      fill: black;
+  }

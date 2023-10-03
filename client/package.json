@@ -21,6 +21,7 @@
     "react-datepicker": "^4.16.0",
     "react-dom": "^18.2.0",
     "react-image-file-resizer": "^0.4.8",
+    "react-image-magnify": "^2.7.4",
     "react-leaflet": "^4.2.1",
     "react-modal-image": "^2.6.0",
     "react-quill": "^2.0.0",

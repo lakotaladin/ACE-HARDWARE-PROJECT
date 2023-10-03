@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import "./coupon.css";
 import AdminNav from "../../../components/nav/AdminNav";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -66,7 +67,11 @@ const CreateCouponPage = () => {
               <AdminNav />
             </div>
             <div className="col-md-10">
-              {loading ? <LadingCardText count={3} /> : <h4>Coupon create</h4>}
+              {loading ? (
+                <LadingCardText count={3} />
+              ) : (
+                <h2 className="mt-2">Coupon create</h2>
+              )}
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label className="text-muted mt-3">Name of coupon:</label>
