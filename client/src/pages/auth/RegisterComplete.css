@@ -70,8 +70,7 @@
 }
 
 label {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 14px;
     margin-bottom: 2%;
 }
 
@@ -88,4 +87,6 @@ label {
 .button-account:hover {
     background-color: #fbe6e5;
     transition: background-color 0.2s linear;
+    border: 1px solid #D40029;
+        color: #D40029;
 }

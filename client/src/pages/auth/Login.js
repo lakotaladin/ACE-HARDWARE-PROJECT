@@ -10,17 +10,22 @@ import arrow from "../../resources/arrow.png";
 import phone from "../../resources/phone.png";
 import mail from "../../resources/mail.png";
 import { Link } from "react-router-dom";
-import { CheckOutlined } from "@ant-design/icons";
+import {
+  CheckOutlined,
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+} from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-
-
+import { Input } from "antd";
 
 const Login = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
+
   useEffect(() => {
     let intended = history.location.state;
     if (intended) {
@@ -71,8 +76,9 @@ const Login = ({ history }) => {
         .catch((err) => console.log(err));
 
       // history.push("/");
+      toast.success("Successfully logged in!");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error.message);
       setLoading(false);
     }
@@ -137,7 +143,7 @@ const Login = ({ history }) => {
               >
                 Sign in to access your account and Ace Rewards.
               </p>
-              <input
+              <Input
                 className="input-form"
                 placeholder="Email"
                 type="email"
@@ -145,15 +151,21 @@ const Login = ({ history }) => {
                 onChange={(e) => setEmail(e.target.value)}
                 autoFocus
                 required
-              ></input>
-              <input
-                className="input-form mt-3"
+              ></Input>
+              <Input.Password
+                style={{
+                  padding: "2%",
+                  height: "45px",
+                  border: "1px solid #ACACAC;",
+                }}
                 placeholder="Password"
-                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoFocus
                 required
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
               />
               <span
                 onClick={openModal}
@@ -166,7 +178,8 @@ const Login = ({ history }) => {
               <div className="button-form btn m-0 p-0 w-100 d-flex justify-content-center align-items-center">
                 <button
                   type="submit"
-                  className="button w-100"
+                  style={{ fontSize: "14px", letterSpacing: "1px" }}
+                  className="button btn w-100"
                   disabled={!email || password.length < 6}
                 >
                   Sign In

@@ -295,10 +295,11 @@ const Register = ({ history }) => {
         <p style={{ fontSize: "12px", margin: "0% 0% 0% 3%" }} className="p-0">
           Used to look up your account or order information.
         </p>
-        <Form.Item name="month">
+        <label className="mt-4">Birthday (optional)</label>
+        <Form.Item name="month" placeholder="Birthday (optional)">
           <Select
-            onChange={(value) => setMonth(value)}
             placeholder="Birthday (optional)"
+            onChange={(value) => setMonth(value)}
             style={{
               width: "100%",
             }}

@@ -8,12 +8,24 @@ import inst from "../../resources/insta.png";
 import twit from "../../resources/twiter.png";
 import pint from "../../resources/pint.png";
 import yt from "../../resources/yt.png";
+import acerewards from "../../resources/AceRewardsFooter.svg";
 import privacy from "../../resources/privacy.png";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Footer = () => {
   return (
     <>
+      <div
+        style={{ overflow: "hidden", backgroundColor: "#D40029" }}
+        className="ace-rewards-responsive w-100 p-0 pr-5 m-0 d-flex justify-content-end"
+      >
+        <img
+          src={acerewards}
+          className="aceaw d-flex p-0 m-0 m-4"
+          style={{ height: "50px", transform: "scale(2.5)" }}
+          alt="rewards"
+        />
+      </div>
       <div className="footer-global d-flex w-100 m-0">
         <div className="footer-container-one m-0 w-100">
           <div className="footer-card d-flex m-0">

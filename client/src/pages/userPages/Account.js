@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./account.css";
 import { RightOutlined } from "@ant-design/icons";
 import Header from "../../components/nav/Header";
+import { getUserOrders } from "../../functions/user";
 import Footer from "../../components/footer/Footer";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import firebase from "firebase/compat/app";
@@ -11,8 +12,14 @@ import { toast } from "react-toastify";
 
 const Account = () => {
   const [activeLink, setActiveLink] = useState("Account");
+  const [orders, setOrders] = useState([]);
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
+
+  // Load all orders
+  useEffect(() => {
+    loadUserOrders();
+  }, []);
 
   //  Fetch user from firebase
 
@@ -23,6 +30,12 @@ const Account = () => {
   const handleNavLinkClick = (linkName) => {
     setActiveLink(linkName);
   };
+
+  const loadUserOrders = () =>
+    getUserOrders(user.token).then((res) => {
+      console.log(JSON.stringify(res.data, null, 4));
+      setOrders(res.data);
+    });
 
   const logout = () => {
     firebase.auth().signOut();
@@ -129,7 +142,7 @@ const Account = () => {
                 marginTop: "0%",
               }}
             >
-              No order history
+              {orders.length} order history
             </p>
           </div>
           <div className="card-twoo w-50 d-flex flex-column p-0">
@@ -177,7 +190,7 @@ const Account = () => {
                 </p>
                 <div className="info-containerr w-100 d-flex flex-column m-0">
                   <p className="p-text">{userName}</p>
-                  <p className="p-text p-0">{user.adress}</p>
+                  <p className="p-text p-0">{user.address}</p>
                   <p className="p-text">{user.phone}</p>
                 </div>
               </div>

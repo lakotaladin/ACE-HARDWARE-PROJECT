@@ -10,6 +10,12 @@ import "firebase/compat/firestore";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { createOrUpdateUser } from "../../functions/auth";
+import {
+  CheckOutlined,
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+} from "@ant-design/icons";
+import { Input } from "antd";
 
 const RegisterComplete = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -59,10 +65,8 @@ const RegisterComplete = ({ history }) => {
               })
             )
             .catch((err) => console.log(err));
-          setTimeout(() => {
-            history.push("/");
-            toast.success("Registration is completed!");
-          }, 2000);
+          toast.success("Registration is completed!");
+          history.push("/");
         }
       } catch (error) {
         console.log(error);
@@ -126,20 +130,25 @@ const RegisterComplete = ({ history }) => {
                   disabled
                 ></input>
                 <label>Type your password:</label>
-                <input
+                <Input.Password
                   className="input-form"
                   placeholder="Password"
+                  style={{
+                    padding: "2%",
+                    height: "45px",
+                    border: "1px solid #ACACAC;",
+                  }}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   autoFocus
-                ></input>
+                ></Input.Password>
               </div>
 
               <button
                 type="submit"
-                style={{ fontSize: "18px", letterSpacing: "1px" }}
-                className="button-account btn mt-4 mb-4 w-100"
+                style={{ fontSize: "14px", letterSpacing: "1px" }}
+                className="button-account btn mt-3 mb-4 w-100"
               >
                 Submit
               </button>

@@ -93,6 +93,18 @@ const locations = [
     latitude: 43.65065,
     longitude: -70.33893,
   },
+  {
+    id: 8,
+    name: "Calais Ace Home Center",
+    description: "295 North St",
+    adress: "Calais, ME 04619-1214",
+    phone: "(207) 454-2309",
+    work: "Mon-Fri: 7:00am - 6:00pm",
+    worksat: "Sat: 8:00am - 5:00pm",
+    worksun: "Sun: 9:00am - 4:00pm",
+    latitude: 47.18047,
+    longitude: -67.28653,
+  },
 ];
 
 const Location = () => {

@@ -114,3 +114,50 @@
     color: #CDCDCD;
     font-size: 13px;
 }
+.ace-rewards-responsive {
+  display: none !important;
+}
+
+
+@media only screen and (max-width: 1211px) {
+
+  .learn-more-link,
+  .join-now-link {
+    display: none;
+  }
+}
+
+@media (max-width: 1211px) {
+  .footer-card {
+    width: 50%;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-top: 4%;
+    border-top: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-card h5 {
+    margin: 0;
+  }
+
+  .footer-card a {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+  }
+
+  .ace-rewards-responsive {
+    display: flex !important;
+  }
+
+  .footer-card-award {
+    display: none !important;
+  }
+
+  .privacy-text-global {
+    text-align: center;
+  }
+}

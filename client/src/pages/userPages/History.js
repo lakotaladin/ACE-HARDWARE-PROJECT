@@ -32,7 +32,7 @@ const History = ({ history }) => {
   let { user } = useSelector((state) => ({ ...state }));
 
   // Orders
-  console.log("ORDERI SU ", orders);
+  // console.log("ORDERI SU ", orders);
   const loadUserOrders = () =>
     getUserOrders(user.token).then((res) => {
       console.log(JSON.stringify(res.data, null, 4));
